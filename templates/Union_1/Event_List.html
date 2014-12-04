@@ -1,0 +1,134 @@
+{% extends 'Union_1/base.html' %}
+
+{% block title %} Events {% endblock %}
+
+{% block body_block %}
+
+<div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+                <h1>Upcoming events</h1>
+                {% for Event in event_list %}
+                     {% if Event.comp == "upcoming" or Event.comp == "today" %}
+
+                <div class="container-fluid event-teaser">
+                <div class="pull-left date-holder">
+                    <span class="day">{{ Event.date|date:"d" }}</span><br>
+                    <span class="month">{{ Event.date|date:"M" }}</span><br>
+                    <span class="year">{{ Event.date|date:"Y" }}</span>
+                </div>
+                    <h2><a href ="/union/events/{{ Event.url_link }}/">{{ Event.title }}</a></h2>
+                    <p>When: {{ Event.date }}</p>
+                    <p>Where: {{ Event.place }} <a href="http://maps.google.com/?q={{ Event.google_direction }}" target="_blank">[directions]</a></p>
+                    <p>Description: {{ Event.description }}</p>
+                    <p>Price: ${{ Event.price }}</p>
+                    <p>Website: <a href="{{ Event.url }}">{{ Event.url }}</a></p>
+                    <hr>
+                </div>
+                    {% endif %}
+                {% endfor %}
+
+                <h1>Past events</h1>
+                {% for Event in event_list %}
+                    {% if Event.comp == "past" %}
+
+                <div class="container-fluid event-teaser">
+                <div class="pull-left date-holder">
+                    <span class="day">{{ Event.date|date:"d" }}</span><br>
+                    <span class="month">{{ Event.date|date:"M" }}</span><br>
+                    <span class="year">{{ Event.date|date:"Y" }}</span>
+                </div>
+                    <h2><a href ="/union/events/{{ Event.url_link }}/">{{ Event.title }}</a></h2>
+                    <p>When: {{ Event.date }}</p>
+                    <p>Where: {{ Event.place }} <a href="http://maps.google.com/?q={{ Event.google_direction }}" target="_blank">[directions]</a></p>
+                    <p>Description: {{ Event.description }}</p>
+                    <p>Price: ${{ Event.price }}</p>
+                    <p>Website: <a href="{{ Event.url }}">{{ Event.url }}</a></p>
+                    <hr>
+                </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+
+        <div class="col-xs-12 col-md-4 col-right">
+
+            <div class = "stay_in_touch">
+                 <h1>Stay in touch</h1>
+                 <p>Subscribe to our newsletter and stay in touch with us!</p>
+
+
+                <!-- Begin MailChimp Signup Form -->
+            <div id="mc_embed_signup">
+            <form action="//UNAY.us3.list-manage.com/subscribe/post?u=329119448809907e23753d6b7&amp;id=8174eaba94" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+                <div id="mc_embed_signup_scroll">
+
+                    <div class="mc-field-group">
+	                    <label for="mce-EMAIL"><p>Email Address</p></label>
+	        <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="email@email.com">
+            </div>
+	<div id="mce-responses" class="clear">
+		<div class="response" id="mce-error-response" style="display:none"></div>
+		<div class="response" id="mce-success-response" style="display:none"></div>
+	</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+            <div style="position: absolute; left: -5000px;"><input type="text" name="b_329119448809907e23753d6b7_8174eaba94" tabindex="-1" value=""></div>
+            <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+            </div>
+            </form>
+            </div>
+            <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
+            <script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+<!--End mc_embed_signup-->
+
+            </div>
+
+            <div class="become_a_memeber">
+                <h1>Join Us</h1>
+                <p>Join a vibrant organization of people from Alsace living in the Tri-State Area!</p>
+                <a href="/union/members/"><button class="btn brn-primary become_index">Become a Member</button></a>
+           </div>
+
+            <div class="sponsor">
+                <h1>Sponsors</h1>
+
+
+    <div>
+    <div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel">
+    	<!-- Carousel indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+        </ol>
+       <!-- Carousel items -->
+        <div class="carousel-inner">
+            <div class="active item">
+
+                <img class="sponsor-logo" src="/static/image/alsace_velo.png" />
+
+            </div>
+            <div class="item">
+
+                 <img class="sponsor-logo" src="/static/image/alsace_velo.png" />
+
+            </div>
+
+        </div>
+
+        <!-- Carousel nav -->
+        <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+            <i style="margin-top:175%;color:black;" class="fa fa-chevron-left"></i>
+        </a>
+        <a class="carousel-control right" href="#myCarousel" data-slide="next">
+            <span style="margin-top:175%; color:black;" class="fa fa-chevron-right"></span>
+        </a>
+    </div>
+</div>
+
+            <div class="row text-center">
+                  <img class="col-right-img" src="/static/image/steuben.jpeg"/>
+            </div>
+            </div>
+        </div>
+</div>
+
+<script>$('#event').addClass('active');</script>
+{% endblock %}

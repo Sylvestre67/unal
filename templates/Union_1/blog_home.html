@@ -1,0 +1,76 @@
+{% extends 'Union_1/base.html' %}
+
+{% block title %} Hone {% endblock %}
+
+{% block body_block %}
+<nav class="navbar navbar-default" role="navigation">
+    <div class ="container">
+
+        <button class="navbar-toggle" data-target=".navbar-responsive-collapse" data-toggle="collapse" type="button">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+
+        <a class="navbar-brand" href="/"></a>
+        <div class="collapse navbar-collapse navbar-responsive-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+                <li><a href="/union/">Home</a></li>
+                <li><a href="/union/about/">About</a></li>
+                <li><a href="/union/event/">Events</a></li>
+                <li class="active"><a href="/union/blog/">Blog</a></li>
+                <li><a href="/union/members/"> Membership</a></li>
+                <li><a href="#">Donate</a></li>
+                <li><a href="/union/contact_us/">Contact</a></li>
+
+            </ul>
+
+
+        </div> <!--end navbar collapse-->
+    </div>
+</nav>
+
+<!--List of Blog Article starts here-->
+<div class="container">
+     <div class="row">
+         <div class="col-xs-12 col-md-8">
+            <h1>Welcome to L'Union Alsacienne Blog</h1>
+                <div class="blog-teaser pull-left">
+                     {% if blogposts %}
+                        {% for BlogPost in blogposts %}
+                    <h2><a href="/union/blog/{{ BlogPost.url }}">{{ BlogPost.title }}</a></h2>
+                    <div class="pull-left">
+                            <a href="/union/blog/{{ BlogPost.url }}"><img src="/static/image/Imagin_Logo_140_70.jpg" class="img-responsive img-rounded" alt="ICON for blog post"/></a>
+                     </div>
+                    <p>{{ BlogPost.body|truncatewords:"300" }}</p>
+                        {% endfor %}
+                    {% else %}
+                        <strong>There are no Blog post to display.</strong>
+                    {% endif %}
+                    <!-- If image-->
+                </div>
+         </div>
+<!-- Recent Articles starts here-->
+        <div class="col-xs-6 col-md-4">
+            <div class = "recent_article">
+            <h1>Recent Articles</h1>
+            <ul>
+                {% for blog in blogposts %}
+                <li><a href="/union/blog/{{ blog.url }}">{{ blog.title }}</a></li>
+                {% endfor %}
+            </ul>
+            </div>
+                <div>
+                    <h1>SPONSOR CAROUSEL</h1>
+                    <p>This region will display a Carousel rotating and giving a brief overview of one of our sponsor one at a time.</p>
+                </div>
+                <div>
+                 <h2>Stay in touch</h2>
+                  <form>
+                    <input type="text"/>
+                    <button type="submit" id="Submit">Stay in touch</button>
+                 </form>
+               </div>
+            </div>
+        </div>
+{% endblock %}

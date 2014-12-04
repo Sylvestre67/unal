@@ -1,0 +1,72 @@
+{% extends 'Union_1/base.html' %}
+
+{% block title %} {{ event.title }} - {{ event.date }} {% endblock %}
+
+{% block body_block %}
+
+<div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+
+                <div class="blog-teaser pull-left">
+
+                    <div class="pull-left date-holder">
+                        <span class="day">{{ event.date|date:"d" }}</span><br>
+                        <span class="month">{{ event.date|date:"M" }}</span><br>
+                        <span class="year">{{ event.date|date:"Y" }}</span>
+                    </div>
+
+                    <h1>{{ event.title }}</h1>
+                    <!--Twitter Widget-->
+                    <a href="https://twitter.com/share" class="pull-right twitter-share-button" data-count="none">Tweet</a>
+                    <!--Facebook widget-->
+                    <div class="pull-right fb-like" data-href="https://www.alsace.nyc/event/{{ event_title_url }}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
+                    <h4>{{ event.date }}</h4>
+
+                    <p>{{ event.description }}</p>
+                    {% if event.url %}
+                    <p> Website: <a href="{{ event.url }}" style="color:RGB(227,34,25);text-decoration: underline;">{{ event.url }}</a></p>
+                    {% endif %}
+
+
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+                    <div class= "google_map">
+                    <h4>{{ event.venue }}</h4>
+                    <h5>{{ event.place }}</h5>
+
+                    <iframe width="100%" height="100%" frameborder="0" style="border:0"
+                    src="https://www.google.com/maps/embed/v1/place?q={{ event.google_direction }}&key=AIzaSyBAElrVHTeO4Alpk2dtBt6Q4Js1EtQbRWg"></iframe>
+
+                    </div>
+            {% if event.bwp_link %}
+                <div class = "brown_paper_ticket">
+
+                    <DIV ID="bpt_eventbody"><CENTER><BR><BR>Brown Paper Tickets Ticket Widget Loading...<BR><BR>
+                    <A HREF="{{ event.bwp_link }}">Click Here</A> to visit the Brown Paper Tickets event page.</CENTER><BR><BR></DIV>
+
+                    <script src="http://www.brownpapertickets.com/eventwidget.js?event=964609&nodescription=1&notitle=1" type="text/javascript" language="javascript"></script>
+                    <script src="http://www.brownpapertickets.com/widget.js?event=964609" type="text/javascript" language="javascript"></script>
+                </div>
+            {% endif %}
+            </div>
+        </div>
+
+
+                </div>
+            </div>
+        </div>
+</div>
+
+<script>$('#event').addClass('active');</script>
+
+
+
+
+
+
+{% endblock %}

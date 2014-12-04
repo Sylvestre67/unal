@@ -1,0 +1,248 @@
+{% extends 'Union_1/base.html' %}
+
+{% block title %} Hone {% endblock %}
+
+{% block body_block %}
+
+    <div class="container">
+            <div class="row">
+            <div class="col-xs-12 col-md-8">
+                <div class = "form-header">
+                <h1>Application for Membership</h1>
+                <p>I, the Undersigned, hereby respectfully petition the President, Officers and Members of L'Union Alsacienne, for membership in your Association.
+                </p>
+                    <p>
+                    If accepted, I promise upon my word of honor to strictly abide by and uphold the Constitution,
+                    By-Laws, Rules and Regulation of L'Union Alsacienne, and strive to further the welfare and best interests of the Association with neither political nor sectarian motives in mind.</p>
+                    </p>
+                    <p>Applicant must be born in Alsace, of Alsatian descent, or married to an Alsatian. </p>
+                </div>
+            </div>
+        </div>
+
+                <form id="become_a_member_form" method="post" action="/union/membership/become_a_member/" role="form">
+
+                {% csrf_token %}
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+            <div class = "row">
+                <div class="col-xs-6 col-md-4">
+
+                    {% for field in form.visible_fields %}
+
+                        {% if field.name == "first_name" %}
+
+                        <div class="form-group">
+                            <label class="label_form">First Name: </label>
+                            {{ field }}
+                        </div>
+
+
+                        {% elif field.name == "last_name" %}
+
+                         <div class="form-group">
+
+                            <label class="label_form">Last Name: </label>
+                            {{ field }}
+                        </div>
+
+
+                        {% elif field.name == "email" %}
+                        <div class="form-group">
+                            <label class="label_form">Email:</label>
+                            {{ field }}
+                        </div>
+                </div>
+            </div>
+            <div class ="row">
+                <div class="col-xs-12 col-md-8">
+                 <hr>
+
+                        {% elif field.name == "address" %}
+                        <div class="form-group">
+                            <label class="label_form">Address</label>
+                            {{ field }}
+                        </div>
+
+                        {% elif field.name == "city" %}
+                        <div class="col-xs-8 col-md-5 no_padding">
+                        <div class="form-group">
+                            <label class="label_form">City</label>
+                            {{ field }}
+                        </div>
+                        </div>
+
+
+                                {% elif field.name == "zip" %}
+                                <div class="col-xs-4 col-md-3 no_padding">
+                                <div class="form-group">
+                                <label class="label_form">Zip</label>
+                                {{ field }}
+                                </div>
+                                </div>
+
+
+                                {% elif field.name == "state" %}
+                                <div class="col-xs-6 col-md-4 no_padding">
+                                <div class="form-group">
+                                <label class="label_form">State</label>
+                                {{ field }}
+                                </div>
+                                </div>
+
+                  </div>
+            </div>
+
+            <div class = "row">
+                <div class = "col-xs-12 col-md-8">
+                     <hr>
+                        {% elif field.name == "mobile_phone" %}
+                        <div class="col-xs-8 col-md-4 no_padding">
+                        <div class="form-group">
+                            <label class="label_form">Mobile Phone</label>
+                            {{ field }}
+                        </div>
+                        </div>
+
+                        {% elif field.name == "home_phone" %}
+                        <div class="col-xs-8 col-md-4 no_padding">
+                        <div class="form-group">
+                            <label class="label_form">Home Phone</label>
+                            {{ field }}
+                        </div>
+                        </div>
+
+                        {% elif field.name == "home_fax" %}
+                        <div class="col-xs-8 col-md-4 no_padding">
+                        <div class="form-group">
+                            <label class="label_form">Fax</label>
+                            {{ field }}
+                        </div>
+                        </div>
+                 </div>
+            </div>
+
+
+            <div class = "row">
+                <div class = "col-xs-12 col-md-8">
+                     <hr>
+                        {% elif field.name == "occupation" %}
+                        <div class="col-xs-10 col-md-6 no_padding">
+                        <div class="form-group">
+                            <label class="label_form">Occupation</label>
+                            {{ field }}
+                        </div>
+
+                        </div>
+                        {% elif field.name == "company" %}
+                        <div class="col-xs-10 col-md-6 no_padding">
+                        <div class="form-group">
+                            <label class="label_form">Company</label>
+                            {{ field }}
+                        </div>
+                        </div>
+                 </div>
+            </div>
+
+
+
+            <div class = "row">
+                <div class = "col-xs-12 col-md-8">
+                     <hr>
+                        {% elif field.name == "date_of_birth" %}
+                        <div class="col-xs-10 col-md-6 no_padding">
+                        <div class="form-group">
+                            <label class="label_form">Date of birth</label>
+                            {{ field }}
+                        </div>
+
+                        </div>
+                        {% elif field.name == "birth_place" %}
+                        <div class="col-xs-10 col-md-6 no_padding">
+                        <div class="form-group">
+                            <label class="label_form">Place</label>
+                            {{ field }}
+                        </div>
+                        </div>
+
+                        {% elif field.name == "if_not_alsace_Reason" %}
+
+                        <div class="form-group">
+                            <label class="label_form">If not born in Alsace, please explain your relation to Alsace: </label>
+                            {{ field }}
+
+                        </div>
+
+                </div>
+            </div>
+
+            <div class = "row">
+                <div class = "col-xs-12 col-md-8">
+                     <hr>
+
+                     {% elif field.name == "venue" %}
+                        <div class="col-xs-8 col-md-4 no_padding">
+                        <div class="form-group">
+                            <label class="label_form">Venue</label>
+                            {{ field }}
+                        </div>
+                        </div>
+
+                    {% elif field.name == "date_membership_application" %}
+                        <div class="col-xs-8 col-md-4 no_padding">
+                        <div class="form-group">
+                            <label class="label_form">Date</label>
+                            {{ field }}
+                        </div>
+                        </div>
+
+                    {% elif field.name == "signature" %}
+                        <div class="col-xs-8 col-md-4 no_padding">
+                        <div class="form-group">
+                            <label class="label_form">Signature</label>
+                            {{ field }}
+                        </div>
+                        </div>
+                </div>
+            </div>
+
+            <div class = "row">
+                <div class = "col-xs-10 col-md-6">
+                     <hr>
+
+                    {% elif field.name == "first_sponsor" %}
+
+                    <div class="form-group">
+                            <label class="label_form">First Sponsor </label>
+                            {{ field }}
+
+                    </div>
+
+                    {% elif field.name == "second_sponsor" %}
+
+                    <div class="form-group">
+                            <label class="label_form">Second Sponsor </label>
+                            {{ field }}
+
+                    </div>
+                </div>
+            </div>
+                    {% endif %}
+                    {% endfor %}
+            <div class = "row">
+                <div class = "col-xs-12 col-md-8">
+                    <div class="form-group">
+
+                        <input type="submit" class="btn btn-primary pull-right btn-member" name ="submit" value="Submit" />
+
+                    </div>
+                <p> Question? Please <a href="/union/contact_us/">contact us.</a></p>
+                </div>
+
+            </div>
+        </form>
+</div>
+
+<script>$('#membership').addClass('active');</script>
+{% endblock %}

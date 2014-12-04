@@ -1,0 +1,104 @@
+{% extends 'Union_1/base.html' %}
+
+{% block title %} About Union Alsacienne {% endblock %}
+
+{% block body_block %}
+
+<div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+
+                <h1>Member of l'Union Alsacienne</h1>
+
+            <p>To become a member of l'Union Alsacienne of New-York you must be:
+                <ul>
+                <li>born in Alsace</li>
+                <li>of Alsatian descent</li>
+                <li>married to an Alsatian</li>
+                </ul>
+            <p>
+                By becoming a member, you're invited to our events with a special price and subscribe to our quarterly bulletin.
+            </p>
+        <a href="/union/membership/become_a_member"><button class="btn become_index">Become a Member</button></a>
+        <h1>Friend of l'Union Alsacienne</h1>
+        <p> You can become a Friend of l'Union Alsacienne<br>
+        By becoming a friends of l-Union Alsacienne, you're invited to our events with a special price and subscribe to our quarterly bulletin.</p>
+                <a class = "becomeLink" href="/union/membership/become_a_friend"><button class="btn become_index">Become a Friend</button></a>
+            </div>
+
+
+            <div class="col-xs-12 col-md-4 col-right">
+
+            <div class = "stay_in_touch">
+            <h1>Upcoming Events</h1>
+
+            {% for Event in event_list %}
+                    {% if Event.comp == 'upcoming' or Event.comp == 'today' %}
+                <div class="container-fluid event-teaser">
+                    <h3><a href ="/union/events/{{ Event.url_link }}/">{{ Event.title }}</a></h3>
+                    <p>{{ Event.date }} </p>
+                    <hr>
+                </div>
+                    {% endif %}
+                {% endfor %}
+
+
+
+
+            </div>
+
+
+
+            <div class="sponsor">
+            <h1>Sponsors</h1>
+
+
+            <div>
+            <div id="myCarousel" class="carousel slide" data-interval="3000" data-ride="carousel">
+                <!-- Carousel indicators -->
+                <ol class="carousel-indicators">
+                    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                    <li data-target="#myCarousel" data-slide-to="1"></li>
+                </ol>
+               <!-- Carousel items -->
+                <div class="carousel-inner">
+                    <div class="active item">
+
+                        <img class="sponsor-logo" src="/static/image/alsace_velo.png" />
+
+                    </div>
+                    <div class="item">
+
+                         <img class="sponsor-logo" src="/static/image/alsace_velo.png" />
+
+                    </div>
+
+                </div>
+
+                <!-- Carousel nav -->
+                <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+                    <i style="margin-top:175%;color:black;" class="fa fa-chevron-left"></i>
+                </a>
+                <a class="carousel-control right" href="#myCarousel" data-slide="next">
+                    <span style="margin-top:175%; color:black;" class="fa fa-chevron-right"></span>
+                </a>
+            </div>
+        </div>
+
+            <div class="row text-center">
+                  <img class="col-right-img" src="/static/image/steuben.jpeg"/>
+            </div>
+            </div>
+
+
+
+        </div>
+
+
+        </div>
+</div>
+</div>
+</div>
+
+        <script>$('#membership').addClass('active');</script>
+{% endblock %}

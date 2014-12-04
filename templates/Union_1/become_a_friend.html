@@ -1,0 +1,110 @@
+{% extends 'Union_1/base.html' %}
+
+{% block title %} Hone {% endblock %}
+
+{% block body_block %}
+
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+                <div class = "form-header">
+                <h1>Application for Friendship</h1>
+
+                </div>
+            </div>
+        </div>
+
+                <form id="become_a_friend_form" method="post" action="/union/membership/become_a_friend/" role="form">
+
+                {% csrf_token %}
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+            <div class = "row">
+                <div class="col-xs-6 col-md-4">
+
+                    {% for field in form.visible_fields %}
+
+                        {% if field.name == "first_name" %}
+
+                        <div class="form-group">
+                            <label class="label_form">First Name: </label>
+                            {{ field }}
+                        </div>
+
+
+                        {% elif field.name == "last_name" %}
+
+                         <div class="form-group">
+
+                            <label class="label_form">Last Name: </label>
+                            {{ field }}
+                        </div>
+
+
+                        {% elif field.name == "email" %}
+                        <div class="form-group">
+                            <label class="label_form">Email:</label>
+                            {{ field }}
+                        </div>
+                </div>
+            </div>
+            <div class ="row">
+                <div class="col-xs-12 col-md-8">
+                 <hr>
+
+                        {% elif field.name == "address" %}
+                        <div class="form-group">
+                            <label class="label_form">Address</label>
+                            {{ field }}
+                        </div>
+
+                        {% elif field.name == "city" %}
+                        <div class="col-xs-8 col-md-5 no_padding">
+                        <div class="form-group">
+                            <label class="label_form">City</label>
+                            {{ field }}
+                        </div>
+                        </div>
+
+
+                                {% elif field.name == "zip" %}
+                                <div class="col-xs-4 col-md-3 no_padding">
+                                <div class="form-group">
+                                <label class="label_form">Zip</label>
+                                {{ field }}
+                                </div>
+                                </div>
+
+
+                                {% elif field.name == "state" %}
+                                <div class="col-xs-6 col-md-4 no_padding">
+                                <div class="form-group">
+                                <label class="label_form">State</label>
+                                {{ field }}
+                                </div>
+                                </div>
+                        {% endif %}
+                    {% endfor %}
+
+                  </div>
+            </div>
+
+
+            <div class = "row">
+                <div class = "col-xs-12 col-md-8">
+                    <div class="form-group">
+
+                        <input type="submit" class="btn btn-primary pull-right btn-member" name ="submit" value="Submit" />
+
+                    </div>
+                <p> Question? Please <a href="/union/contact_us/">contact us.</a></p>
+                </div>
+            </div>
+            </form>
+
+
+</div>
+
+<script>$('#membership').addClass('active');</script>
+{% endblock %}

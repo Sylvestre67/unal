@@ -1,0 +1,59 @@
+{% extends 'Union_1/base.html' %}
+
+{% block title %} Hone {% endblock %}
+
+{% block body_block %}
+
+     <div class="container">
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+                <h1>Contact Us</h1>
+                <form id="contact_form" method="post" action="/union/contact_us/" class="form-horizontal" role="form">
+
+                {% csrf_token %}
+                {% for hidden in form.hidden_fields %}
+                    {{ hidden }}
+                {% endfor %}
+
+                {% for field in form.visible_fields %}
+                    {% if field.name == "cc" %}
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <div class="checkbox">
+                        <label>
+                            {{ field }} Check this box to send a copy of this message to your email.
+                        </label>
+                              </div>
+                        </div>
+                    </div>
+
+                    {% else %}
+                        <div class="form-group">
+                        <label class="col-sm-2 control-label">{{ field.name|capfirst }} :</label>
+                        <div class="col-sm-10">
+                            {{ field }}
+                        </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                <input type="submit" class="btn btn-primary btn-member pull-right" name ="submit" value="Submit" />
+
+                </form>
+            </div>
+
+
+        <div class="col-xs-12 col-md-4 col-right">
+            <h4>Union Alsacienne of New York</h4>
+            <p>123 45th street<br>
+            New York, NY - 10022</p>
+
+            <div class="row text-center">
+            <img class="col-right-img" style="padding-top:50px;" src="/static/image/steuben.jpeg"/>
+            </div>
+        </div>
+        </div>
+    </div>
+</div>
+
+<script>$('#contactus').addClass('active');</script>
+{% endblock %}
