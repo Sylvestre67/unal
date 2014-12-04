@@ -19,11 +19,11 @@
             <p>
                 By becoming a member, you're invited to our events with a special price and subscribe to our quarterly bulletin.
             </p>
-        <a href="/union/membership/become_a_member"><button class="btn become_index">Become a Member</button></a>
+        <a href="/membership/become_a_member"><button class="btn become_index">Become a Member</button></a>
         <h1>Friend of l'Union Alsacienne</h1>
         <p> You can become a Friend of l'Union Alsacienne<br>
         By becoming a friends of l-Union Alsacienne, you're invited to our events with a special price and subscribe to our quarterly bulletin.</p>
-                <a class = "becomeLink" href="/union/membership/become_a_friend"><button class="btn become_index">Become a Friend</button></a>
+                <a class = "becomeLink" href="/membership/become_a_friend"><button class="btn become_index">Become a Friend</button></a>
             </div>
 
 
@@ -35,7 +35,7 @@
             {% for Event in event_list %}
                     {% if Event.comp == 'upcoming' or Event.comp == 'today' %}
                 <div class="container-fluid event-teaser">
-                    <h3><a href ="/union/events/{{ Event.url_link }}/">{{ Event.title }}</a></h3>
+                    <h3><a href ="/events/{{ Event.url_link }}/">{{ Event.title }}</a></h3>
                     <p>{{ Event.date }} </p>
                     <hr>
                 </div>

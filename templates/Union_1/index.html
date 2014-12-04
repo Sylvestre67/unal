@@ -25,7 +25,7 @@
                     <span class="month">{{ Event.date|date:"M" }}</span><br>
                     <span class="year">{{ Event.date|date:"Y" }}</span>
                 </div>
-                    <h2><a href ="/union/events/{{ Event.url_link }}/">{{ Event.title }}</a></h2>
+                    <h2><a href ="/events/{{ Event.url_link }}/">{{ Event.title }}</a></h2>
                     <p>When: {{ Event.date }} </p>
                     <p>Where: {{ Event.place }} <a href="http://maps.google.com/?q={{ Event.google_direction }}" target="_blank">[directions]</a></p>
                     <p>Description: {{ Event.description }}</p>
