@@ -7,6 +7,7 @@ PROJECT_PATH = os.path.abspath(PROJECT_PATH)
 TEMPLATE_PATH = os.path.join(PROJECT_PATH,'templates')
 STATIC_PATH = os.path.join(PROJECT_PATH,'static')
 DATABASE_PATH = os.path.join(PROJECT_PATH,'Union_1.db')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 MAILCHIMP_API_KEY='3fec4b189c5b774b30ffdbabc350eacf-us3'
 
@@ -69,6 +70,7 @@ MEDIA_ROOT = os.path.join(PROJECT_PATH,'media')
 # trailing slash.
 # Examples: "http://example.com/media/", "http://media.example.com/"
 MEDIA_URL = '/media/'
+
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
