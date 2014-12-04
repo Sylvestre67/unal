@@ -1,0 +1,431 @@
+div.bpt_ticket_widget {
+margin: 0px;
+padding: 0px;
+font-size: 12px;
+width: 100%;
+max-width: 900px;
+font-family: Helvetica, Arial, Sans-serif;
+color: #666666;
+}
+
+div.bpt_ticket_widget td {
+font-size: 12px;
+}
+
+td.bpt_widget_box_tab {
+padding: 10px 15px 8px 15px; 
+-webkit-border-top-left-radius: 18px; 
+-webkit-border-top-right-radius: 18px; 
+-moz-border-radius: 18px 18px 0px 0px; 
+border-radius: 18px 18px 0px 0px; 
+background: #1fbac8; 
+color: #ffffff; 
+font-weight: bold; 
+font-size: 18px !important;
+min-width: 250px;
+}
+
+td.bpt_widget_box_top {
+padding: 0px; 
+}
+
+td.bpt_widget_box_body {
+background: #eceded; 
+padding: 10px 15px 10px 15px; 
+border-left: 1px solid #d1d2d4;
+border-right: 1px solid #d1d2d4;
+border-top: 1px solid #d1d2d4;
+-webkit-border-top-right-radius: 18px; 
+-moz-border-radius: 0px 18px 0px 0px; 
+border-radius: 0px 18px 0px 0px; 
+}
+
+td.bpt_widget_box_bottom {
+border-top: 1px solid #d1d2d4; 
+border-bottom: 6px solid #d1d2d4; 
+border-left: 1px solid #d1d2d4;
+border-right: 1px solid #d1d2d4;
+padding: 10px; 
+background: #eceded;
+}
+
+td.bpt_widget_date_price_titles {
+color: #dd7727;
+font-weight: bold; 
+border-bottom: dotted 1px #6d6e71;
+padding-left: 0px;
+}
+
+td.bpt_widget_date_message {
+padding-top: 10px;
+padding-right: 5px;
+word-wrap: break-word;
+color: #666666;
+}
+
+td.bpt_widget_date {
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 0px;
+padding-right: 2px;
+height: 40px;
+color: #666666;
+}
+
+div.bpt_widget_price_block {
+position: relative;
+display: none;
+top: 0px;
+left: 0px;
+color: #666666;
+}
+
+div.bpt_widget_price_block_first {
+position: relative;
+display: block;
+top: 0px;
+left: 0px;
+color: #666666;
+}
+
+div.bpt_widget_date_waiting {
+display: block; 
+text-align: center; 
+visibility: hidden; 
+position: absolute; 
+width: 100%;
+}
+
+
+table.bpt_widget_price_table td {
+padding-top: 4px;
+padding-bottom: 4px;
+padding-left: 0px;
+padding-right: 2px;
+color: #666666;
+}
+
+table.bpt_widget_price_table {
+color: #58585a;
+}
+
+td.bpt_widget_price_border {
+border-bottom: 1px dotted #d1d2d4;
+height: 40px;
+}
+
+td.bpt_widget_hidden_price_border {
+height: 40px;
+}
+
+td.bpt_widget_price_border_yellow {
+background: #ffc;
+border: 1px solid #ffc;
+}
+
+td.bpt_widget_price_description {
+border-bottom: 1px dotted #d1d2d4;
+font-size: 10px;
+color: #666666;
+}
+
+td.bpt_widget_price_description_yellow {
+font-size: 10px;
+background: #ffc;
+border: 1px solid #ffc;
+}
+
+td.bpt_widget_warning_box {
+background: #ffc; 
+border: 1px solid #c93; 
+padding: 3px;
+}
+
+div.bpt_widget_event_name {
+color: #552502; 
+font-size: 18px; 
+font-weight: bold; 
+padding-bottom: 5px;
+}
+
+div.bpt_widget_event_description {
+padding-bottom:5px; 
+}
+
+div.bpt_widget_delivery_title {
+color: #dd7727;
+font-weight: bold;
+padding-left: 0px;
+}
+
+span.bpt_widget_tip {
+position:relative;
+}
+
+span.bpt_widget_tip a {
+text-decoration: none ;
+cursor: pointer;
+z-index: 24; 
+}
+
+span.bpt_widget_tip a:hover {
+cursor: pointer;
+z-index: 24; 
+}
+
+span.bpt_widget_tip div.container {
+display: none ;
+color: #000000;
+}
+
+span.bpt_widget_tip:hover div.container {
+z-index: 25; 
+display: inline;
+position: absolute;
+top: 2em; 
+left: -150px; 
+width: 300px;
+border: 3px solid #339999;
+background-color: #f9f9f9; 
+color: #666666;
+padding: 10px;
+-moz-box-shadow: 3px 3px 4px #000;
+-webkit-box-shadow: 3px 3px 4px #000;
+box-shadow: 3px 3px 4px #000;
+}
+
+OPTION.bpt_widget_disabled {
+font-weight: normal; 
+color: #999999;
+}
+
+div.bpt_widget_ticket_widget INPUT[type=text] {
+border:1px solid #999999;
+padding: 4px;
+margin: 0;
+border-radius: 6px;
+-moz-border-radius: 6px;
+-webkit-border-radius: 6px;
+}
+
+div.bpt_widget_ticket_widget SELECT {
+border:1px solid #999999;
+padding: 4px;
+margin: 0;
+border-radius: 3px;
+-moz-border-radius: 3px;
+-webkit-border-radius: 3px;
+font-family: Arial, Helvetica, Sans-serif;
+background: #ffffff;
+}
+	
+a:link.bpt_widget_a, a:visited.bpt_widget_a, a:active.bpt_widget_a {
+text-decoration: none;
+font-weight: bold;
+color: #1fbac8;
+}
+	
+a:hover.bpt_widget_a {
+text-decoration: underline;
+font-weight: bold;
+color: #1fbac8;
+background: none;
+}
+	
+a:link.bpt_widget_small_a, a:visited.bpt_widget_small_a, a:active.bpt_widget_small_a {
+font-size: 10px;
+text-decoration: none;
+font-weight: bold;
+color: #1fbac8;
+}
+	
+a:hover.bpt_widget_small_a {
+font-size: 10px;
+text-decoration: underline;
+font-weight: bold;
+color: #1fbac8;
+background: none;
+}
+	
+a:link.bpt_widget_small_a, a:visited.bpt_widget_small_a, a:active.bpt_widget_small_a, a:hover.bpt_widget_small_a {
+font-size: 10px;
+text-decoration: none;
+background: none;
+margin: 0px;
+padding: 0px;
+}
+
+button.bpt_orangebutton {
+border: 1px solid #d97e36; 
+background: #dd7727; 
+color: #ffffff; 
+background-image: url('https://www.brownpapertickets.com/g/6/BPT_button_bottom.png'); 
+background-repeat: repeat-x; 
+background-position: center top ;
+background-size: 50% 50%;
+font-family: Helvetica, Arial, Sans-serif; 
+font-size: 14px; 
+font-weight: bold;
+padding: 6px 18px 6px 18px;
+cursor: pointer;
+-moz-box-shadow: 1px 1px 2px #b8b8b8;
+-webkit-box-shadow: 1px 1px 2px #b8b8b8;
+box-shadow: 1px 1px 2px #b8b8b8;
+border-radius: 8px; 
+-moz-border-radius: 8px; 
+-webkit-border-radius: 8px;
+}
+
+button:hover.bpt_orangebutton {
+border: 1px solid #d97e36; 
+background: #ef7d21; 
+color: #ffffff; 
+background-image: url('https://www.brownpapertickets.com/g/6/BPT_button_bottom_rollover.png'); 
+background-repeat: repeat-x; 
+background-position: center top ;
+background-size: 50% 50%;
+font-family: Helvetica, Arial, Sans-serif; 
+font-size: 14px; 
+font-weight: bold;
+padding: 6px 18px 6px 18px;
+cursor: pointer;
+-moz-box-shadow: 3px 1px 2px #b8b8b8;
+-webkit-box-shadow: 3px 1px 2px #b8b8b8;
+box-shadow: 3px 1px 2px #b8b8b8;
+border-radius: 8px; 
+-moz-border-radius: 8px; 
+-webkit-border-radius: 8px;
+}
+
+button.bpt_bigorangebutton {
+border: 1px solid #d97e36; 
+background: #dd7727; 
+color: #ffffff; 
+background-image: url('https://www.brownpapertickets.com/g/6/BPT_button_bottom.png'); 
+background-repeat: repeat-x; 
+background-position: center top ;
+background-size: 50% 50%;
+font-family: Helvetica, Arial, Sans-serif; 
+font-size: 16px; 
+font-weight: bold;
+padding: 8px 22px 6px 22px;
+cursor: pointer;
+-moz-box-shadow: 1px 1px 2px #b8b8b8;
+-webkit-box-shadow: 1px 1px 2px #b8b8b8;
+box-shadow: 1px 1px 2px #b8b8b8;
+border-radius: 8px; 
+-moz-border-radius: 8px; 
+-webkit-border-radius: 8px;
+}
+
+button:hover.bpt_bigorangebutton {
+border: 1px solid #d97e36; 
+background: #ef7d21; 
+color: #ffffff; 
+background-image: url('https://www.brownpapertickets.com/g/6/BPT_button_bottom_rollover.png'); 
+background-repeat: repeat-x; 
+background-position: center top ;
+background-size: 50% 50%;
+font-family: Helvetica, Arial, Sans-serif; 
+font-size: 16px; 
+font-weight: bold;
+padding: 8px 22px 6px 22px;
+cursor: pointer;
+-moz-box-shadow: 3px 1px 2px #b8b8b8;
+-webkit-box-shadow: 3px 1px 2px #b8b8b8;
+box-shadow: 3px 1px 2px #b8b8b8;
+border-radius: 8px; 
+-moz-border-radius: 8px; 
+-webkit-border-radius: 8px;
+}
+
+button.bpt_greybutton {
+border-top: 1px solid #999999; 
+border-left: 1px solid #999999; 
+border-bottom: 1px solid #707070; 
+border-right: 1px solid #707070; 
+background: #d1d2d4; 
+color: #707070; 
+font-family: Helvetica, Arial, Sans-serif; 
+font-size: 14px; 
+font-weight: bold;
+padding: 6px 18px 6px 18px;
+cursor: auto;
+border-radius: 8px; 
+-moz-border-radius: 8px; 
+-webkit-border-radius: 8px;
+-moz-box-shadow: 1px 1px 2px #b8b8b8;
+-webkit-box-shadow: 1px 1px 2px #b8b8b8;
+box-shadow: 1px 1px 2px #b8b8b8;
+}
+
+button.bpt_biggreybutton {
+border-top: 1px solid #999999; 
+border-left: 1px solid #999999; 
+border-bottom: 1px solid #707070; 
+border-right: 1px solid #707070; 
+background: #d1d2d4; 
+color: #707070; 
+font-family: Helvetica, Arial, Sans-serif; 
+font-size: 16px; 
+font-weight: bold;
+padding: 8px 22px 8px 22px;
+cursor: auto;
+border-radius: 8px; 
+-moz-border-radius: 8px; 
+-webkit-border-radius: 8px;
+-moz-box-shadow: 1px 1px 2px #b8b8b8;
+-webkit-box-shadow: 1px 1px 2px #b8b8b8;
+box-shadow: 1px 1px 2px #b8b8b8;
+}
+
+div.bpt_preloaded_images {
+position: absolute;
+overflow: hidden;
+left: -9999px; 
+top: -9999px;
+height: 1px;
+width: 1px;
+}
+
+select.bpt_widget_input {
+width: 4em;
+}
+
+span.info {
+position:relative;
+}
+
+span.info a {
+color:#339999;
+text-decoration:none ;
+cursor: pointer;
+z-index:24; 
+}
+
+span.info a:hover {
+color: #ffffff; 
+background-color:#e1f1f1 ;
+cursor: pointer;
+z-index:24; 
+}
+
+span.info div.container {
+display: none ;
+}
+
+span.info:hover div.container {
+z-index:25; 
+display:inline;
+position:absolute;
+top:2em; 
+left:-150px; 
+width:300px;
+border:3px solid #339999;
+background-color:#f9f9f9; 
+color:#666666;
+padding: 10px;
+-moz-box-shadow: 3px 3px 4px #000;
+-webkit-box-shadow: 3px 3px 4px #000;
+box-shadow: 3px 3px 4px #000;
+}
