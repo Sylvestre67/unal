@@ -4,10 +4,13 @@ import os
 SETTINGS_DIR = os.path.dirname(__file__)
 PROJECT_PATH = os.path.join(SETTINGS_DIR, os.pardir)
 PROJECT_PATH = os.path.abspath(PROJECT_PATH)
+#PROJECT_PATH = os.path.dirname(os.path.abspath(__file__))
+
 TEMPLATE_PATH = os.path.join(PROJECT_PATH,'templates')
 STATIC_PATH = os.path.join(PROJECT_PATH,'static')
 DATABASE_PATH = os.path.join(PROJECT_PATH,'Union_1.db')
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+
 
 MAILCHIMP_API_KEY='3fec4b189c5b774b30ffdbabc350eacf-us3'
 
@@ -76,7 +79,7 @@ MEDIA_URL = '/media/'
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/var/www/example.com/static/"
-STATIC_ROOT = 'staticfiles'
+STATIC_ROOT = os.path.join(PROJECT_PATH, 'staticfiles')
 
 # URL prefix for static files.
 # Example: "http://example.com/static/", "http://static.example.com/"
