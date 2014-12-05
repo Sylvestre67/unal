@@ -23,7 +23,7 @@
                     <div class="pull-right fb-like" data-href="https://www.alsace.nyc/event/{{ event_title_url }}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
                     <h4>{{ event.date }}</h4>
 
-                    <p>{{ event.description }}</p>
+                    <p>{% autoescape off %} {{ event.description|linebreaks }} {% endautoescape %}</p>
                     {% if event.url %}
                     <p> Website: <a href="{{ event.url }}" style="color:RGB(227,34,25);text-decoration: underline;">{{ event.url }}</a></p>
                     {% endif %}

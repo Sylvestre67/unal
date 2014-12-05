@@ -8,28 +8,30 @@
         <div class="row">
             <div class="col-xs-12 col-md-8">
                 <h1>Upcoming events</h1>
-                {% for Event in event_list %}
-                     {% if Event.comp == "upcoming" or Event.comp == "today" %}
 
-                <div class="container-fluid event-teaser">
-                <div class="pull-left date-holder">
-                    <span class="day">{{ Event.date|date:"d" }}</span><br>
-                    <span class="month">{{ Event.date|date:"M" }}</span><br>
-                    <span class="year">{{ Event.date|date:"Y" }}</span>
-                </div>
-                    <h2><a href ="/events/{{ Event.url_link }}/">{{ Event.title }}</a></h2>
-                    <p>When: {{ Event.date }}</p>
-                    <p>Where: {{ Event.place }} <a href="http://maps.google.com/?q={{ Event.google_direction }}" target="_blank">[directions]</a></p>
-                    <p>{{ Event.description }}</p>
-                    <p>Price: ${{ Event.price }}</p>
-                    <p>Website: <a href="{{ Event.url }}">{{ Event.url }}</a></p>
-                    <hr>
-                </div>
-                    {% elif %}
-                <p>No Events schedule for the moment.</p>
-                    {% endif %}
+                    {% for Event in event_list %}
+                         {% if Event.comp == "upcoming" or Event.comp == "today" %}
 
-                {% endfor %}
+                    <div class="container-fluid event-teaser">
+                    <div class="pull-left date-holder">
+                        <span class="day">{{ Event.date|date:"d" }}</span><br>
+                        <span class="month">{{ Event.date|date:"M" }}</span><br>
+                        <span class="year">{{ Event.date|date:"Y" }}</span>
+                    </div>
+                        <h2><a href ="/events/{{ Event.url_link }}/">{{ Event.title }}</a></h2>
+                        <p>When: {{ Event.date }}</p>
+                        <p>Where: {{ Event.place }} <a href="http://maps.google.com/?q={{ Event.google_direction }}" target="_blank">[directions]</a></p>
+                        <p>{% autoescape off %} {{ Event.description|linebreaks }} {% endautoescape %}</p>
+                        <p>Price: ${{ Event.price }}</p>
+                        <p>Website: <a href="{{ Event.url }}">{{ Event.url }}</a></p>
+                        <p style="text-align:right"><a href ="/events/{{ Event.url_link }}/">More Information and RSVP: click here.</a></p>
+                        <hr>
+                    </div>
+                         {% endif %}
+                    {% endfor %}
+
+
+
 
                 <h1>Past events</h1>
                 {% for Event in event_list %}
@@ -44,7 +46,7 @@
                     <h2><a href ="/events/{{ Event.url_link }}/">{{ Event.title }}</a></h2>
                     <p>When: {{ Event.date }}</p>
                     <p>Where: {{ Event.place }} <a href="http://maps.google.com/?q={{ Event.google_direction }}" target="_blank">[directions]</a></p>
-                    <p>Description: {{ Event.description }}</p>
+                    <p>{% autoescape off %} {{ Event.description|linebreaks }} {% endautoescape %}</p>
                     <p>Price: ${{ Event.price }}</p>
                     <p>Website: <a href="{{ Event.url }}">{{ Event.url }}</a></p>
                     <hr>
