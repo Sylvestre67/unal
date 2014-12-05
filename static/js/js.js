@@ -39,7 +39,7 @@ $(document).ready(function () {
 
      $('#BUREAU').hide();
      $('#ABOUT').show();
-     $('#BULLETIN').hide();
+
      $('#ALSACE').hide();
      $('#NYC').hide();
 
@@ -53,7 +53,7 @@ $(document).ready(function () {
         $('#ABOUT').hide();
         $('#ALSACE').hide();
         $('#NYC').hide();
-        $('#BULLETIN').hide();
+
      });
 
      $('#ALSACE_LINK').click(function()
@@ -65,7 +65,7 @@ $(document).ready(function () {
         $('#ABOUT').hide();
         $('#ALSACE').slideDown();
         $('#NYC').hide();
-        $('#BULLETIN').hide();
+
      });
 
      $('#NYC_LINK').click(function()
@@ -77,22 +77,8 @@ $(document).ready(function () {
         $('#ABOUT').hide();
         $('#ALSACE').hide();
         $('#NYC').slideDown();
-        $('#BULLETIN').hide();
+
      });
-
-     $('#BULLETIN_LINK').click(function()
-     {
-        $('.btn-about-menu-active').addClass('btn-about-menu');
-        $('.btn-about-menu-active').removeClass('btn-about-menu-active');
-        $(this).addClass('btn-about-menu-active');
-        $('#BUREAU').hide();
-        $('#ABOUT').hide();
-        $('#ALSACE').hide();
-        $('#NYC').hide();
-        $('#BULLETIN').slideDown();
-     });
-
-
 
      $('#ABOUTUS_LINK').click(function()
      {
