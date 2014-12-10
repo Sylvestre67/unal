@@ -13,7 +13,8 @@ urlpatterns = patterns('',
         url(r'^members/',views.membership,name='become_a_member'),
         url(r'^membership/become_a_member/',views.membership_become_member,name='become_a_member'),
         url(r'^membership/become_a_friend/',views.membership_become_a_friend,name='become_a_friend'),
-        url(r'^contact_us/$',views.contact_us,name='contact_us'),
+        url(r'^contact_us/',views.contact_us,name='contact_us'),
+        url(r'^contact_us/thank_you/',views.contact_us_thank_you,name='contact_us_thank_you'),
         url(r'^signup_form/$',views.mailchimp,name='signup_form'),
 
 )

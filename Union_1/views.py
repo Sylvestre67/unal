@@ -238,7 +238,7 @@ def contact_us(request):
 
             form.save(True)
 
-            return HttpResponseRedirect('/union/') #redirect after post
+            return HttpResponseRedirect('/contact_us/thank_you/') #redirect after post
 
         else:
             print form.errors
@@ -247,9 +247,11 @@ def contact_us(request):
 
     return render_to_response('Union_1/contact_us.html',{'form':form,'mail_list':mail_list},context)
 
+def contact_us_thank_you(request):
+    context= RequestContext(request)
+    return render_to_response('Union_1/contact_thanks.html',context)
 
 def mailchimp(request):
-
     context = RequestContext(request)
 
     if request.method == 'POST':
