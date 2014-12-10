@@ -238,7 +238,7 @@ def contact_us(request):
 
             form.save(True)
 
-            return HttpResponseRedirect('/contact_us/thank_you/') #redirect after post
+            return HttpResponseRedirect('/contact_us_thank_you/') #redirect after post
 
         else:
             print form.errors
