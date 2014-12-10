@@ -152,15 +152,15 @@ SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Host for sending e-mail.
-EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST = 'smtp.yahoo.com'
 
 # Port for sending e-mail.
 EMAIL_PORT = 587
 
 # Optional SMTP authentication information for EMAIL_HOST.
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'sylvestre.gug@gmail.com'
-EMAIL_HOST_PASSWORD = '....'
+EMAIL_HOST_USER = 'unionalsacienne@yahoo.com'
+EMAIL_HOST_PASSWORD = 'alsace6768'
 
 
 
