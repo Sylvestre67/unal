@@ -152,15 +152,15 @@ SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
 # Host for sending e-mail.
-EMAIL_HOST = '#'
+EMAIL_HOST = 'smtp-mail.outlook.com'
 
 # Port for sending e-mail.
 EMAIL_PORT = 587
 
 # Optional SMTP authentication information for EMAIL_HOST.
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = '#'
-EMAIL_HOST_PASSWORD = '#'
+EMAIL_HOST_USER = 'sgug@outlook.com'
+EMAIL_HOST_PASSWORD = 'noosfere67'
 
 
 # A sample logging configuration. The only tangible logging
