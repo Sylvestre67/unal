@@ -20,7 +20,7 @@
             </div>
         </div>
 
-                <form id="become_a_member_form" method="post" action="/union/membership/become_a_member/" role="form">
+                <form id="become_a_member_form" method="post" action="/membership/become_a_member/" role="form">
 
                 {% csrf_token %}
                 {% for hidden in form.hidden_fields %}
