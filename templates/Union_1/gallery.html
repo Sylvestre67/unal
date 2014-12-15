@@ -1,0 +1,35 @@
+{% extends 'Union_1/base.html' %}
+
+{% block title %} Alsace a New York Gallery Pictures Events {% endblock %}
+
+{% block body_block %}
+
+<div class="container">
+    <div class="row">
+       <div class="col-xs-12 col-md-8">
+           <h1>L'Union Alsacienne of New York in pictures</h1>
+       </div>
+    </div>
+
+    {% for event in events %}
+    {% if event.picture_set.all %}
+    <div class="row">
+       <div class="col-xs-12 col-md-8">
+           <h3>{{ event.date|date:"N d Y" }} - {{ event.title }}</h3>
+                {% for image in event.picture_set.all  %}
+                <div class="col-xs-12 col-md-4 image-list">
+                    <div class="thumbnail">
+                <a href="/media/{{ image.picture }}" data-lightbox="{{ image.name }}" ></href><img style="width:75%; height:75%;" src="/media/{{ image.picture }}" alt="{{ image.name }}" /></a>
+                    </div>
+                </div>
+                {% endfor %}
+       </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+</div>
+
+</div>
+
+<script>$('#gallery').addClass('active');</script>
+{% endblock %}

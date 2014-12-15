@@ -143,6 +143,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'Union_1',
     'mailchimp',
+    #'sorl.thumbnail',
 )
 
 
@@ -161,7 +162,6 @@ EMAIL_PORT = 587
 EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'sgug@outlook.com'
 EMAIL_HOST_PASSWORD = 'noosfere67'
-
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

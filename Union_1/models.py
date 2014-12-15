@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib import admin
 
 # Create your models here.
 
@@ -16,7 +17,6 @@ class Event(models.Model):
     url=models.URLField(blank=True)
     place=models.CharField(max_length=4000)
     venue=models.CharField(max_length=4000)
-    image=models.FileField(upload_to='Event',blank=True)
     description=models.TextField(max_length=80000,blank=True)
     bwp_link=models.URLField(blank=True)
 
@@ -70,4 +70,20 @@ class Friend(models.Model):
     def __unicode__(self):
         return self.email
 
+class Picture(models.Model):
+    event = models.ForeignKey(Event)
+    name = models.CharField(max_length=60, blank=True, null=True)
+    picture = models.FileField(upload_to="images")
+    created = models.DateTimeField(auto_now_add=True)
+    width = models.IntegerField(blank=True, null=True)
+    height = models.IntegerField(blank=True, null=True)
 
+    def __unicode__(self):
+        return self.name
+
+class ImageAdmin(admin.ModelAdmin):
+    search_fields = ["name"]
+    list_display = ["__unicode__", "picture","event", "created"]
+    list_filter = ["event"]
+
+admin.site.register(Picture, ImageAdmin)

@@ -16,5 +16,6 @@ urlpatterns = patterns('',
         url(r'^contact_us/',views.contact_us,name='contact_us'),
         url(r'^contact_us_thank_you/',views.contact_us_thank_you,name='contact_us_thank_you'),
         url(r'^signup_form/$',views.mailchimp,name='signup_form'),
+        url(r'^gallery/$',views.gallery,name='gallery'),
 
 )

@@ -2,6 +2,7 @@
 
 {% load static %}
 
+
 <html>
 <head>
     <meta charset="utf-8">
@@ -13,6 +14,7 @@
     <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/bwp_widget.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/lightbox.css' %}" />
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     <link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
     <link href='//fonts.googleapis.com/css?family=Arvo' rel='stylesheet' type='text/css'>
@@ -33,6 +35,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+    <script src="{% static 'js/lightbox.min.js' %}"></script>
     <script src="{% static 'js/js.js' %}"></script>
 
   </head>
@@ -53,6 +57,7 @@
                 <li id="home"><a href="/">Home</a></li>
                 <li id="about"><a href="/about/">About</a></li>
                 <li id="event"><a href="/event/">Events</a></li>
+                <li id="gallery"><a href="/gallery/">Gallery</a></li>
                 <li id="membership"><a href="/members/"> Membership</a></li>
                 <li id="contactus"><a href="/contact_us/">Contact Us</a></li>
             </ul>

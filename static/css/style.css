@@ -532,3 +532,17 @@ text-decoration:none;
 .bulletin-list a:hover {
 font-weight:bold;
 }
+
+/* Styling the Gallery */
+
+.image-list .thumbnail{
+border:none;
+background-color:#efefef;
+padding:5 em;
+}
+
+.image-list .thumbnail:hover{
+border:1px solid RGB(227,34,25);
+}
+
+

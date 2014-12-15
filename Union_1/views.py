@@ -5,12 +5,13 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-from Union_1.models import Event,BlogPost,Contact_Us
+from Union_1.models import Event,BlogPost,Contact_Us,Picture
 from forms import ContactUs_Form,Become_a_Member,Become_a_Friend,mailchimp_form
 from django.core.mail import send_mail
 from mailchimp import utils
 
 import datetime
+
 
 def encode_url(name):
     name_url = name.replace(' ','_')
@@ -268,3 +269,11 @@ def mailchimp(request):
         form = mailchimp_form()
 
     return render_to_response('Union_1/sign_up.html',{'form':form},context)
+
+def gallery(request):
+    context= RequestContext(request)
+    events = Event.objects.prefetch_related('picture_set').all().order_by('-date')
+
+    context_dict = {'events' : events}
+    return render_to_response('Union_1/gallery.html',context_dict,context)
+
