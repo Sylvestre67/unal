@@ -9,7 +9,7 @@
             <div class="col-xs-12 col-md-8">
                 <div class = "form-header">
                 <h1>Application for Friendship</h1>
-
+                <h6><span style="color:red;" class='glyphicon glyphicon-asterisk'></span> are required fields.</h6>
                 </div>
             </div>
         </div>
@@ -28,7 +28,7 @@
                         {% if field.name == "first_name" %}
 
                         <div class="form-group">
-                            <label class="label_form">First Name: </label>
+                            <label class="label_form">First Name <span style="color:red;" class='glyphicon glyphicon-asterisk'></span>: </label>
                             {{ field }}
                         </div>
 
@@ -37,14 +37,14 @@
 
                          <div class="form-group">
 
-                            <label class="label_form">Last Name: </label>
+                            <label class="label_form">Last Name <span style="color:red;" class='glyphicon glyphicon-asterisk'></span>: </label>
                             {{ field }}
                         </div>
 
 
                         {% elif field.name == "email" %}
                         <div class="form-group">
-                            <label class="label_form">Email:</label>
+                            <label class="label_form">Email <span style="color:red;" class='glyphicon glyphicon-asterisk'></span>:</label>
                             {{ field }}
                         </div>
                 </div>

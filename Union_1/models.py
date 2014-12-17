@@ -23,6 +23,10 @@ class Event(models.Model):
     def __unicode__(self):
         return self.title
 
+class EventAdmin(admin.ModelAdmin):
+    search_fields = ["date"]
+    list_display = ["date","title","description"]
+
 class Contact_Us(models.Model):
 
     subject=models.CharField(max_length=100)
@@ -32,6 +36,8 @@ class Contact_Us(models.Model):
 
     def __unicode__(self):
         return self.subject
+
+
 
 class Member(models.Model):
     first_name=models.CharField(max_length=100)
@@ -86,4 +92,19 @@ class ImageAdmin(admin.ModelAdmin):
     list_display = ["__unicode__", "picture","event", "created"]
     list_filter = ["event"]
 
+class MemberAdmin(admin.ModelAdmin):
+    search_fields = ["last_name", "email"]
+    list_display = ["date_membership_application","first_name","last_name","email","city","state"]
+
+class FriendAdmin(admin.ModelAdmin):
+    search_fields = ["last_name", "email"]
+    list_display = ["first_name","last_name","email","city","state"]
+
+class Contact_UsAdmin (admin.ModelAdmin):
+    list_display=["sender","subject","message"]
+
 admin.site.register(Picture, ImageAdmin)
+admin.site.register(Member,MemberAdmin)
+admin.site.register(Friend,FriendAdmin)
+admin.site.register(Event,EventAdmin)
+admin.site.register(Contact_Us,Contact_UsAdmin)

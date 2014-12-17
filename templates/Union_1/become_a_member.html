@@ -16,6 +16,7 @@
                     By-Laws, Rules and Regulation of L'Union Alsacienne, and strive to further the welfare and best interests of the Association with neither political nor sectarian motives in mind.</p>
                     </p>
                     <p>Applicant must be born in Alsace, of Alsatian descent, or married to an Alsatian. </p>
+                    <h6><span style="color:red;" class='glyphicon glyphicon-asterisk'></span> are required fields.</h6>
                 </div>
             </div>
         </div>
@@ -34,8 +35,11 @@
                         {% if field.name == "first_name" %}
 
                         <div class="form-group">
-                            <label class="label_form">First Name: </label>
+                            <label class="label_form">First Name <span style="color:red;" class='glyphicon glyphicon-asterisk'></span>: </label>
                             {{ field }}
+                            {% for error in field.errors %}
+                            <h6 style="color:red;">{{ error }}</h6>
+                            {% endfor %}
                         </div>
 
 
@@ -43,15 +47,21 @@
 
                          <div class="form-group">
 
-                            <label class="label_form">Last Name: </label>
+                            <label class="label_form">Last Name <span style="color:red;" class='glyphicon glyphicon-asterisk'></span> : </label>
                             {{ field }}
+                             {% for error in field.errors %}
+                            <h6 style="color:red;">{{ error }}</h6>
+                            {% endfor %}
                         </div>
 
 
                         {% elif field.name == "email" %}
                         <div class="form-group">
-                            <label class="label_form">Email:</label>
+                            <label class="label_form">Email <span style="color:red;" class='glyphicon glyphicon-asterisk'></span> :</label>
                             {{ field }}
+                            {% for error in field.errors %}
+                            <h6 style="color:red;">{{ error }}</h6>
+                            {% endfor %}
                         </div>
                 </div>
             </div>
@@ -61,15 +71,21 @@
 
                         {% elif field.name == "address" %}
                         <div class="form-group">
-                            <label class="label_form">Address</label>
+                            <label class="label_form">Address <span style="color:red;" class='glyphicon glyphicon-asterisk'></span> :</label>
                             {{ field }}
+                            {% for error in field.errors %}
+                            <h6 style="color:red;">{{ error }}</h6>
+                            {% endfor %}
                         </div>
 
                         {% elif field.name == "city" %}
                         <div class="col-xs-8 col-md-5 no_padding">
                         <div class="form-group">
-                            <label class="label_form">City</label>
+                            <label class="label_form">City <span style="color:red;" class='glyphicon glyphicon-asterisk'></span>:</label>
                             {{ field }}
+                            {% for error in field.errors %}
+                            <h6 style="color:red;">{{ error }}</h6>
+                            {% endfor %}
                         </div>
                         </div>
 
@@ -77,8 +93,11 @@
                                 {% elif field.name == "zip" %}
                                 <div class="col-xs-4 col-md-3 no_padding">
                                 <div class="form-group">
-                                <label class="label_form">Zip</label>
+                                <label class="label_form">Zip <span style="color:red;" class='glyphicon glyphicon-asterisk'></span>:</label>
                                 {{ field }}
+                                    {% for error in field.errors %}
+                            <h6 style="color:red;">{{ error }}</h6>
+                            {% endfor %}
                                 </div>
                                 </div>
 
@@ -86,8 +105,11 @@
                                 {% elif field.name == "state" %}
                                 <div class="col-xs-6 col-md-4 no_padding">
                                 <div class="form-group">
-                                <label class="label_form">State</label>
+                                <label class="label_form">State <span style="color:red;" class='glyphicon glyphicon-asterisk'></span>:</label>
                                 {{ field }}
+                                    {% for error in field.errors %}
+                            <h6 style="color:red;">{{ error }}</h6>
+                            {% endfor %}
                                 </div>
                                 </div>
 
@@ -102,6 +124,9 @@
                         <div class="form-group">
                             <label class="label_form">Mobile Phone</label>
                             {{ field }}
+                            {% for error in field.errors %}
+                            <h6 style="color:red;">{{ error }}</h6>
+                            {% endfor %}
                         </div>
                         </div>
 
@@ -110,6 +135,9 @@
                         <div class="form-group">
                             <label class="label_form">Home Phone</label>
                             {{ field }}
+                            {% for error in field.errors %}
+                            <h6 style="color:red;">{{ error }}</h6>
+                            {% endfor %}
                         </div>
                         </div>
 
@@ -118,6 +146,9 @@
                         <div class="form-group">
                             <label class="label_form">Fax</label>
                             {{ field }}
+                            {% for error in field.errors %}
+                            <h6 style="color:red;">{{ error }}</h6>
+                            {% endfor %}
                         </div>
                         </div>
                  </div>
@@ -132,6 +163,9 @@
                         <div class="form-group">
                             <label class="label_form">Occupation</label>
                             {{ field }}
+                            {% for error in field.errors %}
+                            <h6 style="color:red;">{{ error }}</h6>
+                            {% endfor %}
                         </div>
 
                         </div>
@@ -140,6 +174,9 @@
                         <div class="form-group">
                             <label class="label_form">Company</label>
                             {{ field }}
+                            {% for error in field.errors %}
+                            <h6 style="color:red;">{{ error }}</h6>
+                            {% endfor %}
                         </div>
                         </div>
                  </div>
@@ -155,6 +192,9 @@
                         <div class="form-group">
                             <label class="label_form">Date of birth</label>
                             {{ field }}
+                            {% for error in field.errors %}
+                            <h6 style="color:red;">{{ error }}</h6>
+                            {% endfor %}
                         </div>
 
                         </div>
@@ -163,6 +203,9 @@
                         <div class="form-group">
                             <label class="label_form">Place</label>
                             {{ field }}
+                            {% for error in field.errors %}
+                            <h6 style="color:red;">{{ error }}</h6>
+                            {% endfor %}
                         </div>
                         </div>
 
@@ -171,6 +214,9 @@
                         <div class="form-group">
                             <label class="label_form">If not born in Alsace, please explain your relation to Alsace: </label>
                             {{ field }}
+                            {% for error in field.errors %}
+                            <h6 style="color:red;">{{ error }}</h6>
+                            {% endfor %}
 
                         </div>
 
@@ -184,24 +230,33 @@
                      {% elif field.name == "venue" %}
                         <div class="col-xs-8 col-md-4 no_padding">
                         <div class="form-group">
-                            <label class="label_form">Venue</label>
+                            <label class="label_form">Place <span style="color:red;" class='glyphicon glyphicon-asterisk'></span>:</label>
                             {{ field }}
+                            {% for error in field.errors %}
+                            <h6 style="color:red;">{{ error }}</h6>
+                            {% endfor %}
                         </div>
                         </div>
 
                     {% elif field.name == "date_membership_application" %}
                         <div class="col-xs-8 col-md-4 no_padding">
                         <div class="form-group">
-                            <label class="label_form">Date</label>
+                            <label class="label_form">Date <span style="color:red;" class='glyphicon glyphicon-asterisk'></span>:</label>
                             {{ field }}
+                            {% for error in field.errors %}
+                            <h6 style="color:red;">{{ error }}</h6>
+                            {% endfor %}
                         </div>
                         </div>
 
                     {% elif field.name == "signature" %}
                         <div class="col-xs-8 col-md-4 no_padding">
                         <div class="form-group">
-                            <label class="label_form">Signature</label>
+                            <label class="label_form">Signature <span style="color:red;" class='glyphicon glyphicon-asterisk'></span>:</label>
                             {{ field }}
+                            {% for error in field.errors %}
+                            <h6 style="color:red;">{{ error }}</h6>
+                            {% endfor %}
                         </div>
                         </div>
                 </div>
@@ -216,6 +271,9 @@
                     <div class="form-group">
                             <label class="label_form">First Sponsor </label>
                             {{ field }}
+                        {% for error in field.errors %}
+                            <h6 style="color:red;">{{ error }}</h6>
+                            {% endfor %}
 
                     </div>
 
@@ -224,6 +282,9 @@
                     <div class="form-group">
                             <label class="label_form">Second Sponsor </label>
                             {{ field }}
+                        {% for error in field.errors %}
+                            <h6 style="color:red;">{{ error }}</h6>
+                            {% endfor %}
 
                     </div>
                 </div>

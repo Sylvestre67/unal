@@ -87,7 +87,7 @@ def blog_home(request):
 
 def event(request):
     context = RequestContext(request)
-    event_list = Event.objects.order_by('-date')
+    event_list = Event.objects.prefetch_related('picture_set').all().order_by('-date')
 
     for e in event_list:
         e.when = datetime.date((e.date).year,(e.date).month,(e.date).day)
@@ -140,6 +140,7 @@ def membership_become_member(request):
         form = Become_a_Member(request.POST)
 
         if form.is_valid():
+            subject='New Friend Apllication Recieved'
             message= ("A new request for membership has been posted through l'Union Alsacienne Website." + "\r\n\n" +
             "Name: " + form.cleaned_data['first_name'] + " " + form.cleaned_data['last_name'] + "\r\n" +
             "Address: " + form.cleaned_data['address'] + "\n" +
@@ -154,12 +155,14 @@ def membership_become_member(request):
             " Signature: " + form.cleaned_data['signature'] + "\r\n\n" +
             "First sponsor: " + form.cleaned_data['first_sponsor'] + "\n" +
             "Second sponsor: " + form.cleaned_data['second_sponsor'] + "\r\n\n" + "Posted through l'Union Alsacienne Website"+ "\r\n")
+            sender='website@alsace.nyc'
+            recipient=['sgug@outlook.com',form.cleaned_data['email']]
 
-            send_mail('New Membership Application Received',message,'unionalsacienne@yahoo.com',['sgug@outlook.com'], fail_silently=False)
+            send_mail(subject,message,sender,recipient,fail_silently=False)
 
             form.save(True)
 
-            return HttpResponseRedirect('/union/') #redirect after post
+            return HttpResponseRedirect('/') #redirect after post
 
         else:
             print form.errors
@@ -175,18 +178,21 @@ def membership_become_a_friend(request):
         form = Become_a_Friend(request.POST)
 
         if form.is_valid():
+            subject='New Friend Apllication Recieved'
             message=("A new request to become a friend has been posted through l'Union Alsacienne Website"+ "\n\n" +
                      "Name: " + form.cleaned_data['first_name'] + " " + form.cleaned_data['last_name'] +"\n\n" +
                      "Email: " + form.cleaned_data['email'] + "\n\n" +
                      "Address: " + form.cleaned_data['address'] + "\n" +
                      form.cleaned_data['city'] + "   " + form.cleaned_data['zip'] + "   " + form.cleaned_data['state'] + "\r\n\n" +
                      "Posted through l'Union Alsacienne Website"+ "\r\n")
+            sender='website@alsace.nyc'
+            recipient=['sgug@outlook.com',form.cleaned_data['email']]
 
-            send_mail("New Friend Application Recieved",message,'unionalsacienne@yahoo.com',['sgug@outlook.com'],fail_silently=False)
+            send_mail(subject,message,sender,recipient,fail_silently=False)
 
             form.save(True)
 
-            return HttpResponseRedirect('/union/')
+            return HttpResponseRedirect('/')
         else:
             print form.errors
     else:
