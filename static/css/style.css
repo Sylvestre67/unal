@@ -10,7 +10,7 @@ body {
 }
 
 h1,h2,h3,h4,h5,h6,p,a,li{
-font-family:arvo;
+font-family:ubuntu;
 }
 
 h1
@@ -159,10 +159,10 @@ margin: 0;
 }
 
 .header{
-background-color:RGBA(239,239,239,0.7);
+background-color:RGBA(239,239,239,0.9);
 padding:20px;
 width:50%;
-
+margin-top:150px;
 }
 
 

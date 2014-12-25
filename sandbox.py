@@ -1,20 +1,10 @@
 __author__ = 'Sylvestre'
-import datetime
-import mailchimp
+import os
 from django.template import RequestContext
-from Union_1.models import Event,BlogPost,Contact_Us,Picture
+from Union_1.models import Event,BlogPost,Contact_Us,Picture,Album
 
-from mailchimp import utils
+def find_foregin_key(object,name):
+    c = object.objects.get_or_create(name=name)
+    print c.key
 
-date = datetime.datetime(2012,2,3,18,30)
-print (date)
-
-list = mailchimp.utils.get_connection().get_list_by_id('7366bb50d3')
-
-def gallery(request):
-
-    events = Event.objects.prefetch_related('picture_set').all()
-    images = Picture.objects.all()
-
-    print(events)
-    print(images)
+find_foregin_key(Album,'Random pictures')

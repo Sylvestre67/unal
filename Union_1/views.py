@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-from Union_1.models import Event,BlogPost,Contact_Us,Picture
+from Union_1.models import Event,BlogPost,Contact_Us,Picture,Album
 from forms import ContactUs_Form,Become_a_Member,Become_a_Friend,mailchimp_form
 from django.core.mail import send_mail
 from mailchimp import utils
@@ -279,7 +279,8 @@ def mailchimp(request):
 def gallery(request):
     context= RequestContext(request)
     events = Event.objects.prefetch_related('picture_set').all().order_by('-date')
+    albums = Album.objects.prefetch_related('picture_set').all()
 
-    context_dict = {'events' : events}
+    context_dict = {'events' : events,'albums' : albums}
     return render_to_response('Union_1/gallery.html',context_dict,context)
 

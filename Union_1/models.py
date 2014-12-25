@@ -76,8 +76,15 @@ class Friend(models.Model):
     def __unicode__(self):
         return self.email
 
+class Album(models.Model):
+    name = models.CharField(max_length=60)
+
+    def __unicode__(self):
+        return self.name
+
 class Picture(models.Model):
-    event = models.ForeignKey(Event)
+    event = models.ForeignKey(Event, blank=True,null=True)
+    album = models.ForeignKey(Album, blank=True,null=True)
     name = models.CharField(max_length=60, blank=True, null=True)
     picture = models.FileField(upload_to="images")
     created = models.DateTimeField(auto_now_add=True)
@@ -87,10 +94,11 @@ class Picture(models.Model):
     def __unicode__(self):
         return self.name
 
+
 class ImageAdmin(admin.ModelAdmin):
     search_fields = ["name"]
     list_display = ["__unicode__", "picture","event", "created"]
-    list_filter = ["event"]
+    list_filter = ["event",'album']
 
 class MemberAdmin(admin.ModelAdmin):
     search_fields = ["last_name", "email"]
