@@ -29,7 +29,7 @@ def index(request):
     context = RequestContext(request)
 
     blogpost_list = BlogPost.objects.order_by('-title')[:5]
-    event_list = Event.objects.order_by('-date')
+    event_list = Event.objects.order_by('date')
 
     for e in event_list:
         e.when = datetime.date((e.date).year,(e.date).month,(e.date).day)
@@ -87,7 +87,7 @@ def blog_home(request):
 
 def event(request):
     context = RequestContext(request)
-    event_list = Event.objects.prefetch_related('picture_set').all().order_by('-date')
+    event_list = Event.objects.prefetch_related('picture_set').all().order_by('date')
 
     for e in event_list:
         e.when = datetime.date((e.date).year,(e.date).month,(e.date).day)
@@ -276,11 +276,28 @@ def mailchimp(request):
 
     return render_to_response('Union_1/sign_up.html',{'form':form},context)
 
+
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 def gallery(request):
     context= RequestContext(request)
-    events = Event.objects.prefetch_related('picture_set').all().order_by('-date')
+    events = Event.objects.prefetch_related('picture_set').filter(picture__event__isnull=False).order_by('-date')
+
+    paginator = Paginator(events, 4)
+    number = paginator.page_range
+
+    page = request.GET.get('page')
+    try:
+        event_page = paginator.page(page)
+    except PageNotAnInteger:
+        # If page is not an integer, deliver first page.
+        event_page = paginator.page(1)
+    except EmptyPage:
+        # If page is out of range (e.g. 9999), deliver last page of results.
+        event_page = paginator.page(paginator.num_pages)
+
     albums = Album.objects.prefetch_related('picture_set').all()
 
-    context_dict = {'events' : events,'albums' : albums}
+    context_dict = {'events' : events,'albums' : albums, 'event_page': event_page,'number' : number}
     return render_to_response('Union_1/gallery.html',context_dict,context)
 

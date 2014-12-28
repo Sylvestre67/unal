@@ -10,7 +10,7 @@ DATABASE_PATH = os.path.join(PROJECT_PATH,'Union_1.db')
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-MAILCHIMP_API_KEY='3fec4b189c5b774b30ffdbabc350eacf-us3'
+MAILCHIMP_API_KEY=('3fec4b189c5b774b30ffdbabc350eacf-us3')
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -22,16 +22,16 @@ ADMINS = (
 MANAGERS = ADMINS
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': DATABASE_PATH,                      # Or path to database file if using sqlite3.
-        # The following settings are not used with sqlite3:
-        #'USER': '',
-        #'PASSWORD': '',
-        #'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-        #'PORT': '',                      # Set to empty string for default.
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+            'NAME': DATABASE_PATH,                      # Or path to database file if using sqlite3.
+            # The following settings are not used with sqlite3:
+            #'USER': '',
+            #'PASSWORD': '',
+            #'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
+            #'PORT': '',                      # Set to empty string for default.
+        }
     }
-}
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

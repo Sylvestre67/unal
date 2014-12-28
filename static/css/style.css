@@ -274,6 +274,16 @@ background-color:black;
 text-align:right;
 }
 
+.date-holder-event-page{
+margin:20px 20px 5px 20px;
+padding:5px 10px 5px 5px;
+height:75%;
+width:75%;
+background-color:black;
+text-align:right;
+}
+
+
 .day {
 color:white;
 font-size:25px;
@@ -368,7 +378,7 @@ text-decoration:none;
 .google_map{
 padding:10px 20px 10px 20px;
 background-color:#efefef;
-border-radius:25px;
+border-radius:5px;
 width:75%;
 
 }
@@ -545,4 +555,24 @@ padding:5 em;
 border:1px solid RGB(227,34,25);
 }
 
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
 
+.pagination{
+
+}
+
+.pagination>li>a
+{
+color:black;
+border: 1px solid RGB(227,34,25);
+}
+
+.pagination>li>a:hover,.pagination>li>a:focus
+
+{
+color:RGB(227,34,25);
+border: 1px solid RGB(227,34,25);
+}

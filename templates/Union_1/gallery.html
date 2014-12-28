@@ -12,7 +12,7 @@
        </div>
     </div>
 
-    {% for event in events %}
+    {% for event in event_page %}
     {% if event.picture_set.all %}
     <div class="row">
        <div class="col-xs-12 col-md-12">
@@ -24,10 +24,43 @@
                     </div>
                 </div>
                 {% endfor %}
+                {% endif %}
+                {% endfor %}
        </div>
     </div>
-    {% endif %}
-    {% endfor %}
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+
+                <p style="text-align:center;">
+                {% if event_page.has_previous %}
+                <a href="?page={{ event_page.previous_page_number }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                </a>
+
+                {% endif %}
+
+                {% for i in number %}
+                <a href="?page={{ i }}"> {{ i }} </a>
+                {% endfor %}
+
+
+
+                {% if event_page.has_next %}
+
+                  <a href="?page={{ event_page.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+
+                {% endif %}
+                </p>
+
+
+        </div>
+    </div>
+    </div>
+
+    </div>
+
 
     <h2> L'Union Alsacienne it's also...</h2>
     {% for album in albums %}

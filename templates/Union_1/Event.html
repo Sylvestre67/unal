@@ -6,29 +6,35 @@
 
 <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-md-8">
-
+            <div class="col-xs-2 col-md-1">
                 <div class="blog-teaser pull-left">
-
-                    <div class="pull-left date-holder">
-                        <span class="day">{{ event.date|date:"d" }}</span><br>
-                        <span class="month">{{ event.date|date:"M" }}</span><br>
-                        <span class="year">{{ event.date|date:"Y" }}</span>
+                    <div class="pull-left date-holder-event-page">
+                            <span class="day">{{ event.date|date:"d" }}</span><br>
+                            <span class="month">{{ event.date|date:"M" }}</span><br>
+                            <span class="year">{{ event.date|date:"Y" }}</span>
                     </div>
+                </div>
+            </div>
 
+            <div class="col-xs-10 col-md-8">
+                <div class="blog-teaser">
                     <h1>{{ event.title }}</h1>
-                    <!--Twitter Widget-->
-                    <a href="https://twitter.com/share" class="pull-right twitter-share-button" data-count="none">Tweet</a>
+                    <h4>{{ event.date }}</h4>
+                   <!--Twitter Widget-->
+                     <a href="https://twitter.com/share" class="pull-right twitter-share-button" data-count="none">Tweet</a>
                     <!--Facebook widget-->
                     <div class="pull-right fb-like" data-href="https://www.alsace.nyc/event/{{ event_title_url }}" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
-                    <h4>{{ event.date }}</h4>
+                </div>
+            </div>
+        </div>
 
+        <div class="row">
+            <div class="col-xs-12 col-md-8">
+                <div class="blog-teaser pull-left">
                     <p>{% autoescape off %} {{ event.description|linebreaks }} {% endautoescape %}</p>
                     {% if event.url %}
                     <p> Website: <a href="{{ event.url }}" style="color:RGB(227,34,25);text-decoration: underline;">{{ event.url }}</a></p>
                     {% endif %}
-
-
                 </div>
             </div>
         </div>
