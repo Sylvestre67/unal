@@ -20,15 +20,16 @@
            <h3>{{ event.date|date:"N d Y" }} - {{ event.title }}</h3>
                 {% for image in event.picture_set.all  %}
                 <div class="col-xs-12 col-md-2 image-list">
-                    <div class="thumbnail">
+                <div class="thumbnail">
                 <a href="/media/{{ image.picture }}" data-lightbox="{{ image.name }}" ></href><img style="width:200%; height:200%;" src="/media/{{ image.picture }}" alt="{{ image.name }}" /></a>
-                    </div>
+                </div>
                 </div>
                 {% endfor %}
                 {% endif %}
 				</div>
-    </div>
+                </div>
                 {% endfor %}
+
 
 
     <div class="row">
