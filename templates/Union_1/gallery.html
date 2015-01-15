@@ -4,6 +4,7 @@
 
 {% block body_block %}
 
+
 <div class="container">
     <div class="row">
        <div class="col-xs-12 col-md-12">
@@ -25,9 +26,11 @@
                 </div>
                 {% endfor %}
                 {% endif %}
-                {% endfor %}
-       </div>
+				</div>
     </div>
+                {% endfor %}
+
+
     <div class="row">
         <div class="col-xs-12 col-md-12">
 
@@ -57,17 +60,18 @@
 
         </div>
     </div>
-    </div>
 
-    </div>
-
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
 
     <h2> L'Union Alsacienne it's also...</h2>
     {% for album in albums %}
     {% if album.picture_set.all %}
-    <div class="row">
-       <div class="col-xs-12 col-md-12">
+        </div>
+    </div>
 
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
                 {% for image in album.picture_set.all  %}
                 <div class="col-xs-12 col-md-2 image-list">
                     <div class="thumbnail">
@@ -75,15 +79,15 @@
                     </div>
                 </div>
                 {% endfor %}
-       </div>
+        </div>
     </div>
     {% endif %}
     {% endfor %}
 
-
 </div>
 
-</div>
+
 
 <script>$('#gallery').addClass('active');</script>
+
 {% endblock %}
