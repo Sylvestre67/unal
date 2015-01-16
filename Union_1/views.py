@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from Union_1.models import Event,BlogPost,Contact_Us,Picture,Album
-from forms import ContactUs_Form,Become_a_Member,Become_a_Friend,mailchimp_form
+from forms import ContactUs_Form,Become_a_Member,Become_a_Friend,mailchimp_form,Renewal
 from django.core.mail import send_mail
 from mailchimp import utils
 
@@ -162,7 +162,7 @@ def membership_become_member(request):
 
             form.save(True)
 
-            return HttpResponseRedirect('/') #redirect after post
+            return HttpResponseRedirect('/membership/payment?type=1') #redirect after post
 
         else:
             print form.errors
@@ -170,6 +170,29 @@ def membership_become_member(request):
         form = Become_a_Member()
 
     return render_to_response('Union_1/become_a_member.html',{'form':form},context)
+
+def membership_payment(request):
+    context=RequestContext(request)
+
+    event_list = Event.objects.order_by('-date')
+
+    for e in event_list:
+        e.when = datetime.date((e.date).year,(e.date).month,(e.date).day)
+        e.today = datetime.date.today()
+        if e.when > e.today:
+            e.comp = 'upcoming'
+        if e.when < e.today:
+             e.comp = 'past'
+        if e.when == e.today:
+             e.comp = 'today'
+
+    for e in event_list:
+        e.url_link = encode_url(e.title)
+
+    context_dict = {'event_list' : event_list}
+
+    return render_to_response('Union_1/members_payment.html',context_dict,context)
+
 
 def membership_become_a_friend(request):
     context=RequestContext(request)
@@ -192,13 +215,43 @@ def membership_become_a_friend(request):
 
             form.save(True)
 
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/membership/payment?type=2')
         else:
             print form.errors
     else:
         form = Become_a_Friend()
 
     return render_to_response('Union_1/become_a_friend.html',{'form':form},context)
+
+def renewal(request):
+    context=RequestContext(request)
+
+    if request.method =='POST':
+        form = Renewal(request.POST)
+
+        if form.is_valid():
+            subject='Renewal of Membership/Friendship received'
+            message=("This Member renewed its Membership through l'Union Alsacienne Website"+ "\n\n" +
+                     "Name: " + form.cleaned_data['first_name'] + " " + form.cleaned_data['last_name'] +"\n\n" +
+                     "Email: " + form.cleaned_data['email'] + "\n\n" +
+                     "Address: " + form.cleaned_data['address'] + "\n" +
+                     form.cleaned_data['city'] + "   " + form.cleaned_data['zip'] + "   " + form.cleaned_data['state'] + "\r\n\n" +
+                     "Posted through l'Union Alsacienne Website"+ "\r\n")
+            sender='website@alsace.nyc'
+            recipient=['sgug@outlook.com',form.cleaned_data['email']]
+
+            send_mail(subject,message,sender,recipient,fail_silently=False)
+
+            if form.cleaned_data['member_type'] == 'F':
+                return HttpResponseRedirect('/membership/payment?type=2&action=renewal')
+            else:
+                return HttpResponseRedirect('/membership/payment?type=1&action=renewal')
+        else:
+            print form.errors
+    else:
+        form = Renewal()
+
+    return render_to_response('Union_1/renewal.html',{'form':form},context)
 
 def membership(request):
     context=RequestContext(request)

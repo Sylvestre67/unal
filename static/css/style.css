@@ -576,3 +576,15 @@ border: 1px solid RGB(227,34,25);
 color:RGB(227,34,25);
 border: 1px solid RGB(227,34,25);
 }
+
+.renewal ul{
+list-style-type: none;
+margin:0px;
+
+}
+
+.renewal ul li{
+display: inline;
+font-size:20px;
+padding:0px 20px 0px 0px;
+}

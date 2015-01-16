@@ -53,3 +53,18 @@ class Become_a_Friend(forms.ModelForm):
 
     class Meta:
         model = Friend
+
+class Renewal(forms.Form):
+    CHOICES=(
+    ('F', 'Friend'),
+    ('M', 'Member'),
+    )
+    member_type=forms.ChoiceField(required=False,choices=CHOICES,widget=forms.RadioSelect(attrs={'class' : 'radio_renewal'}))
+    first_name=forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control'}))
+    last_name=forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control'}))
+    email=forms.EmailField(widget=forms.TextInput(attrs={'class' : 'form-control'}))
+    address=forms.CharField(required=False,widget=forms.TextInput(attrs={'class' : 'form-control'}))
+    city=forms.CharField(required=False,widget=forms.TextInput(attrs={'class' : 'form-control'}))
+    zip=forms.CharField(required=False,widget=forms.TextInput(attrs={'class' : 'form-control'}))
+    state=forms.CharField(required=False,widget=forms.TextInput(attrs={'class' : 'form-control'}))
+

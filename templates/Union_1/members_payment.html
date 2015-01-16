@@ -1,40 +1,40 @@
 {% extends 'Union_1/base.html' %}
 
-{% block title %} Membership fee payment {% endblock %}
+{% block title %} About Us {% endblock %}
 
 {% block body_block %}
 
 <div class="container">
-        <div class="row">
-            <div class="col-xs-12 col-md-8">
+   <div class="row">
+        <div class="col-xs-12 col-md-8">
+            <h1>Make your Payment</h1>
+            <p id="application">Thank you, your application has been succesfully submitted.</p>
+            <p id="renewal">To complete your renewal, please submit your payment using one of these options. </p>
+            <p id="member">The Annual Membership fee is $40.  </p>
+            <p id="friend">The Annual Friendship fee is $20.  </p>
+            <h3>Use Pay Pal</h3>
+            <div class="form-group">
+                <input type="text" id="amount">
+            </div>
 
-                <h1>Become a Member</h1>
-
-            <p>To become a member of l'Union Alsacienne of New-York you must be:
-                <ul>
-                <li>born in Alsace</li>
-                <li>of Alsatian descent</li>
-                <li>married to an Alsatian</li>
-                </ul>
+            <h3>Pay by check</h3>
             <p>
-                By becoming a member, you're invited to our events with a special price and subscribe to our quarterly bulletin.
-            </p>
-        <a href="/membership/become_a_member"><button class="btn become_index">Become a Member</button></a>
-        <h1>Become a Friend</h1>
-        <p> You can become a Friend of l'Union Alsacienne<br>
-        By becoming a friends of l'Union Alsacienne, you'll have access to our events at a special price and will receive our quarterly bulletin.</p>
-                <a class = "becomeLink" href="/membership/become_a_friend"><button class="btn become_index">Become a Friend</button></a>
-                <hr>
-        <h2>Membership/Friendship renewal</h2>
-        <p>Already a member or a friend? <a href="/membership/renewal">Click here</a> to renew your membership for the upcoming year.</p>
+            Please mail your check to:<p>
 
 
-</div>
+            <div class="col-md-6 col-xs-12 col-right">
+
+            <p>Union Alsacienne of New York<p>
+            <p>406 main street - #6B</p>
+            <p>New York, NY 10044</p>
+
+            </div>
 
 
+        </div>
 
 
-            <div class="col-xs-12 col-md-4 col-right">
+       <div class="col-xs-12 col-md-4 col-right">
 
             <div class = "stay_in_touch">
             <h1>Upcoming Events</h1>
@@ -136,8 +136,9 @@
 
         </div>
 </div>
-</div>
-</div>
+
 
         <script>$('#membership').addClass('active');</script>
+
+
 {% endblock %}
