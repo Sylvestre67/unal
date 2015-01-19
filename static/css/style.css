@@ -150,6 +150,11 @@ margin: 0;
 }
 
 .jumbotron{
+padding:0px !important;
+margin:0px !important;
+}
+
+.jumbotron_1{
   background: url(/static/image/Union_Alsacienne_Home.jpg) no-repeat center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -157,6 +162,54 @@ margin: 0;
   background-size: cover;
   height:350px;
 }
+
+#caption_black{
+color: black !important;
+}
+
+.background_white{
+background-color:RGBA(239,239,239,0.9) !important;
+padding: 0px;
+text-shadow:none;
+border-radius:5px;
+}
+
+.jumbotron_2{
+  background: url(/static/image/Union_Alsacienne_Home_2.jpg) no-repeat center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height:350px;
+}
+
+.jumbotron_3{
+  background: url(/static/image/Union_Alsacienne_Home_3.jpg) no-repeat center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height:350px;
+}
+
+.carousel-caption{
+padding-bottom:0px !important;
+}
+
+.carousel-caption h2{
+margin-top:10px;
+}
+
+.arrow{
+      height: 600px;
+      margin-top: 18%;
+      font-size: 120px;
+      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+      background-color: transparent;
+      border: 0;
+      z-index: 10;
+    }
+
 
 .header{
 background-color:RGBA(239,239,239,0.9);
@@ -168,6 +221,9 @@ width:70%;
 margin-top:20%;
 }
 
+.header_carousel{
+background-color:RGBA(239,239,239,0.9);
+}
 
 
 .flag{
