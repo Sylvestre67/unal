@@ -160,9 +160,12 @@ margin: 0;
 
 .header{
 background-color:RGBA(239,239,239,0.9);
-padding:20px;
-width:50%;
-margin-top:150px;
+border-radius:5px;
+text-align:center;
+padding-top:auto;
+padding-bottom:auto;
+width:70%;
+margin-top:20%;
 }
 
 
@@ -418,6 +421,11 @@ border-radius:5px;
 
 }
 
+.col-right #headline {
+text-align:center;
+}
+
+
 .col-right ul{
 list-style:none;
 padding:0px;
@@ -588,3 +596,41 @@ display: inline;
 font-size:20px;
 padding:0px 20px 0px 0px;
 }
+
+#mc-embedded-subscribe{
+margin:1em 0em 1em 0em !important;
+}
+
+@media screen and (min-width: 0px) and (max-width: 549px) {
+  #jumbo_mobile { display: block; }  /* show it on small screens */
+  .date-holder { display: none; }
+  #date-holder-event-page { display: none; }
+  #jumbo_desktop { display: none; }   /* Do not show it on small screens */
+  .container-fluid { padding: 0px 0px 0px 0px;
+margin-right: auto;
+margin-left: auto; }
+  .input_mobile_adjust .form-control
+  {
+  width:90%;
+  }
+}
+
+@media screen and (min-width: 550px) and (max-width: 3000px) {
+  #jumbo_mobile { display: none; }  /* show it on small screens */
+  #jumbo_desktop { display: block; }   /* Do not show it on small screens */
+}
+
+.alsa-coeur_mobile
+{
+margin: 0px 0.5% 0px 0.5%;
+width:30px;
+height:auto;
+}
+
+.alsace_nyc{
+text-align:center;
+}
+
+
+
+

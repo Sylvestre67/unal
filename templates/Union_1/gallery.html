@@ -8,7 +8,7 @@
     <div class="row">
        <div class="col-xs-12 col-md-12">
            <h1>L'Union Alsacienne of New York in pictures</h1>
-           <h2>Events in Pictures</h2>
+
        </div>
     </div>
 
@@ -62,16 +62,13 @@
         </div>
     </div>
 
-    <div class="row">
-    <div class="col-xs-12 col-md-12">
-        <h2> L'Union Alsacienne it's also...</h2>
-    </div>
-    </div>
+
 
 {% for album in albums %}
 {% if album.picture_set.all %}
     <div class="row">
         <div class="col-xs-12 col-md-12">
+            <h3>{{ album.name }}</h3>
                 {% for image in album.picture_set.all  %}
                 <div class="col-xs-12 col-md-2 image-list">
                     <div class="thumbnail">

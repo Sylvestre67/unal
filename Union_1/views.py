@@ -140,7 +140,7 @@ def membership_become_member(request):
         form = Become_a_Member(request.POST)
 
         if form.is_valid():
-            subject='New Friend Apllication Recieved'
+            subject='New Member Application Received'
             message= ("A new request for membership has been posted through l'Union Alsacienne Website." + "\r\n\n" +
             "Name: " + form.cleaned_data['first_name'] + " " + form.cleaned_data['last_name'] + "\r\n" +
             "Address: " + form.cleaned_data['address'] + "\n" +
@@ -155,10 +155,29 @@ def membership_become_member(request):
             " Signature: " + form.cleaned_data['signature'] + "\r\n\n" +
             "First sponsor: " + form.cleaned_data['first_sponsor'] + "\n" +
             "Second sponsor: " + form.cleaned_data['second_sponsor'] + "\r\n\n" + "Posted through l'Union Alsacienne Website"+ "\r\n")
-            sender='website@alsace.nyc'
-            recipient=['sgug@outlook.com',form.cleaned_data['email']]
+            sender='news@alsace-newyork.com'
+            recipient=['sgug@outlook.com']
 
             send_mail(subject,message,sender,recipient,fail_silently=False)
+
+            external_subject='Thank you for your application'
+            external_message=(
+                    "Dear " + form.cleaned_data['first_name'] + "\r\n\n" +
+                    "Thank you for your application for Membership. Here's the information you submitted."+ "\n\n" +
+                     "Name: " + form.cleaned_data['first_name'] + " " + form.cleaned_data['last_name'] +"\n\n" +
+                     "Email: " + form.cleaned_data['email'] + "\n\n" +
+                     "Address: " + form.cleaned_data['address'] + "\n" +
+                     form.cleaned_data['city'] + "   " + form.cleaned_data['zip'] + "   " + form.cleaned_data['state'] + "\r\n\n" +
+                     "If you choose to pay your fee by check, please mail your check to: " +"\r\n"+
+                     "Union Alsacienne of New York"+ "\r\n" +
+                     "415 main street - #6B"+ "\r\n" +
+                     "New York, NY - 10044"+ "\r\n\n" +
+                     "Best,"+ "\r\n\n"+
+                     "L'Union of Alsacienne of New York Team. "+ "\r\n"
+            )
+            external_recipient=[form.cleaned_data['email']]
+
+            send_mail(external_subject,external_message,sender,external_recipient,fail_silently=False)
 
             form.save(True)
 
@@ -201,17 +220,35 @@ def membership_become_a_friend(request):
         form = Become_a_Friend(request.POST)
 
         if form.is_valid():
-            subject='New Friend Apllication Recieved'
+            subject='New Friendship Application Received'
             message=("A new request to become a friend has been posted through l'Union Alsacienne Website"+ "\n\n" +
                      "Name: " + form.cleaned_data['first_name'] + " " + form.cleaned_data['last_name'] +"\n\n" +
                      "Email: " + form.cleaned_data['email'] + "\n\n" +
                      "Address: " + form.cleaned_data['address'] + "\n" +
                      form.cleaned_data['city'] + "   " + form.cleaned_data['zip'] + "   " + form.cleaned_data['state'] + "\r\n\n" +
                      "Posted through l'Union Alsacienne Website"+ "\r\n")
-            sender='website@alsace.nyc'
-            recipient=['sgug@outlook.com',form.cleaned_data['email']]
+            sender='news@alsace-newyork.com'
+            recipient=['sgug@outlook.com']
+
+            external_subject='Thank you for your application'
+            external_message=(
+                    "Dear " + form.cleaned_data['first_name'] + "\r\n\n" +
+                    "Thank you for your friendship. Here's the information you submitted."+ "\n\n" +
+                     "Name: " + form.cleaned_data['first_name'] + " " + form.cleaned_data['last_name'] +"\n\n" +
+                     "Email: " + form.cleaned_data['email'] + "\n\n" +
+                     "Address: " + form.cleaned_data['address'] + "\n" +
+                     form.cleaned_data['city'] + "   " + form.cleaned_data['zip'] + "   " + form.cleaned_data['state'] + "\r\n\n" +
+                     "If you choose to pay your fee by check, please mail your check to: " +"\r\n"+
+                     "Union Alsacienne of New York"+ "\r\n"
+                     "415 main street - #6B"+ "\r\n" +
+                     "New York, NY - 10044"+ "\r\n\n" +
+                     "Best,"+ "\r\n\n"+
+                     "L'Union of Alsacienne of New York Team. "+ "\r\n"
+            )
+            external_recipient=[form.cleaned_data['email']]
 
             send_mail(subject,message,sender,recipient,fail_silently=False)
+            send_mail(external_subject,external_message,sender,external_recipient,fail_silently=False)
 
             form.save(True)
 
@@ -230,17 +267,35 @@ def renewal(request):
         form = Renewal(request.POST)
 
         if form.is_valid():
-            subject='Renewal of Membership/Friendship received'
-            message=("This Member renewed its Membership through l'Union Alsacienne Website"+ "\n\n" +
+            internal_subject='Renewal of Membership/Friendship received'
+            external_subject='Thank you for your renewal!'
+            internal_message=("This Member renewed its Membership/Friendship through l'Union Alsacienne Website"+ "\n\n" +
                      "Name: " + form.cleaned_data['first_name'] + " " + form.cleaned_data['last_name'] +"\n\n" +
                      "Email: " + form.cleaned_data['email'] + "\n\n" +
                      "Address: " + form.cleaned_data['address'] + "\n" +
                      form.cleaned_data['city'] + "   " + form.cleaned_data['zip'] + "   " + form.cleaned_data['state'] + "\r\n\n" +
                      "Posted through l'Union Alsacienne Website"+ "\r\n")
-            sender='website@alsace.nyc'
-            recipient=['sgug@outlook.com',form.cleaned_data['email']]
 
-            send_mail(subject,message,sender,recipient,fail_silently=False)
+            external_message=(
+                    "Dear " + form.cleaned_data['first_name'] + "\r\n\n" +
+                    "Thank you for your renewal. Here's the information you submitted."+ "\n\n" +
+                     "Name: " + form.cleaned_data['first_name'] + " " + form.cleaned_data['last_name'] +"\n\n" +
+                     "Email: " + form.cleaned_data['email'] + "\n\n" +
+                     "Address: " + form.cleaned_data['address'] + "\n" +
+                     form.cleaned_data['city'] + "   " + form.cleaned_data['zip'] + "   " + form.cleaned_data['state'] + "\r\n\n" +
+                     "If you choose to pay your fee by check, please mail your check to: " +"\r\n"+
+                     "Union Alsacienne of New York"+ "\r\n"+
+                     "415 main street - #6B"+ "\r\n"+
+                     "New York, NY - 10044"+ "\r\n\n"+
+                     "Best,"+ "\r\n\n"+
+                     "L'Union of Alsacienne of New York Team. "+ "\r\n"
+            )
+            sender='news@alsace-newyork.com'
+            internal_recipient=['sgug@outlook.com']
+            external_recipient=[form.cleaned_data['email']]
+
+            send_mail(internal_subject,internal_message,sender,internal_recipient,fail_silently=False)
+            send_mail(external_subject,external_message,sender,external_recipient,fail_silently=False)
 
             if form.cleaned_data['member_type'] == 'F':
                 return HttpResponseRedirect('/membership/payment?type=2&action=renewal')
