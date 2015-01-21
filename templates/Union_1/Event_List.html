@@ -10,7 +10,6 @@
                 <h1>Upcoming events</h1>
 
                     {% for Event in event_list %}
-                         {% if Event.comp == "upcoming" or Event.comp == "today" %}
 
                     <div class="container-fluid event-teaser">
                     <div class="pull-left date-holder">
@@ -27,15 +26,14 @@
                         <p style="text-align:right"><a href ="/events/{{ Event.url_link }}/">More Information and RSVP: click here.</a></p>
                         <hr>
                     </div>
-                         {% endif %}
+
                     {% endfor %}
 
 
 
 
                 <h1>Past events</h1>
-                {% for Event in event_list %}
-                    {% if Event.comp == "past" %}
+                {% for Event in event_past %}
 
                 <div class="container-fluid event-teaser">
                 <div class="pull-left date-holder">
@@ -51,7 +49,7 @@
                     <p>Website: <a href="{{ Event.url }}">{{ Event.url }}</a></p>
                     <hr>
                 </div>
-                    {% endif %}
+
                 {% endfor %}
             </div>
 
@@ -60,6 +58,15 @@
             <div class = "stay_in_touch">
                 <h1>Events Gallery</h1>
                 {% for Event in event_list %}
+                {% if Event.picture_set.all %}
+                <ul>
+                    <li><a href ="/gallery/"><p>{{ Event.title }}</p></a>
+                    <h6>{{ Event.date|date:"d M Y" }}</h6></li>
+                </ul>
+                {% endif %}
+                {% endfor %}
+
+                {% for Event in event_past %}
                 {% if Event.picture_set.all %}
                 <ul>
                     <li><a href ="/gallery/"><p>{{ Event.title }}</p></a>

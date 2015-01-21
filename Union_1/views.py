@@ -87,17 +87,8 @@ def blog_home(request):
 
 def event(request):
     context = RequestContext(request)
-    event_list = Event.objects.prefetch_related('picture_set').all().order_by('date')
-
-    for e in event_list:
-        e.when = datetime.date((e.date).year,(e.date).month,(e.date).day)
-        e.today = datetime.date.today()
-        if e.when > e.today:
-            e.comp = 'upcoming'
-        if e.when < e.today:
-             e.comp = 'past'
-        if e.when == e.today:
-             e.comp = 'today'
+    event_list = Event.objects.exclude(date__lt= datetime.datetime.now()).order_by('date')
+    event_list_past = Event.objects.exclude(date__gt= datetime.datetime.now()).order_by('-date')
 
     for e in event_list:
         e.url_link = encode_url(e.title)
@@ -105,7 +96,13 @@ def event(request):
     for e in event_list:
         e.google_direction = encode_query_for_google_direction_url(e.place)
 
-    context_dict = {'event_list' : event_list}
+    for e in event_list_past:
+        e.url_link = encode_url(e.title)
+
+    for e in event_list_past:
+        e.google_direction = encode_query_for_google_direction_url(e.place)
+
+    context_dict = {'event_list' : event_list, 'event_past' : event_list_past }
 
     return render_to_response('Union_1/Event_List.html',context_dict,context)
 
