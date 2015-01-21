@@ -12,27 +12,27 @@
        </div>
     </div>
 
-    {% for event in event_page %}
-    {% if event.picture_set.all %}
+    {% for event in events %}
 
     <div class="row">
        <div class="col-xs-12 col-md-12">
            <h3>{{ event.date|date:"N d Y" }} - {{ event.title }}</h3>
-                {% for image in event.picture_set.all  %}
+           {% for image in images %}
+            {% if image.event = event %}
                 <div class="col-xs-12 col-md-2 image-list">
                 <div class="thumbnail">
                 <a href="/media/{{ image.picture }}" data-lightbox="{{ image.name }}" ></href><img style="width:200%; height:200%;" src="/media/{{ image.picture }}" alt="{{ image.name }}" /></a>
                 </div>
                 </div>
-                {% endfor %}
-                {% endif %}
-				</div>
-                </div>
-                {% endfor %}
+            {% endif %}
+           {% endfor %}
+
+    {% endfor %}
 
 
 
-    <div class="row">
+
+     <div class="row">
         <div class="col-xs-12 col-md-12">
 
                 <p style="text-align:center;">

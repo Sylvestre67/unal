@@ -383,26 +383,30 @@ def mailchimp(request):
 
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Count
 
 def gallery(request):
-    context= RequestContext(request)
-    events = Event.objects.prefetch_related('picture_set').filter(picture__event__isnull=False).order_by('-date')
+       context= RequestContext(request)
+       events = Event.objects.prefetch_related('picture_set').filter(picture__event__isnull=False).annotate(Count('title')).order_by('-date')
+       #events = Event.objects.prefetch_related('picture_set').annotate(Count('title')).order_by('-date')
 
-    paginator = Paginator(events, 4)
-    number = paginator.page_range
+       images = Picture.objects.filter(event__isnull=False)
 
-    page = request.GET.get('page')
-    try:
-        event_page = paginator.page(page)
-    except PageNotAnInteger:
-        # If page is not an integer, deliver first page.
-        event_page = paginator.page(1)
-    except EmptyPage:
-        # If page is out of range (e.g. 9999), deliver last page of results.
-        event_page = paginator.page(paginator.num_pages)
+       paginator = Paginator(events, 4)
+       number = paginator.page_range
 
-    albums = Album.objects.prefetch_related('picture_set').all()
+       page = request.GET.get('page')
+       try:
+           event_page = paginator.page(page)
+       except PageNotAnInteger:
+            # If page is not an integer, deliver first page.
+            event_page = paginator.page(1)
+       except EmptyPage:
+            # If page is out of range (e.g. 9999), deliver last page of results.
+            event_page = paginator.page(paginator.num_pages)
 
-    context_dict = {'events' : events,'albums' : albums, 'event_page': event_page,'number' : number}
-    return render_to_response('Union_1/gallery.html',context_dict,context)
+       albums = Album.objects.prefetch_related('picture_set').all()
+
+       context_dict = {'events' : events, 'images' : images, 'albums' : albums, 'event_page': event_page,'number' : number}
+       return render_to_response('Union_1/gallery.html',context_dict,context)
 
