@@ -1,5 +1,6 @@
 # Django settings for ua_67 project.
 import os
+import cloudinary
 import dj_database_url
 
 SETTINGS_DIR = os.path.dirname(__file__)
@@ -21,8 +22,6 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
-
-
 
 DATABASES = {
                 'default': {
@@ -71,10 +70,17 @@ USE_L10N = True
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
 
+cloudinary.config (
+  cloud_name = "deiq0pyek",
+  api_key = "594761675313837",
+  api_secret = "ARNma0lZjgYBaK9VPWGxSRF6xCo"
+)
+
+
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
-#MEDIA_ROOT = os.path.join(PROJECT_PATH,'media')
-MEDIA_ROOT = 'media'
+MEDIA_ROOT = os.path.join(PROJECT_PATH,'media')
+#MEDIA_ROOT = 'media'
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
@@ -153,6 +159,7 @@ INSTALLED_APPS = (
     'Union_1',
     #'mailchimp',
     #'sorl.thumbnail',
+    'cloudinary',
 )
 
 

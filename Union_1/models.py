@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib import admin
 
+
 # Create your models here.
 
 class BlogPost(models.Model):
@@ -36,8 +37,6 @@ class Contact_Us(models.Model):
 
     def __unicode__(self):
         return self.subject
-
-
 
 class Member(models.Model):
     first_name=models.CharField(max_length=100)
@@ -82,11 +81,14 @@ class Album(models.Model):
     def __unicode__(self):
         return self.name
 
+
+from cloudinary.models import CloudinaryField
+
 class Picture(models.Model):
     event = models.ForeignKey(Event, blank=True,null=True)
     album = models.ForeignKey(Album, blank=True,null=True)
     name = models.CharField(max_length=60, blank=True, null=True)
-    picture = models.FileField(upload_to="images")
+    picture = CloudinaryField('image')
     created = models.DateTimeField(auto_now_add=True)
     width = models.IntegerField(blank=True, null=True)
     height = models.IntegerField(blank=True, null=True)
@@ -97,7 +99,7 @@ class Picture(models.Model):
 
 class ImageAdmin(admin.ModelAdmin):
     search_fields = ["name"]
-    list_display = ["__unicode__", "picture","event", "created"]
+    list_display = ["__unicode__", "picture","event", "album", "created"]
     list_filter = ["event",'album']
 
 class MemberAdmin(admin.ModelAdmin):

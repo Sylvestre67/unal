@@ -384,6 +384,7 @@ def mailchimp(request):
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Count
+from cloudinary import CloudinaryImage
 
 def gallery(request):
        context= RequestContext(request)
@@ -404,6 +405,7 @@ def gallery(request):
        except EmptyPage:
             # If page is out of range (e.g. 9999), deliver last page of results.
             event_page = paginator.page(paginator.num_pages)
+
 
        albums = Album.objects.prefetch_related('picture_set').all()
 

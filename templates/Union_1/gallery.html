@@ -1,14 +1,15 @@
 {% extends 'Union_1/base.html' %}
-
+{% load cloudinary %}
 {% block title %} Gallery {% endblock %}
 
 {% block body_block %}
+
+
 
         <div class="container">
     <div class="row">
        <div class="col-xs-12 col-md-12">
            <h1>L'Union Alsacienne of New York in pictures</h1>
-            <h3> Under Construction </h3>
        </div>
     </div>
 
@@ -19,10 +20,17 @@
        <div class="col-xs-12 col-md-12">
            <h3>{{ event.date|date:"N d Y" }} - {{ event.title }}</h3>
            {% for image in images %}
+
             {% if image.event = event %}
                 <div class="col-xs-12 col-md-2 image-list">
                 <div class="thumbnail">
-                <a href="/media/{{ image.picture }}" data-lightbox="{{ image.name }}" ></href><img style="width:200%; height:200%;" src="/media/{{ image.picture }}" alt="{{ image.name }}" /></a>
+
+                <a href="{% cloudinary_url image.picture %}" data-lightbox="{{ image.name }}" >
+
+                {% cloudinary image.picture %}
+
+                </a>
+
                 </div>
                 </div>
             {% endif %}
@@ -30,8 +38,6 @@
     </div>
     </div>
     {% endfor %}
-
-
 
 
      <div class="row">
@@ -74,7 +80,11 @@
                 {% for image in album.picture_set.all  %}
                 <div class="col-xs-12 col-md-2 image-list">
                     <div class="thumbnail">
-                <a href="/media/{{ image.picture }}" data-lightbox="{{ image.name }}" ></href><img style="width:75%; height:75%;" src="/media/{{ image.picture }}" alt="{{ image.name }}" /></a>
+                <a href="{% cloudinary_url image.picture %}" data-lightbox="{{ image.name }}" >
+
+                    {% cloudinary image.picture %}
+
+                </a>
                     </div>
                 </div>
                 {% endfor %}
