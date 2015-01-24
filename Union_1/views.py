@@ -45,7 +45,7 @@ def index(request):
         e.url_link = encode_url(e.title)
 
     for e in event_list:
-        e.google_direction = encode_query_for_google_direction_url(e.place)
+        e.google_direction = encode_query_for_google_direction_url(e.address)
 
     for b in blogpost_list:
         b.url = encode_url(b.title)
@@ -94,13 +94,13 @@ def event(request):
         e.url_link = encode_url(e.title)
 
     for e in event_list:
-        e.google_direction = encode_query_for_google_direction_url(e.place)
+        e.google_direction = encode_query_for_google_direction_url(e.address)
 
     for e in event_list_past:
         e.url_link = encode_url(e.title)
 
     for e in event_list_past:
-        e.google_direction = encode_query_for_google_direction_url(e.place)
+        e.google_direction = encode_query_for_google_direction_url(e.address)
 
     context_dict = {'event_list' : event_list, 'event_past' : event_list_past }
 
@@ -115,7 +115,7 @@ def event_detail(request,event_title_url):
 
     for e in event_list:
         e.url_link = encode_url(e.title)
-        e.google_direction = encode_query_for_google_direction_url(e.place)
+        e.google_direction = encode_query_for_google_direction_url(e.address)
 
         try:
             event = Event.objects.get(title=event_title)
