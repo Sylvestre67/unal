@@ -1,6 +1,5 @@
 # Django settings for ua_67 project.
 import os
-import cloudinary
 import dj_database_url
 
 SETTINGS_DIR = os.path.dirname(__file__)
