@@ -14,9 +14,9 @@ class BlogPost(models.Model):
 class Event(models.Model):
     title=models.CharField(max_length=50)
     date=models.DateTimeField(blank=True)
-    price=models.IntegerField(blank=True)
+    price=models.CharField(max_length=50)
     url=models.URLField(blank=True)
-    place=models.CharField(max_length=4000)
+    address=models.CharField(max_length=4000)
     venue=models.CharField(max_length=4000)
     description=models.TextField(max_length=80000,blank=True)
     bwp_link=models.URLField(blank=True)
