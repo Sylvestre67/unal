@@ -23,11 +23,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Union_1/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-121.28571" vertical-offset="1126" max-vertical-offset="6443">
-              <caret line="307" column="0" selection-start-line="307" selection-start-column="0" selection-end-line="307" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.7534091" vertical-offset="714" max-vertical-offset="6443">
+              <caret line="122" column="41" selection-start-line="122" selection-start-column="41" selection-end-line="122" selection-end-column="41" />
               <folding>
                 <element signature="e#503#555#0" expanded="false" />
                 <element signature="e#587#635#0" expanded="false" />
@@ -51,18 +51,18 @@
       <file leaf-file-name="Event.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/Union_1/Event.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-25.5" vertical-offset="102" max-vertical-offset="1411">
-              <caret line="45" column="40" selection-start-line="45" selection-start-column="40" selection-end-line="45" selection-end-column="40" />
+            <state vertical-scroll-proportion="-5.259259" vertical-offset="532" max-vertical-offset="1411">
+              <caret line="48" column="79" selection-start-line="48" selection-start-column="78" selection-end-line="48" selection-end-column="79" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Event_List.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Event_List.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/Union_1/Event_List.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.5258918" vertical-offset="2448" max-vertical-offset="3332">
-              <caret line="66" column="28" selection-start-line="66" selection-start-column="28" selection-end-line="66" selection-end-column="28" />
+            <state vertical-scroll-proportion="-5.185185" vertical-offset="893" max-vertical-offset="3332">
+              <caret line="69" column="28" selection-start-line="69" selection-start-column="27" selection-end-line="69" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -150,9 +150,9 @@
         <option value="$PROJECT_DIR$/ua_67/settings.py" />
         <option value="$PROJECT_DIR$/Union_1/models.py" />
         <option value="$PROJECT_DIR$/templates/Union_1/index.html" />
-        <option value="$PROJECT_DIR$/Union_1/views.py" />
         <option value="$PROJECT_DIR$/templates/Union_1/Event.html" />
         <option value="$PROJECT_DIR$/templates/Union_1/Event_List.html" />
+        <option value="$PROJECT_DIR$/Union_1/views.py" />
       </list>
     </option>
   </component>
@@ -936,19 +936,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Union_1/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-121.28571" vertical-offset="1126" max-vertical-offset="6443">
-          <caret line="307" column="0" selection-start-line="307" selection-start-column="0" selection-end-line="307" selection-end-column="0" />
-          <folding>
-            <element signature="e#503#555#0" expanded="false" />
-            <element signature="e#587#635#0" expanded="false" />
-            <element signature="e#1729#2257#0" expanded="false" />
-            <element signature="e#2287#2568#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/Union_1/index.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-42.5" vertical-offset="374" max-vertical-offset="3842">
@@ -959,17 +946,30 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/Union_1/Event.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-25.5" vertical-offset="102" max-vertical-offset="1411">
-          <caret line="45" column="40" selection-start-line="45" selection-start-column="40" selection-end-line="45" selection-end-column="40" />
+        <state vertical-scroll-proportion="-5.259259" vertical-offset="532" max-vertical-offset="1411">
+          <caret line="48" column="79" selection-start-line="48" selection-start-column="78" selection-end-line="48" selection-end-column="79" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/Union_1/Event_List.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.5258918" vertical-offset="2448" max-vertical-offset="3332">
-          <caret line="66" column="28" selection-start-line="66" selection-start-column="28" selection-end-line="66" selection-end-column="28" />
+        <state vertical-scroll-proportion="-5.185185" vertical-offset="893" max-vertical-offset="3332">
+          <caret line="69" column="28" selection-start-line="69" selection-start-column="27" selection-end-line="69" selection-end-column="28" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Union_1/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.7534091" vertical-offset="714" max-vertical-offset="6443">
+          <caret line="122" column="41" selection-start-line="122" selection-start-column="41" selection-end-line="122" selection-end-column="41" />
+          <folding>
+            <element signature="e#503#555#0" expanded="false" />
+            <element signature="e#587#635#0" expanded="false" />
+            <element signature="e#1729#2257#0" expanded="false" />
+            <element signature="e#2287#2568#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

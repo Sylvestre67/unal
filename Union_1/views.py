@@ -119,7 +119,7 @@ def event_detail(request,event_title_url):
 
         try:
             event = Event.objects.get(title=event_title)
-            event.google_direction = encode_query_for_google_direction_url(event.place)
+            event.google_direction = encode_query_for_google_direction_url(event.address)
             context_dict['event'] = event
         except Event.DoesNotExist:
             pass
