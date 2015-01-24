@@ -1,5 +1,6 @@
 # Django settings for ua_67 project.
 import os
+import cloudinary
 import dj_database_url
 
 SETTINGS_DIR = os.path.dirname(__file__)
@@ -68,13 +69,6 @@ USE_L10N = True
 
 # If you set this to False, Django will not use timezone-aware datetimes.
 USE_TZ = True
-
-cloudinary.config (
-  cloud_name = "deiq0pyek",
-  api_key = "594761675313837",
-  api_secret = "ARNma0lZjgYBaK9VPWGxSRF6xCo"
-)
-
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/var/www/example.com/media/"
@@ -161,6 +155,14 @@ INSTALLED_APPS = (
     'cloudinary',
 )
 
+#cloudinary.config
+ #   (
+  #    cloud_name = "deiq0pyek",
+   #   api_key = "594761675313837",
+    #  api_secret = "ARNma0lZjgYBaK9VPWGxSRF6xCo"
+    #)
+
+#CLOUDINARY_URL='cloudinary://594761675313837:ARNma0lZjgYBaK9VPWGxSRF6xCo@deiq0pyek'
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
