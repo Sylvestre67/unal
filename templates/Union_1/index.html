@@ -82,7 +82,8 @@
                 </div>
                     <h2><a href ="/events/{{ Event.url_link }}/">{{ Event.title }}</a></h2>
                     <p>When: {{ Event.date }} </p>
-                    <p>Where: {{ Event.address }} <a href="http://maps.google.com/?q={{ Event.google_direction }}" target="_blank">[directions]</a></p>
+                    <p>Where: {{ Event.venue }} -
+                    {{ Event.address }} <a href="http://maps.google.com/?q={{ Event.google_direction }}" target="_blank">[directions]</a></p>
                     <p>{% autoescape off %} {{ Event.description|linebreaks }} {% endautoescape %}</p>
                     <p>Price: ${{ Event.price }}</p>
                     <p>Website: <a href="{{ Event.url }}">{{ Event.url }}</a></p>
