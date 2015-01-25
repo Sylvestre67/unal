@@ -23,7 +23,8 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASES = {
+if os.getenv('DATABASE_URL'):
+    DATABASES = {
                 'default': {
                         #'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
                         #'NAME': DATABASE_PATH,                      # Or path to database file if using sqlite3.
@@ -37,8 +38,25 @@ DATABASES = {
                 }
             }
 
-import dj_database_url
-DATABASES['default'] =  dj_database_url.config()
+    import dj_database_url
+    DATABASES['default'] =  dj_database_url.config()
+else:
+    DATABASES = {
+                'default': {
+                        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+                        'NAME': DATABASE_PATH,                      # Or path to database file if using sqlite3.
+                }
+            }
+
+
+if os.getenv('CLOUDINARY_URL'):
+    CLOUDINARY_URL
+else:
+    cloudinary.config (
+        cloud_name = "deiq0pyek",
+        api_key = "594761675313837",
+        api_secret = "ARNma0lZjgYBaK9VPWGxSRF6xCo"
+     )
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')

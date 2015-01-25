@@ -9,6 +9,9 @@ $(document).ready(function () {
     today = now.getDate()  + '/' + (now.getMonth() + 1) + '/' + now.getFullYear();
     $('#id_date').val(today);
 
+// CAROUSSELS ANIMATION
+
+
 
 // About Us Language Section
     $('#FR_FLAG').click(function()
@@ -90,8 +93,6 @@ $(document).ready(function () {
         $('#ALSACE').hide();
         $('#NYC').hide();
      });
-
-
 
 });
 
