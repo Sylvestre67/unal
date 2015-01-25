@@ -49,9 +49,8 @@ else:
             }
 
 
-if os.getenv('CLOUDINARY_URL'):
-    CLOUDINARY_URL
-else:
+if os.getenv('CLOUDINARY_URL') is None:
+
     cloudinary.config (
         cloud_name = "deiq0pyek",
         api_key = "594761675313837",
