@@ -1,6 +1,24 @@
 __author__ = 'Sylvestre'
 
 from django.conf.urls import patterns, url
+from django.contrib.sitemaps import FlatPageSitemap,GenericSitemap
+from Union_1.models import Event,Picture
+
+event_dict = {
+    'queryset': Event.objects.all(),
+}
+
+picture_dict = {
+    'queryset': Picture.objects.all(),
+}
+
+
+sitemaps = {
+    #'flatpages': FlatPageSitemap,
+    'event': GenericSitemap(event_dict, priority=0.6),
+    'picture': GenericSitemap(picture_dict, priority=0.7),
+}
+
 from Union_1 import views
 
 urlpatterns = patterns('',
@@ -11,7 +29,7 @@ urlpatterns = patterns('',
         url(r'^event/',views.event,name='event_home'),
         url(r'^about/',views.about,name='about'),
         url(r'^members/',views.membership,name='become_a_member'),
-        url(r'^membership/become_a_member/$',views.membership_become_member,name='become_a_member'),
+        url(r'^membership/become_a_member/$',views.membership_become_member,name='become_a_member_form'),
         url(r'^membership/become_a_friend/$',views.membership_become_a_friend,name='become_a_friend'),
         url(r'^membership/renewal/$',views.renewal,name='membership_renewal'),
         url(r'^contact_us/',views.contact_us,name='contact_us'),
@@ -19,5 +37,6 @@ urlpatterns = patterns('',
         url(r'^signup_form/$',views.mailchimp,name='signup_form'),
         url(r'^gallery/$',views.gallery,name='gallery'),
         url(r'^membership/payment',views.membership_payment,name='membership_payment'),
-
+        (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
 )
+

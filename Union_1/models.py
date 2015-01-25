@@ -24,6 +24,9 @@ class Event(models.Model):
     def __unicode__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return
+
 class EventAdmin(admin.ModelAdmin):
     search_fields = ["date"]
     list_display = ["date","title","description"]
@@ -96,6 +99,8 @@ class Picture(models.Model):
     def __unicode__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return
 
 class ImageAdmin(admin.ModelAdmin):
     search_fields = ["name"]
@@ -118,3 +123,5 @@ admin.site.register(Member,MemberAdmin)
 admin.site.register(Friend,FriendAdmin)
 admin.site.register(Event,EventAdmin)
 admin.site.register(Contact_Us,Contact_UsAdmin)
+
+
