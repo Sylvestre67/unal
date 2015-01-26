@@ -8,15 +8,10 @@ event_dict = {
     'queryset': Event.objects.all(),
 }
 
-picture_dict = {
-    'queryset': Picture.objects.all(),
-}
-
 
 sitemaps = {
     #'flatpages': FlatPageSitemap,
     'event': GenericSitemap(event_dict, priority=0.6),
-    'picture': GenericSitemap(picture_dict, priority=0.7),
 }
 
 from Union_1 import views

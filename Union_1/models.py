@@ -1,6 +1,10 @@
 from django.db import models
 from django.contrib import admin
+from django.core.urlresolvers import reverse
 
+def encode_url(name):
+    name_url = name.replace(' ','_')
+    return name_url
 
 # Create your models here.
 
@@ -25,7 +29,7 @@ class Event(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return
+        return reverse('event', kwargs={'event_title_url':encode_url(self.title)})
 
 class EventAdmin(admin.ModelAdmin):
     search_fields = ["date"]
@@ -99,8 +103,6 @@ class Picture(models.Model):
     def __unicode__(self):
         return self.name
 
-    def get_absolute_url(self):
-        return
 
 class ImageAdmin(admin.ModelAdmin):
     search_fields = ["name"]

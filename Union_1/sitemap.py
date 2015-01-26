@@ -13,5 +13,5 @@ class EventSitemap(Sitemap):
         return datetime.datetime.now()
 
     def location(self, obj):
-        return obj.get_absolute_url
+        return 'event/desert/'
 
