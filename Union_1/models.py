@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib import admin
 from django.core.urlresolvers import reverse
+from django.contrib.sites.models import Site
 
 def encode_url(name):
     name_url = name.replace(' ','_')
@@ -90,6 +91,7 @@ class Album(models.Model):
 
 
 from cloudinary.models import CloudinaryField
+from cloudinary.utils import cloudinary_url
 
 class Picture(models.Model):
     event = models.ForeignKey(Event, blank=True,null=True)
@@ -103,6 +105,8 @@ class Picture(models.Model):
     def __unicode__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return cloudinary_url(self.picture).build_url()
 
 class ImageAdmin(admin.ModelAdmin):
     search_fields = ["name"]

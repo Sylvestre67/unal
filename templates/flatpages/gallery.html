@@ -1,0 +1,100 @@
+{% extends 'Union_1/base.html' %}
+{% load cloudinary %}
+{% block title %} Gallery {% endblock %}
+
+{% block body_block %}
+
+
+
+        <div class="container">
+    <div class="row">
+       <div class="col-xs-12 col-md-12">
+           <h1>L'Union Alsacienne of New York in pictures</h1>
+       </div>
+    </div>
+
+
+    {% for event in events %}
+
+    <div class="row">
+       <div class="col-xs-12 col-md-12">
+           <h3>{{ event.date|date:"N d Y" }} - {{ event.title }}</h3>
+           {% for image in images %}
+
+            {% if image.event = event %}
+                <div class="col-xs-12 col-md-2 image-list">
+                <div class="thumbnail">
+
+                <a href="{% cloudinary_url image.picture %}" data-lightbox="{{ image.name }}" >
+
+                {% cloudinary image.picture %}
+
+                </a>
+
+                </div>
+                </div>
+            {% endif %}
+           {% endfor %}
+    </div>
+    </div>
+    {% endfor %}
+
+
+     <div class="row">
+        <div class="col-xs-12 col-md-12">
+
+                <p style="text-align:center;">
+                {% if event_page.has_previous %}
+                <a href="?page={{ event_page.previous_page_number }}" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+                </a>
+
+                {% endif %}
+
+                {% for i in number %}
+                <a href="?page={{ i }}"> {{ i }} </a>
+                {% endfor %}
+
+
+
+                {% if event_page.has_next %}
+
+                  <a href="?page={{ event_page.next_page_number }}" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+
+                {% endif %}
+                </p>
+
+
+        </div>
+    </div>
+
+
+
+{% for album in albums %}
+{% if album.picture_set.all %}
+    <div class="row">
+        <div class="col-xs-12 col-md-12">
+            <h3>{{ album.name }}</h3>
+                {% for image in album.picture_set.all  %}
+                <div class="col-xs-12 col-md-2 image-list">
+                    <div class="thumbnail">
+                <a href="{% cloudinary_url image.picture %}" data-lightbox="{{ image.name }}" >
+
+                    {% cloudinary image.picture %}
+
+                </a>
+                    </div>
+                </div>
+                {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    {% endfor %}
+
+</div>
+
+<script>$('#gallery').addClass('active');</script>
+
+{% endblock %}
