@@ -85,8 +85,8 @@
                     <p>Where: {{ Event.venue }} -
                     {{ Event.address }} <a href="http://maps.google.com/?q={{ Event.google_direction }}" target="_blank">[directions]</a></p>
                     <p>{% autoescape off %} {{ Event.description|linebreaks }} {% endautoescape %}</p>
-                    <p>Price: ${{ Event.price }}</p>
-                    <p>Website: <a href="{{ Event.url }}">{{ Event.url }}</a></p>
+                    {% if Event.price %} <p>Price: ${{ Event.price }}</p> {% endif %}
+                    {% if Event.url %} <p> Website: <a href="{{ Event.url }}">{{ Event.url }}</a></p> {% endif %}
                     <hr>
                 </div>
                     {% endif %}

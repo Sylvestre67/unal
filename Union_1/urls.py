@@ -9,12 +9,6 @@ event_dict = {
     'queryset': Event.objects.all(),
 }
 
-
-#picture_dict = {
- #   'queryset': Picture.objects.all(),
-#}
-
-
 from django.core.urlresolvers import reverse
 from django.contrib.sitemaps import Sitemap
 

@@ -113,6 +113,7 @@ class ImageAdmin(admin.ModelAdmin):
     list_display = ["__unicode__", "picture","event", "album", "created"]
     list_filter = ["event",'album']
 
+
 class MemberAdmin(admin.ModelAdmin):
     search_fields = ["last_name", "email"]
     list_display = ["date_membership_application","first_name","last_name","email","city","state"]
@@ -125,6 +126,9 @@ class Contact_UsAdmin (admin.ModelAdmin):
     list_display=["sender","subject","message"]
 
 admin.site.register(Picture, ImageAdmin)
+
+
+
 admin.site.register(Member,MemberAdmin)
 admin.site.register(Friend,FriendAdmin)
 admin.site.register(Event,EventAdmin)

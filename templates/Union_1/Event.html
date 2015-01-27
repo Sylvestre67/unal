@@ -31,12 +31,9 @@
         <div class="row">
             <div class="col-xs-12 col-md-8">
                 <div class="blog-teaser pull-left">
-                    <p>{% autoescape off %} {{ event.description|linebreaks }} {% endautoescape %}</p> <hr>
-                    {% if event.url %}
-                    <p> Website: <a href="{{ event.url }}" style="color:RGB(227,34,25);text-decoration: underline;">{{ event.url }}</a></p>
-                    {% endif %}
-
-                    <p> Price: ${{ event.price }}</p>
+                    <p>{% autoescape off %} {{ event.description|linebreaks }} {% endautoescape %}</p>
+                    {% if Event.price %} <hr> <p>Price: ${{ Event.price }}</p> {% endif %}
+                    {% if Event.url %} <p> Website: <a href="{{ Event.url }}">{{ Event.url }}</a></p>  {% endif %}
                     <hr>
                 </div>
             </div>

@@ -22,8 +22,8 @@
                         <p>Where: {% if Event.venue %} {{ Event.venue }} - {% endif %}
                         {{ Event.address }} <a href="http://maps.google.com/?q={{ Event.google_direction }}" target="_blank">[directions]</a></p>
                         <p>{% autoescape off %} {{ Event.description|linebreaks }} {% endautoescape %}</p>
-                        <p>Price: ${{ Event.price }}</p>
-                        <p>Website: <a href="{{ Event.url }}">{{ Event.url }}</a></p>
+                        {% if Event.price %} <p>Price: ${{ Event.price }}</p> {% endif %}
+                        {% if Event.url %} <p> Website: <a href="{{ Event.url }}">{{ Event.url }}</a></p> {% endif %}
                         <p style="text-align:right"><a href ="/events/{{ Event.url_link }}/">More Information and RSVP: click here.</a></p>
                         <hr>
                     </div>
