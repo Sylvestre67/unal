@@ -2,6 +2,8 @@
 
 {% block title %} {{ event.title }} - {{ event.date }} {% endblock %}
 
+{% block description %} {{ event.title }}, {{ event.date }} @ {{ event.venue }} {% endblock %}
+
 {% block ogtag %}
 
 <meta property="og:title" content="{{ event.title }} - {{ event.date }}" />
