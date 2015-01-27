@@ -173,7 +173,7 @@ INSTALLED_APPS = (
     #'mailchimp',
     #'sorl.thumbnail',
     'cloudinary',
-    'multiupload',
+    #'multiupload',
 )
 
 SITE_ID = 1
