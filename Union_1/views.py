@@ -88,7 +88,7 @@ def blog_home(request):
 def event(request):
     context = RequestContext(request)
     event_list = Event.objects.exclude(date__lt= datetime.datetime.now()).order_by('date')
-    event_list_past = Event.objects.exclude(date__gt= datetime.datetime.now()).order_by('-date')
+    event_list_past = Event.objects.exclude(date__gt= datetime.datetime.now()).order_by('-date')[:5]
 
     for e in event_list:
         e.url_link = encode_url(e.title)
