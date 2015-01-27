@@ -10,7 +10,7 @@
 <meta property="og:type" content="website" />
 <meta property="og:url" content="http://www.alsace.nyc/events/{{ event.url_link_og }}/" />
 <meta property="og:image" content="https://gallery.mailchimp.com/329119448809907e23753d6b7/images/51491c86-060f-4d11-96c2-5d6a42f4e29f.png" />
-<meta property="og:description" content="{{ event.title }}" />
+<meta property="og:description" content="{{ event.description }}" />
 <meta property="og:site_name" content="Alsace.nyc" />
 
 {% endblock %}
@@ -36,8 +36,8 @@
                    <!--Twitter Widget-->
                      <a href="https://twitter.com/share" class="pull-right twitter-share-button" data-count="none">Tweet</a>
                     <!--Facebook widget-->
-                    <div class="pull-right fb-share-button" data-href="http://www.alsace.nyc/events/{{ event.url_link_og }}/" data-layout="button"></div>
-                    <!--<div class="pull-right fb-like" data-href="http://www.alsace.nyc/events/{{ event_title_url }}" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>-->
+                    <!--<div class="pull-right fb-share-button" data-href="http://www.alsace.nyc/events/{{ event.url_link_og }}/" data-layout="button" data-show-faces="true"></div>-->
+                    <div class="pull-right fb-like" data-href="http://www.alsace.nyc/events/{{ event.url_link_og }}/" data-layout="button" data-action="like" data-show-faces="true" data-share="true"></div>
                 </div>
             </div>
         </div>
