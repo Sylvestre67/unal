@@ -5,7 +5,7 @@ from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-from Union_1.models import Event,BlogPost,Contact_Us,Picture,Album
+from Union_1.models import Event,BlogPost,Contact_Us,Picture,Album,BureauMember
 from forms import ContactUs_Form,Become_a_Member,Become_a_Friend,mailchimp_form,Renewal
 from django.core.mail import send_mail
 from mailchimp import utils
@@ -128,7 +128,12 @@ def event_detail(request,event_title_url):
     return render_to_response('Union_1/Event.html',context_dict,context)
 
 def about(request):
-    return render_to_response('Union_1/about.html')
+
+    context=RequestContext(request)
+    bureau_member=BureauMember.objects.order_by('list_position')
+
+    context_dict={"bureau_member" : bureau_member}
+    return render_to_response('Union_1/about.html',context_dict,context)
 
 def membership_become_member(request):
 

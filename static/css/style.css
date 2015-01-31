@@ -266,7 +266,9 @@ display: none;
     margin-left:5px;
 }
 
-
+.portrait_description{
+width: 750px !important;
+}
 
 /*Footer*/
 
@@ -454,8 +456,8 @@ background-color:;
 
 .portrait {
 margin-right:10px;
-width:140px;
-height:140px;
+/* width:140px; */
+/* height:140px; */
 }
 
 .portrait_name{

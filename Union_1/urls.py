@@ -39,7 +39,7 @@ urlpatterns = patterns('',
         url(r'^blog/',views.blog_home,name='blog_home'),
         url(r'^events/(?P<event_title_url>\w+)/', views.event_detail,name='event'),
         url(r'^event/',views.event,name='event_home'),
-        #url(r'^about/',views.about,name='about'),
+        url(r'^about-us/',views.about,name='about'),
         url(r'^members/',views.membership,name='become_a_member'),
         url(r'^membership/become_a_member/$',views.membership_become_member,name='become_a_member_form'),
         url(r'^membership/become_a_friend/$',views.membership_become_a_friend,name='become_a_friend'),
@@ -53,7 +53,7 @@ urlpatterns = patterns('',
 )
 
 # flatpages url
-urlpatterns += patterns('django.contrib.flatpages.views',
-    url(r'^about-us/$', 'flatpage', {'url': '/about-us/'}, name='about'),
+#urlpatterns += patterns('django.contrib.flatpages.views',
+ #   url(r'^about-us/$', 'flatpage', {'url': '/about-us/'}, name='about'),
 
-)
+#)

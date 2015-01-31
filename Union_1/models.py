@@ -108,6 +108,20 @@ class Picture(models.Model):
     def get_absolute_url(self):
         return cloudinary_url(self.picture).build_url()
 
+class BureauMember (models.Model):
+    name = models.CharField(max_length=120)
+    title = models.CharField(max_length=120)
+    list_position = models.IntegerField()
+    picture = CloudinaryField('image/bureau',null=True,blank=True)
+    bio = models.TextField(max_length=6000,blank=True,null=True)
+
+    def __unicode__(self):
+        return self.name
+
+class BureauMemberAdmin(admin.ModelAdmin):
+    search_fields = ["name"]
+    list_display = ["list_position","__unicode__", "title","picture", "bio"]
+
 class ImageAdmin(admin.ModelAdmin):
     search_fields = ["name"]
     list_display = ["__unicode__", "picture","event", "album", "created"]
@@ -126,12 +140,11 @@ class Contact_UsAdmin (admin.ModelAdmin):
     list_display=["sender","subject","message"]
 
 admin.site.register(Picture, ImageAdmin)
-
-
-
 admin.site.register(Member,MemberAdmin)
 admin.site.register(Friend,FriendAdmin)
 admin.site.register(Event,EventAdmin)
 admin.site.register(Contact_Us,Contact_UsAdmin)
+
+admin.site.register(BureauMember, BureauMemberAdmin)
 
 
