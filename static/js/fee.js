@@ -1,6 +1,6 @@
 $( document ).ready(function() {
  
-    console.log('Hello World');
+    //console.log('Hello World');
 
     $.urlParam = function(name){
     var results = new RegExp('[\?&amp;]' + name + '=([^&amp;#]*)').exec(window.location.href);
@@ -11,12 +11,14 @@ $( document ).ready(function() {
 
 
     if (type == '1') {
-        $('#amount').val('40');
+        $('select>option:eq(0)').prop('selected', true);
+        // $('#amount').val('Member');
         $('#friend').hide();
 
     }
     else {
-        $('#amount').val('20');
+        $('select>option:eq(1)').prop('selected', true);
+        //$('#amount').val('Friend');
         $('#member').hide();
     }
 
