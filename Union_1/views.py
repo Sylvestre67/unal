@@ -159,7 +159,7 @@ def membership_become_member(request):
             "First sponsor: " + form.cleaned_data['first_sponsor'] + "\n" +
             "Second sponsor: " + form.cleaned_data['second_sponsor'] + "\r\n\n" + "Posted through l'Union Alsacienne Website"+ "\r\n")
             sender='news@alsace-newyork.com'
-            recipient=['contact@alsace-newyork.com']
+            recipient=['contact@alsace-newyork.com','sgug@outlook.com']
 
             send_mail(subject,message,sender,recipient,fail_silently=False)
 
@@ -231,7 +231,7 @@ def membership_become_a_friend(request):
                      form.cleaned_data['city'] + "   " + form.cleaned_data['zip'] + "   " + form.cleaned_data['state'] + "\r\n\n" +
                      "Posted through l'Union Alsacienne Website"+ "\r\n")
             sender='news@alsace-newyork.com'
-            recipient=['contact@alsace-newyork.com']
+            recipient=['contact@alsace-newyork.com','sgug@outlook.com']
 
             external_subject='Thank you for your application'
             external_message=(
@@ -294,7 +294,7 @@ def renewal(request):
                      "L'Union of Alsacienne of New York Team. "+ "\r\n"
             )
             sender='news@alsace-newyork.com'
-            internal_recipient=['sgug@outlook.com']
+            internal_recipient=['contact@alsace-newyork.com','sgug@outlook.com']
             external_recipient=[form.cleaned_data['email']]
 
             send_mail(internal_subject,internal_message,sender,internal_recipient,fail_silently=False)
@@ -348,7 +348,7 @@ def contact_us(request):
             sender=form.cleaned_data['sender']
             cc_myself=form.cleaned_data['cc']
 
-            recipients=['contact@alsace-newyork.com']
+            recipients=['contact@alsace-newyork.com','sgug@oultook.com']
             if cc_myself:
                 recipients.append(sender)
 
