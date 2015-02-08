@@ -159,7 +159,7 @@ def membership_become_member(request):
             "First sponsor: " + form.cleaned_data['first_sponsor'] + "\n" +
             "Second sponsor: " + form.cleaned_data['second_sponsor'] + "\r\n\n" + "Posted through l'Union Alsacienne Website"+ "\r\n")
             sender='news@alsace-newyork.com'
-            recipient=['contact@alsace-newyork.com','sgug@outlook.com']
+            recipient=['contact@alsace-newyork.com','sgug@outlook.com','treasury.unal@gmail.com']
 
             send_mail(subject,message,sender,recipient,fail_silently=False)
 
@@ -172,11 +172,11 @@ def membership_become_member(request):
                      "Address: " + form.cleaned_data['address'] + "\n" +
                      form.cleaned_data['city'] + "   " + form.cleaned_data['zip'] + "   " + form.cleaned_data['state'] + "\r\n\n" +
                      "If you choose to pay your fee by check, please mail your check to: " +"\r\n"+
-                     "Union Alsacienne of New York"+ "\r\n" +
-                     "415 main street - #6B"+ "\r\n" +
-                     "New York, NY - 10044"+ "\r\n\n" +
+                     "Union Alsacienne of New York - Mrs. Andrea Markson"+ "\r\n"+
+                     "240 76th street - Apt. 3H"+ "\r\n"+
+                     "New York, NY - 10021"+ "\r\n\n"+
                      "Best,"+ "\r\n\n"+
-                     "L'Union of Alsacienne of New York Team. "+ "\r\n"
+                     "L'Union of Alsacienne of New York. "+ "\r\n"
             )
             external_recipient=[form.cleaned_data['email']]
 
@@ -231,7 +231,7 @@ def membership_become_a_friend(request):
                      form.cleaned_data['city'] + "   " + form.cleaned_data['zip'] + "   " + form.cleaned_data['state'] + "\r\n\n" +
                      "Posted through l'Union Alsacienne Website"+ "\r\n")
             sender='news@alsace-newyork.com'
-            recipient=['contact@alsace-newyork.com','sgug@outlook.com']
+            recipient=['contact@alsace-newyork.com','sgug@outlook.com','treasury.unal@gmail.com']
 
             external_subject='Thank you for your application'
             external_message=(
@@ -242,11 +242,11 @@ def membership_become_a_friend(request):
                      "Address: " + form.cleaned_data['address'] + "\n" +
                      form.cleaned_data['city'] + "   " + form.cleaned_data['zip'] + "   " + form.cleaned_data['state'] + "\r\n\n" +
                      "If you choose to pay your fee by check, please mail your check to: " +"\r\n"+
-                     "Union Alsacienne of New York"+ "\r\n"
-                     "415 main street - #6B"+ "\r\n" +
-                     "New York, NY - 10044"+ "\r\n\n" +
+                     "Union Alsacienne of New York - Mrs. Andrea Markson"+ "\r\n"+
+                     "240 76th street - Apt. 3H"+ "\r\n"+
+                     "New York, NY - 10021"+ "\r\n\n"+
                      "Best,"+ "\r\n\n"+
-                     "L'Union of Alsacienne of New York Team. "+ "\r\n"
+                     "L'Union of Alsacienne of New York. "+ "\r\n"
             )
             external_recipient=[form.cleaned_data['email']]
 
@@ -287,14 +287,14 @@ def renewal(request):
                      "Address: " + form.cleaned_data['address'] + "\n" +
                      form.cleaned_data['city'] + "   " + form.cleaned_data['zip'] + "   " + form.cleaned_data['state'] + "\r\n\n" +
                      "If you choose to pay your fee by check, please mail your check to: " +"\r\n"+
-                     "Union Alsacienne of New York"+ "\r\n"+
-                     "415 main street - #6B"+ "\r\n"+
-                     "New York, NY - 10044"+ "\r\n\n"+
+                     "Union Alsacienne of New York - Mrs. Andrea Markson"+ "\r\n"+
+                     "240 76th street - Apt. 3H"+ "\r\n"+
+                     "New York, NY - 10021"+ "\r\n\n"+
                      "Best,"+ "\r\n\n"+
-                     "L'Union of Alsacienne of New York Team. "+ "\r\n"
+                     "L'Union of Alsacienne of New York. "+ "\r\n"
             )
             sender='news@alsace-newyork.com'
-            internal_recipient=['contact@alsace-newyork.com','sgug@outlook.com']
+            internal_recipient=['contact@alsace-newyork.com','sgug@outlook.com','treasury.unal@gmail.com']
             external_recipient=[form.cleaned_data['email']]
 
             send_mail(internal_subject,internal_message,sender,internal_recipient,fail_silently=False)

@@ -2,6 +2,8 @@ $( document ).ready(function() {
  
     //console.log('Hello World');
 
+    $('#id_member_type_1').prop('checked', true);
+
     $.urlParam = function(name){
     var results = new RegExp('[\?&amp;]' + name + '=([^&amp;#]*)').exec(window.location.href);
     return results[1] || 0;
@@ -31,6 +33,4 @@ $( document ).ready(function() {
         $('#renewal').hide();
     }
 
-
- 
 });
