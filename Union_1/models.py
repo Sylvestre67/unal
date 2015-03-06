@@ -1,7 +1,5 @@
 from django.db import models
-from django.contrib import admin
 from django.core.urlresolvers import reverse
-from django.contrib.sites.models import Site
 
 def encode_url(name):
     name_url = name.replace(' ','_')
@@ -32,9 +30,7 @@ class Event(models.Model):
     def get_absolute_url(self):
         return reverse('event', kwargs={'event_title_url':encode_url(self.title)})
 
-class EventAdmin(admin.ModelAdmin):
-    search_fields = ["date"]
-    list_display = ["date","title","description"]
+
 
 class Contact_Us(models.Model):
 
@@ -117,34 +113,5 @@ class BureauMember (models.Model):
 
     def __unicode__(self):
         return self.name
-
-class BureauMemberAdmin(admin.ModelAdmin):
-    search_fields = ["name"]
-    list_display = ["list_position","__unicode__", "title","picture", "bio"]
-
-class ImageAdmin(admin.ModelAdmin):
-    search_fields = ["name"]
-    list_display = ["__unicode__", "picture","event", "album", "created"]
-    list_filter = ["event",'album']
-
-
-class MemberAdmin(admin.ModelAdmin):
-    search_fields = ["last_name", "email"]
-    list_display = ["date_membership_application","first_name","last_name","email","city","state"]
-
-class FriendAdmin(admin.ModelAdmin):
-    search_fields = ["last_name", "email"]
-    list_display = ["first_name","last_name","email","city","state"]
-
-class Contact_UsAdmin (admin.ModelAdmin):
-    list_display=["sender","subject","message"]
-
-admin.site.register(Picture, ImageAdmin)
-admin.site.register(Member,MemberAdmin)
-admin.site.register(Friend,FriendAdmin)
-admin.site.register(Event,EventAdmin)
-admin.site.register(Contact_Us,Contact_UsAdmin)
-
-admin.site.register(BureauMember, BureauMemberAdmin)
 
 

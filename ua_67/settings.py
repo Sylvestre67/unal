@@ -169,6 +169,7 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'django.contrib.flatpages',
+
     'Union_1',
     #'mailchimp',
     #'sorl.thumbnail',

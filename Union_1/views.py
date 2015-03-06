@@ -8,10 +8,8 @@ from django.shortcuts import render_to_response
 from Union_1.models import Event,BlogPost,Contact_Us,Picture,Album,BureauMember
 from forms import ContactUs_Form,Become_a_Member,Become_a_Friend,mailchimp_form,Renewal
 from django.core.mail import send_mail
-from mailchimp import utils
 
 import datetime
-
 
 def encode_url(name):
     name_url = name.replace(' ','_')
