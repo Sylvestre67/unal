@@ -169,7 +169,6 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'django.contrib.flatpages',
-
     'Union_1',
     #'mailchimp',
     #'sorl.thumbnail',
@@ -179,17 +178,15 @@ INSTALLED_APPS = (
 
 SITE_ID = 1
 
-#cloudinary.config
- #   (
-  #    cloud_name = "deiq0pyek",
-   #   api_key = "594761675313837",
-    #  api_secret = "ARNma0lZjgYBaK9VPWGxSRF6xCo"
-    #)
+cloudinary.config(
+      cloud_name = "deiq0pyek",
+      api_key = "594761675313837",
+      api_secret = "ARNma0lZjgYBaK9VPWGxSRF6xCo"
+)
 
 #CLOUDINARY_URL='cloudinary://594761675313837:ARNma0lZjgYBaK9VPWGxSRF6xCo@deiq0pyek'
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
-
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 
