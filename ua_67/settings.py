@@ -173,6 +173,7 @@ INSTALLED_APPS = (
     #'mailchimp',
     #'sorl.thumbnail',
     'cloudinary',
+    'djrill',
     #'multiupload',
 )
 
@@ -188,7 +189,10 @@ cloudinary.config(
 
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+#Mandrill Keys
+
+MANDRILL_API_KEY = 'ivIn8-AMFL0bqaxN-x-_GQ'
+EMAIL_BACKEND = 'djrill.mail.backends.djrill.DjrillBackend'
 
 # Host for sending e-mail.
 EMAIL_HOST = 'smtp.mandrillapp.com'
@@ -201,9 +205,6 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'sylvestre.gug@gmail.com'
 EMAIL_HOST_PASSWORD = 'ivIn8-AMFL0bqaxN-x-_GQ'
 
-
-
-
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
@@ -211,12 +212,12 @@ SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 ALLOWED_HOSTS = ['*']
 
 
-
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
 # the site admins on every HTTP 500 error when DEBUG=False.
 # See http://docs.djangoproject.com/en/dev/topics/logging for
 # more details on how to customize your logging configuration.
+
 LOGGING = {
     'version': 1,
     'disable_existing_loggers': False,

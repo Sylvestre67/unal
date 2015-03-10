@@ -30,7 +30,7 @@ class Become_a_Member(forms.ModelForm):
     home_phone=forms.CharField(required=False,widget=forms.TextInput(attrs={'class' : 'form-control'}))
     home_fax=forms.CharField(required=False,widget=forms.TextInput(attrs={'class' : 'form-control'}))
     email=forms.EmailField(widget=forms.TextInput(attrs={'class' : 'form-control'}))
-    date_of_birth=forms.DateField(required=False,widget=forms.TextInput(attrs={'class' : 'form-control'}))
+    date_of_birth=forms.DateField(required=False,widget=forms.DateInput(attrs={'class' : 'form-control'}))
     birth_place=forms.CharField(required=False,widget=forms.TextInput(attrs={'class' : 'form-control'}))
     if_not_alsace_Reason=forms.CharField(required=False,widget=forms.Textarea(attrs={'class' : 'form-control', 'rows' : '6'}))
     venue=forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control'}))

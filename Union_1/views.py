@@ -133,6 +133,8 @@ def about(request):
     context_dict={"bureau_member" : bureau_member}
     return render_to_response('Union_1/about.html',context_dict,context)
 
+from django.core.mail import EmailMessage
+
 def membership_become_member(request):
 
     context=RequestContext(request)
@@ -159,8 +161,25 @@ def membership_become_member(request):
             sender='news@alsace-newyork.com'
             recipient=['contact@alsace-newyork.com','sgug@outlook.com','treasury.unal@gmail.com']
 
-            send_mail(subject,message,sender,recipient,fail_silently=False)
+            email=EmailMessage(subject,message,sender,recipient)
+            email.send()
 
+            #send_mail(subject,message,sender,recipient,fail_silently=False)
+
+            msg = EmailMessage(subject="Thank you for your application", from_email="news@alsace-newyork.com",
+                   to=[form.cleaned_data['email']])
+            msg.template_name = "Membership_Confirmation_MC2"           # A Mandrill template name
+
+            msg.global_merge_vars = {                       # Merge tags in your template
+                'CURRENT_YEAR': str(datetime.date.today().year), 'COMPANY': 'Union Alsacienne of New York'
+            }
+            msg.merge_vars = {                              # Per-recipient merge tags
+               form.cleaned_data['email'] :  {'first_name': form.cleaned_data['first_name'],'state' : form.cleaned_data['state'],'zip' : form.cleaned_data['zip'],'city' : form.cleaned_data['city'],'address' : form.cleaned_data['address'],'last_name': form.cleaned_data['last_name'],},
+            }
+
+            msg.send()
+
+            """
             external_subject='Thank you for your application'
             external_message=(
                     "Dear " + form.cleaned_data['first_name'] + "\r\n\n" +
@@ -179,6 +198,7 @@ def membership_become_member(request):
             external_recipient=[form.cleaned_data['email']]
 
             send_mail(external_subject,external_message,sender,external_recipient,fail_silently=False)
+            """
 
             form.save(True)
 
@@ -221,6 +241,7 @@ def membership_become_a_friend(request):
         form = Become_a_Friend(request.POST)
 
         if form.is_valid():
+
             subject='New Friendship Application Received'
             message=("A new request to become a friend has been posted through l'Union Alsacienne Website"+ "\n\n" +
                      "Name: " + form.cleaned_data['first_name'] + " " + form.cleaned_data['last_name'] +"\n\n" +
@@ -231,6 +252,27 @@ def membership_become_a_friend(request):
             sender='news@alsace-newyork.com'
             recipient=['contact@alsace-newyork.com','sgug@outlook.com','treasury.unal@gmail.com']
 
+            email=EmailMessage(subject,message,sender,recipient)
+            email.send()
+
+            #send_mail(subject,message,sender,recipient,fail_silently=False)
+
+
+            msg = EmailMessage(subject="Thank you for your application", from_email="news@alsace-newyork.com",
+                   to=[form.cleaned_data['email']])
+            msg.template_name = "Friendship_Confirmation_MC2"           # A Mandrill template name
+
+            msg.global_merge_vars = {                       # Merge tags in your template
+                'CURRENT_YEAR': str(datetime.date.today().year), 'COMPANY': 'Union Alsacienne of New York'
+            }
+            msg.merge_vars = {                              # Per-recipient merge tags
+               form.cleaned_data['email'] :  {'first_name': form.cleaned_data['first_name'],'state' : form.cleaned_data['state'],'zip' : form.cleaned_data['zip'],'city' : form.cleaned_data['city'],'address' : form.cleaned_data['address'],'last_name': form.cleaned_data['last_name'],},
+
+            }
+
+            msg.send()
+
+            """
             external_subject='Thank you for your application'
             external_message=(
                     "Dear " + form.cleaned_data['first_name'] + "\r\n\n" +
@@ -248,8 +290,9 @@ def membership_become_a_friend(request):
             )
             external_recipient=[form.cleaned_data['email']]
 
-            send_mail(subject,message,sender,recipient,fail_silently=False)
+
             send_mail(external_subject,external_message,sender,external_recipient,fail_silently=False)
+            """
 
             form.save(True)
 
@@ -295,8 +338,14 @@ def renewal(request):
             internal_recipient=['contact@alsace-newyork.com','sgug@outlook.com','treasury.unal@gmail.com']
             external_recipient=[form.cleaned_data['email']]
 
-            send_mail(internal_subject,internal_message,sender,internal_recipient,fail_silently=False)
-            send_mail(external_subject,external_message,sender,external_recipient,fail_silently=False)
+            internal_email = EmailMessage(internal_subject,internal_message,sender,internal_recipient)
+            internal_email.send()
+
+            #send_mail(internal_subject,internal_message,sender,internal_recipient,fail_silently=False)
+            external_email=EmailMessage(external_subject,external_message,sender,external_recipient)
+            external_email.send()
+
+            #send_mail(external_subject,external_message,sender,external_recipient,fail_silently=False)
 
             if form.cleaned_data['member_type'] == 'F':
                 return HttpResponseRedirect('/membership/payment?type=2&action=renewal')
@@ -346,11 +395,14 @@ def contact_us(request):
             sender=form.cleaned_data['sender']
             cc_myself=form.cleaned_data['cc']
 
-            recipients=['contact@alsace-newyork.com','sgug@oultook.com']
+            recipients=['contact@lasace-newyork.com','sgug@outlook.com']
             if cc_myself:
                 recipients.append(sender)
 
-            send_mail(subject,message,sender,recipients, fail_silently=False)
+            email = EmailMessage(subject,message,sender,recipients)
+            email.send()
+
+            #send_mail(subject,message,sender,recipients, fail_silently=False)
 
             form.save(True)
 
