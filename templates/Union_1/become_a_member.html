@@ -190,7 +190,7 @@
                         {% elif field.name == "date_of_birth" %}
                         <div class="col-xs-10 col-md-6 no_padding">
                         <div class="form-group">
-                            <label class="label_form">Date of birth</label>
+                            <label class="label_form">Date of birth <span style="color:red;" class='glyphicon glyphicon-asterisk'></span>:</label>
                             {{ field }}
                             {% for error in field.errors %}
                             <h6 style="color:red;">{{ error }}</h6>

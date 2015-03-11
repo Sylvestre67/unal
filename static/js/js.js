@@ -9,6 +9,13 @@ $(document).ready(function () {
     today = now.getDate()  + '/' + (now.getMonth() + 1) + '/' + now.getFullYear();
     $('#id_date').val(today);
 
+// Field Make it beautifull:
+
+    $("#id_date_of_birth").datepicker({
+    });
+
+    $('#id_date_membership_application').datepicker({});
+
 // CAROUSSELS ANIMATION
 
 
