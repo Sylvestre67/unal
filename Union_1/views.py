@@ -27,7 +27,7 @@ def index(request):
     context = RequestContext(request)
     now = datetime.date.today()
 
-    event_list = Event.objects.filter(date__gte=now)
+    event_list = Event.objects.filter(date__gte=now).order_by('-date')
 
     for e in event_list:
         e.url_link = encode_url(e.title)
