@@ -395,7 +395,7 @@ def contact_us(request):
             sender=form.cleaned_data['sender']
             cc_myself=form.cleaned_data['cc']
 
-            recipients=['contact@lasace-newyork.com','sgug@outlook.com']
+            recipients=['contact@alsace-newyork.com','sgug@outlook.com']
             if cc_myself:
                 recipients.append(sender)
 
