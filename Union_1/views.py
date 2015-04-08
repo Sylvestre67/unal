@@ -25,19 +25,9 @@ def encode_query_for_google_direction_url(direction):
 
 def index(request):
     context = RequestContext(request)
+    now = datetime.date.today()
 
-    blogpost_list = BlogPost.objects.order_by('-title')[:5]
-    event_list = Event.objects.order_by('date')
-
-    for e in event_list:
-        e.when = datetime.date((e.date).year,(e.date).month,(e.date).day)
-        e.today = datetime.date.today()
-        if e.when > e.today:
-            e.comp = 'upcoming'
-        if e.when < e.today:
-             e.comp = 'past'
-        if e.when == e.today:
-             e.comp = 'today'
+    event_list = Event.objects.filter(date__gte=now)
 
     for e in event_list:
         e.url_link = encode_url(e.title)
@@ -45,10 +35,7 @@ def index(request):
     for e in event_list:
         e.google_direction = encode_query_for_google_direction_url(e.address)
 
-    for b in blogpost_list:
-        b.url = encode_url(b.title)
-
-    context_dict = {'blogpost_list': blogpost_list,'event_list' : event_list}
+    context_dict = {'event_list' : event_list}
 
     return render_to_response('Union_1/index.html',context_dict,context)
 

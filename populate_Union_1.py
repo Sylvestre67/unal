@@ -40,7 +40,7 @@ def add_contact_us(subject,message,sender,cc):
 
 if __name__ == '__main__':
     print 'Let\'s populate Union_1'
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'ua_67.settings')
+    os.environ['DJANGO_SETTINGS_MODULE'] = 'ua_67.settings'
     from Union_1.models import BlogPost,Event,Contact_Us,Album,Picture
     populate()
 

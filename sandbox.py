@@ -1,10 +1,17 @@
 __author__ = 'Sylvestre'
+
 import os
-from django.template import RequestContext
-from Union_1.models import Event,BlogPost,Contact_Us,Picture,Album
+import django
+from django.core.wsgi import get_wsgi_application
 
-def find_foregin_key(object,name):
-    c = object.objects.get_or_create(name=name)
-    print c.key
+def get_event():
+    c=Event.objects.all()
+    return c
 
-find_foregin_key(Album,'Random pictures')
+if __name__ == '__main__':
+    django.setup()
+    os.environ['DJANGO_SETTINGS_MODULE'] = 'ua_67.settings'
+    application = get_wsgi_application()
+    from Union_1.models import Member,Event
+    get_event()
+    print('Hello World!')
