@@ -15,9 +15,7 @@ font-family:ubuntu;
 
 h1
 {
-
     color:RGB(227,34,25);
-    font-weight:;
 }
 
 h1 a
@@ -231,11 +229,6 @@ margin:0px 5px;
 float:right;
 }
 
-.hidden(
-display: none;
-)
-
-
 /*Blog*/
 
 .blog-teaser .pull-left
@@ -382,7 +375,7 @@ background-color:black;
 margin:0 1em 1em 1em;
 }
 
-embed-img-alsace{
+.embed-img-alsace{
     display: block;
     width: auto;
     height: auto;
@@ -451,7 +444,6 @@ margin-top:25px;
 
 .bio-wrap{
 margin-top:10px;
-background-color:;
 }
 
 .portrait {
@@ -462,8 +454,6 @@ margin-right:10px;
 
 .portrait_name{
 font-size:20px;
-padding:none;
-margin:none;
 line-height:20px;
 }
 
@@ -614,7 +604,7 @@ font-weight:bold;
 .image-list .thumbnail{
 border:none;
 background-color:#efefef;
-padding:5 em;
+padding:5px;
 }
 
 .image-list .thumbnail:hover{

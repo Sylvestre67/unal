@@ -10,14 +10,12 @@ body {
 }
 
 h1,h2,h3,h4,h5,h6,p,a,li{
-font-family:arvo;
+font-family:ubuntu;
 }
 
 h1
 {
-
     color:RGB(227,34,25);
-    font-weight:;
 }
 
 h1 a
@@ -150,6 +148,11 @@ margin: 0;
 }
 
 .jumbotron{
+padding:0px !important;
+margin:0px !important;
+}
+
+.jumbotron_1{
   background: url(/static/image/Union_Alsacienne_Home.jpg) no-repeat center;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -158,24 +161,73 @@ margin: 0;
   height:350px;
 }
 
-.header{
-background-color:RGBA(239,239,239,0.7);
-padding:20px;
-width:50%;
-
+#caption_black{
+color: black !important;
 }
 
+.background_white{
+background-color:RGBA(239,239,239,0.9) !important;
+padding: 0px;
+text-shadow:none;
+border-radius:5px;
+}
+
+.jumbotron_2{
+  background: url(/static/image/Union_Alsacienne_Home_2.jpg) no-repeat center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height:350px;
+}
+
+.jumbotron_3{
+  background: url(/static/image/Union_Alsacienne_Home_3.jpg) no-repeat center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height:350px;
+}
+
+.carousel-caption{
+padding-bottom:0px !important;
+}
+
+.carousel-caption h2{
+margin-top:10px;
+}
+
+.arrow{
+      height: 100px;
+      margin-top: 18%;
+      font-size: 120px;
+      text-shadow: 0 1px 1px rgba(0,0,0,.4);
+      background-color: transparent;
+      border: 0;
+      z-index: 10;
+    }
+
+
+.header{
+background-color:RGBA(239,239,239,0.9);
+border-radius:5px;
+text-align:center;
+padding-top:auto;
+padding-bottom:auto;
+width:70%;
+margin-top:20%;
+}
+
+.header_carousel{
+background-color:RGBA(239,239,239,0.9);
+}
 
 
 .flag{
 margin:0px 5px;
 float:right;
 }
-
-.hidden(
-display: none;
-)
-
 
 /*Blog*/
 
@@ -188,7 +240,7 @@ display: none;
 .blog-teaser a
 {
     text-decoration:none;
-    color:black;
+    color:RGB(227,34,25);
 
 }
 
@@ -207,7 +259,9 @@ display: none;
     margin-left:5px;
 }
 
-
+.portrait_description{
+width: 750px !important;
+}
 
 /*Footer*/
 
@@ -274,6 +328,16 @@ background-color:black;
 text-align:right;
 }
 
+.date-holder-event-page{
+margin:20px 20px 5px 20px;
+padding:5px 10px 5px 5px;
+height:75%;
+width:75%;
+background-color:black;
+text-align:right;
+}
+
+
 .day {
 color:white;
 font-size:25px;
@@ -311,7 +375,7 @@ background-color:black;
 margin:0 1em 1em 1em;
 }
 
-embed-img-alsace{
+.embed-img-alsace{
     display: block;
     width: auto;
     height: auto;
@@ -368,7 +432,7 @@ text-decoration:none;
 .google_map{
 padding:10px 20px 10px 20px;
 background-color:#efefef;
-border-radius:25px;
+border-radius:5px;
 width:75%;
 
 }
@@ -380,19 +444,16 @@ margin-top:25px;
 
 .bio-wrap{
 margin-top:10px;
-background-color:;
 }
 
 .portrait {
 margin-right:10px;
-width:140px;
-height:140px;
+/* width:140px; */
+/* height:140px; */
 }
 
 .portrait_name{
 font-size:20px;
-padding:none;
-margin:none;
 line-height:20px;
 }
 
@@ -407,6 +468,11 @@ padding:20px;
 border-radius:5px;
 
 }
+
+.col-right #headline {
+text-align:center;
+}
+
 
 .col-right ul{
 list-style:none;
@@ -532,3 +598,87 @@ text-decoration:none;
 .bulletin-list a:hover {
 font-weight:bold;
 }
+
+/* Styling the Gallery */
+
+.image-list .thumbnail{
+border:none;
+background-color:#efefef;
+padding:5px;
+}
+
+.image-list .thumbnail:hover{
+border:1px solid RGB(227,34,25);
+}
+
+.col-centered{
+    float: none;
+    margin: 0 auto;
+}
+
+.pagination{
+
+}
+
+.pagination>li>a
+{
+color:black;
+border: 1px solid RGB(227,34,25);
+}
+
+.pagination>li>a:hover,.pagination>li>a:focus
+
+{
+color:RGB(227,34,25);
+border: 1px solid RGB(227,34,25);
+}
+
+.renewal ul{
+list-style-type: none;
+margin:0px;
+
+}
+
+.renewal ul li{
+display: inline;
+font-size:20px;
+padding:0px 20px 0px 0px;
+}
+
+#mc-embedded-subscribe{
+margin:1em 0em 1em 0em !important;
+}
+
+@media screen and (min-width: 0px) and (max-width: 549px) {
+  #jumbo_mobile { display: block; }  /* show it on small screens */
+  .date-holder { display: none; }
+  #date-holder-event-page { display: none; }
+  #jumbo_desktop { display: none; }   /* Do not show it on small screens */
+  .container-fluid { padding: 0px 0px 0px 0px;
+margin-right: auto;
+margin-left: auto; }
+  .input_mobile_adjust .form-control
+  {
+  width:90%;
+  }
+}
+
+@media screen and (min-width: 550px) and (max-width: 3000px) {
+  #jumbo_mobile { display: none; }  /* show it on small screens */
+  #jumbo_desktop { display: block; }   /* Do not show it on small screens */
+}
+
+.alsa-coeur_mobile
+{
+margin: 0px 0.5% 0px 0.5%;
+width:30px;
+height:auto;
+}
+
+.alsace_nyc{
+text-align:center;
+}
+
+
+
+
