@@ -14,16 +14,18 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 MAILCHIMP_API_KEY=('3fec4b189c5b774b30ffdbabc350eacf-us3')
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+DEBUG = False
+TEMPLATE_DEBUG = False
 
 ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
+    ('Sylvestre Gug', 'sgug@outlook.com'),
 )
 
 MANAGERS = ADMINS
 
 if os.getenv('DATABASE_URL'):
+    DEBUG = False
+    TEMPLATE_DEBUG = False
     DATABASES = {
                 'default': {
                         #'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
@@ -41,6 +43,8 @@ if os.getenv('DATABASE_URL'):
     import dj_database_url
     DATABASES['default'] =  dj_database_url.config()
 else:
+    DEBUG = True
+    TEMPLATE_DEBUG = DEBUG
     DATABASES = {
                 'default': {
                         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
@@ -78,7 +82,7 @@ SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
-USE_I18N = True
+USE_I18N = False
 
 # If you set this to False, Django will not format dates, numbers and
 # calendars according to the current locale.
