@@ -172,7 +172,7 @@ def membership_become_member(request):
             if os.getenv('MAILCHIMP_API'):
                 api = mailchimp.Mailchimp(os.getenv('MAILCHIMP_API'))
                 api.lists.subscribe(os.getenv('UNAL_LISTID'), {'email': form.cleaned_data['email']})
-            
+
             return HttpResponseRedirect('/membership/payment?type=1') #redirect after post
 
         else:
@@ -282,6 +282,7 @@ def renewal(request):
         form = Renewal(request.POST)
 
         if form.is_valid():
+
             internal_subject='Renewal of Membership/Friendship received'
             external_subject='Thank you for your renewal!'
             internal_message=("This Member renewed its Membership/Friendship through l'Union Alsacienne Website"+ "\n\n" +
@@ -312,6 +313,10 @@ def renewal(request):
             internal_email = EmailMessage(internal_subject,internal_message,sender,internal_recipient)
             internal_email.send()
 
+            if os.getenv('MAILCHIMP_API'):
+                api = mailchimp.Mailchimp(os.getenv('MAILCHIMP_API'))
+                api.lists.subscribe(os.getenv('UNAL_LISTID'), {'email': form.cleaned_data['email']})
+                
             #send_mail(internal_subject,internal_message,sender,internal_recipient,fail_silently=False)
             external_email=EmailMessage(external_subject,external_message,sender,external_recipient)
             external_email.send()
