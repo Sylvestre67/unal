@@ -316,7 +316,7 @@ def renewal(request):
             if os.getenv('MAILCHIMP_API'):
                 api = mailchimp.Mailchimp(os.getenv('MAILCHIMP_API'))
                 api.lists.subscribe(os.getenv('UNAL_LISTID'), {'email': form.cleaned_data['email']})
-                
+
             #send_mail(internal_subject,internal_message,sender,internal_recipient,fail_silently=False)
             external_email=EmailMessage(external_subject,external_message,sender,external_recipient)
             external_email.send()
