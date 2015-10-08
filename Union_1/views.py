@@ -122,6 +122,9 @@ def about(request):
 
 from django.core.mail import EmailMessage
 
+import os
+import mailchimp
+
 def membership_become_member(request):
 
     context=RequestContext(request)
@@ -151,8 +154,6 @@ def membership_become_member(request):
             email=EmailMessage(subject,message,sender,recipient)
             email.send()
 
-            #send_mail(subject,message,sender,recipient,fail_silently=False)
-
             msg = EmailMessage(subject="Thank you for your application", from_email="news@alsace-newyork.com",
                    to=[form.cleaned_data['email']])
             msg.template_name = "Membership_Confirmation_MC2"           # A Mandrill template name
@@ -166,29 +167,12 @@ def membership_become_member(request):
 
             msg.send()
 
-            """
-            external_subject='Thank you for your application'
-            external_message=(
-                    "Dear " + form.cleaned_data['first_name'] + "\r\n\n" +
-                    "Thank you for your application for Membership. Here's the information you submitted."+ "\n\n" +
-                     "Name: " + form.cleaned_data['first_name'] + " " + form.cleaned_data['last_name'] +"\n\n" +
-                     "Email: " + form.cleaned_data['email'] + "\n\n" +
-                     "Address: " + form.cleaned_data['address'] + "\n" +
-                     form.cleaned_data['city'] + "   " + form.cleaned_data['zip'] + "   " + form.cleaned_data['state'] + "\r\n\n" +
-                     "If you choose to pay your fee by check, please mail your check to: " +"\r\n"+
-                     "Union Alsacienne of New York - Mrs. Andrea Markson"+ "\r\n"+
-                     "240 76th street - Apt. 3H"+ "\r\n"+
-                     "New York, NY - 10021"+ "\r\n\n"+
-                     "Best,"+ "\r\n\n"+
-                     "L'Union of Alsacienne of New York. "+ "\r\n"
-            )
-            external_recipient=[form.cleaned_data['email']]
-
-            send_mail(external_subject,external_message,sender,external_recipient,fail_silently=False)
-            """
-
             form.save(True)
 
+            if os.getenv('MAILCHIMP_API'):
+                api = mailchimp.Mailchimp(os.getenv('MAILCHIMP_API'))
+                api.lists.subscribe(os.getenv('UNAL_LISTID'), {'email': form.cleaned_data['email']})
+            
             return HttpResponseRedirect('/membership/payment?type=1') #redirect after post
 
         else:

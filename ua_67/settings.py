@@ -174,7 +174,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'django.contrib.flatpages',
     'Union_1',
-    #'mailchimp',
+    'mailchimp',
     #'sorl.thumbnail',
     'cloudinary',
     'djrill',
@@ -190,11 +190,9 @@ cloudinary.config(
 )
 
 #CLOUDINARY_URL='cloudinary://594761675313837:ARNma0lZjgYBaK9VPWGxSRF6xCo@deiq0pyek'
-
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
 #Mandrill Keys
-
 MANDRILL_API_KEY = 'ivIn8-AMFL0bqaxN-x-_GQ'
 EMAIL_BACKEND = 'djrill.mail.backends.djrill.DjrillBackend'
 
