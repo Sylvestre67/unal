@@ -6,7 +6,7 @@ from django.shortcuts import render
 from django.template import RequestContext
 from django.shortcuts import render_to_response
 from Union_1.models import Event,BlogPost,Contact_Us,Picture,Album,BureauMember
-from forms import ContactUs_Form,Become_a_Member,Become_a_Friend,mailchimp_form,Renewal
+from forms import ContactUs_Form,Become_a_Member,Become_a_Friend,mailchimp_form,Renewal,EventForm
 from django.core.mail import send_mail
 
 import datetime
@@ -54,8 +54,6 @@ def blog(request, blog_title_url):
         context_dict['blog'] = blog
     except BlogPost.DoesNotExist:
         pass
-
-
 
     return render_to_response('Union_1/blog.html', context_dict,context)
 
@@ -454,4 +452,28 @@ def gallery(request):
 
        context_dict = {'events' : events, 'images' : images, 'albums' : albums, 'event_page': event_page,'number' : number}
        return render_to_response('Union_1/gallery.html',context_dict,context)
+
+
+def manage_event(request,eventId):
+    context = RequestContext(request)
+    try:
+        event = Event.objects.get(id = eventId)
+    except ObjectDoesNotExist:
+        event = none
+
+    if request.method == "GET":
+        if event:
+            form = EventForm(instance=event)
+        else:
+            form = EventForm()
+
+    if request.method == "POST":
+        form = EventForm(request.POST)
+
+        if form.is_valid:
+            updated_event = form.save()
+
+    context_dict = {'form': form, 'event': event}
+
+    return render_to_response('Union_1/CMS/event.html',context_dict,context)
 

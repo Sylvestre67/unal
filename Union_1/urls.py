@@ -49,7 +49,9 @@ urlpatterns = patterns('',
         url(r'^signup_form/$',views.mailchimp,name='signup_form'),
         url(r'^gallery/$',views.gallery,name='gallery'),
         url(r'^membership/payment',views.membership_payment,name='membership_payment'),
+        url(r'^CMS/event/(?P<eventId>\d+)/$',views.manage_event,name='manage_event'),
         (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
+
 )
 
 # flatpages url

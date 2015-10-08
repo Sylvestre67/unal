@@ -1,7 +1,8 @@
 __author__ = 'Sylvestre'
 
 from django import forms
-from models import Contact_Us,Member,Friend
+from models import Contact_Us,Member,Friend,Event
+from django.utils.translation import ugettext_lazy as _
 
 class ContactUs_Form(forms.ModelForm):
 
@@ -68,3 +69,14 @@ class Renewal(forms.Form):
     zip=forms.CharField(required=False,widget=forms.TextInput(attrs={'class' : 'form-control'}))
     state=forms.CharField(required=False,widget=forms.TextInput(attrs={'class' : 'form-control'}))
 
+class EventForm(forms.ModelForm):
+
+    class Meta:
+        model = Event
+        fields = {'title','date','price','url','address','venue','description','bwp_link'}
+        labels = {
+            'title' : _('Event Title'),
+            'url' : _('Website'),
+            'venue' : _('Venue (Restaurant/Bar name)'),
+            'bwp_link' : _('Brown Papaer RSVP Link (If applicable)')
+        }
