@@ -12,6 +12,7 @@ class ContactUs_Form(forms.ModelForm):
 
     class Meta:
         model = Contact_Us
+        exclude = []
 
 class mailchimp_form(forms.Form):
     email = forms.EmailField(widget=forms.TextInput(attrs={'class' : 'form-control'}))
@@ -41,6 +42,7 @@ class Become_a_Member(forms.ModelForm):
 
     class Meta:
         model = Member
+        exclude = []
 
 class Become_a_Friend(forms.ModelForm):
     first_name=forms.CharField(widget=forms.TextInput(attrs={'class' : 'form-control'}))
@@ -53,6 +55,7 @@ class Become_a_Friend(forms.ModelForm):
 
     class Meta:
         model = Friend
+        exclude = []
 
 class Renewal(forms.Form):
     CHOICES=(

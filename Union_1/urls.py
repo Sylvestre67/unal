@@ -1,7 +1,7 @@
 __author__ = 'Sylvestre'
 
 from django.conf.urls import patterns, url
-from django.contrib.sitemaps import FlatPageSitemap,GenericSitemap
+from django.contrib.sitemaps import GenericSitemap
 from Union_1.models import Event,Picture
 from Union_1.views import gallery
 
@@ -25,7 +25,6 @@ class ViewSitemap(Sitemap):
 
 
 sitemaps = {
-    'flatpages': FlatPageSitemap,
     'event': GenericSitemap(event_dict, priority=0.6),
     'views': ViewSitemap
     #'picture': GenericSitemap(picture_dict, priority=0.6),
