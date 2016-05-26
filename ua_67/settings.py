@@ -20,7 +20,7 @@ MANAGERS = ADMINS
 
 SITE_ID = 1
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 DATABASES = {
@@ -166,7 +166,7 @@ INSTALLED_APPS = (
     #'mailchimp',
     #'sorl.thumbnail',
     'cloudinary',
-    'djrill',
+    #'djrill',
     #'multiupload',
 )
 
@@ -181,8 +181,10 @@ if os.getenv('POSTMARK_API_TOKEN'):
     EMAIL_PORT =            '587'
     EMAIL_USE_TLS =         True
     SERVER_EMAIL =          os.environ['POSTMARK_INBOUND_ADDRESS']
-else:
-    EMAIL_BACKEND =         'django.core.mail.backends.console.EmailBackend'
+
+    POSTMARK_API_KEY     =  os.environ['POSTMARK_API_KEY']
+    POSTMARK_SENDER      = 'union@alsace.nyc'
+
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -216,5 +218,5 @@ LOGGING = {
 
 try:
     from local_settings import *
-except ImportError:
+except:
     pass

@@ -2,16 +2,17 @@ __author__ = 'Sylvestre'
 
 from django.conf.urls import patterns, url
 from django.contrib.sitemaps import GenericSitemap
-from Union_1.models import Event,Picture
-from Union_1.views import gallery
-
-event_dict = {
-    'queryset': Event.objects.all(),
-}
 
 from django.core.urlresolvers import reverse
 from django.contrib.sitemaps import Sitemap
 
+from Union_1.models import Event,Picture
+from Union_1.views import gallery
+from Union_1 import views
+
+event_dict = {
+    'queryset': Event.objects.all(),
+}
 
 class ViewSitemap(Sitemap):
     """Reverse 'static' views for XML sitemap."""
@@ -23,14 +24,11 @@ class ViewSitemap(Sitemap):
     def location(self, item):
         return reverse(item)
 
-
 sitemaps = {
     'event': GenericSitemap(event_dict, priority=0.6),
     'views': ViewSitemap
     #'picture': GenericSitemap(picture_dict, priority=0.6),
 }
-
-from Union_1 import views
 
 urlpatterns = patterns('',
         url(r'^$',views.index,name='index'),
@@ -45,14 +43,7 @@ urlpatterns = patterns('',
         url(r'^membership/renewal/$',views.renewal,name='membership_renewal'),
         url(r'^contact_us/',views.contact_us,name='contact_us'),
         url(r'^contact_us_thank_you/',views.contact_us_thank_you,name='contact_us_thank_you'),
-        url(r'^signup_form/$',views.mailchimp,name='signup_form'),
         url(r'^gallery/$',views.gallery,name='gallery'),
         url(r'^membership/payment',views.membership_payment,name='membership_payment'),
         (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
 )
-
-# flatpages url
-#urlpatterns += patterns('django.contrib.flatpages.views',
- #   url(r'^about-us/$', 'flatpage', {'url': '/about-us/'}, name='about'),
-
-#)

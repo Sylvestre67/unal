@@ -1,13 +1,19 @@
 # Create your views here.
-
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.template import RequestContext
 from django.shortcuts import render_to_response
-from Union_1.models import Event,BlogPost,Contact_Us,Picture,Album,BureauMember
-from forms import ContactUs_Form,Become_a_Member,Become_a_Friend,mailchimp_form,Renewal
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.db.models import Count
 from django.core.mail import send_mail
+from django.core.mail import EmailMessage
+
+from cloudinary import CloudinaryImage
+from postmark import PMMail
+
+from models import Event,BlogPost,Contact_Us,Picture,Album,BureauMember
+from forms import ContactUs_Form,Become_a_Member,Become_a_Friend,Renewal
 
 import datetime
 
@@ -54,8 +60,6 @@ def blog(request, blog_title_url):
         context_dict['blog'] = blog
     except BlogPost.DoesNotExist:
         pass
-
-
 
     return render_to_response('Union_1/blog.html', context_dict,context)
 
@@ -120,11 +124,6 @@ def about(request):
     context_dict={"bureau_member" : bureau_member}
     return render_to_response('Union_1/about.html',context_dict,context)
 
-from django.core.mail import EmailMessage
-
-import os
-import mailchimp
-
 def membership_become_member(request):
 
     context=RequestContext(request)
@@ -133,6 +132,7 @@ def membership_become_member(request):
         form = Become_a_Member(request.POST)
 
         if form.is_valid():
+
             subject='New Member Application Received'
             message= ("A new request for membership has been posted through l'Union Alsacienne Website." + "\r\n\n" +
             "Name: " + form.cleaned_data['first_name'] + " " + form.cleaned_data['last_name'] + "\r\n" +
@@ -158,9 +158,11 @@ def membership_become_member(request):
                    to=[form.cleaned_data['email']])
             msg.template_name = "Membership_Confirmation_MC2"           # A Mandrill template name
 
-            msg.global_merge_vars = {                       # Merge tags in your template
+            msg.global_merge_vars = {
+                # Merge tags in your template
                 'CURRENT_YEAR': str(datetime.date.today().year), 'COMPANY': 'Union Alsacienne of New York'
             }
+
             msg.merge_vars = {                              # Per-recipient merge tags
                form.cleaned_data['email'] :  {'first_name': form.cleaned_data['first_name'],'state' : form.cleaned_data['state'],'zip' : form.cleaned_data['zip'],'city' : form.cleaned_data['city'],'address' : form.cleaned_data['address'],'last_name': form.cleaned_data['last_name'],},
             }
@@ -168,10 +170,6 @@ def membership_become_member(request):
             msg.send()
 
             form.save(True)
-
-            if os.getenv('MAILCHIMP_API'):
-                api = mailchimp.Mailchimp(os.getenv('MAILCHIMP_API'))
-                api.lists.subscribe(os.getenv('UNAL_LISTID'), {'email': form.cleaned_data['email']})
 
             return HttpResponseRedirect('/membership/payment?type=1') #redirect after post
 
@@ -313,10 +311,6 @@ def renewal(request):
             internal_email = EmailMessage(internal_subject,internal_message,sender,internal_recipient)
             internal_email.send()
 
-            if os.getenv('MAILCHIMP_API'):
-                api = mailchimp.Mailchimp(os.getenv('MAILCHIMP_API'))
-                api.lists.subscribe(os.getenv('UNAL_LISTID'), {'email': form.cleaned_data['email']})
-
             #send_mail(internal_subject,internal_message,sender,internal_recipient,fail_silently=False)
             external_email=EmailMessage(external_subject,external_message,sender,external_recipient)
             external_email.send()
@@ -365,20 +359,26 @@ def contact_us(request):
         if form.is_valid():
 
             subject=form.cleaned_data['subject']
+
             message=("From: " + form.cleaned_data['sender'] +"\r\n" +
             "Subject: " + form.cleaned_data['subject'] + "\r\n"
             "Message: " + form.cleaned_data['message'] + "\r\n\n" + "Posted through l'Union Alsacienne Website"+ "\r\n" )
+
             sender=form.cleaned_data['sender']
             cc_myself=form.cleaned_data['cc']
 
-            recipients=['contact@alsace-newyork.com','sgug@outlook.com']
+            #recipients='contact@alsace-newyork.com,sgug@outlook.com'
+
+            recipients='union@alsace.nyc'
+
             if cc_myself:
-                recipients.append(sender)
+                recipients = recipients + ',' + sender
 
-            email = EmailMessage(subject,message,sender,recipients)
+            email = PMMail(subject = subject,
+                           text_body = message,
+                           to = recipients,
+                           tag = 'contact_form')
             email.send()
-
-            #send_mail(subject,message,sender,recipients, fail_silently=False)
 
             form.save(True)
 
@@ -394,29 +394,6 @@ def contact_us(request):
 def contact_us_thank_you(request):
     context= RequestContext(request)
     return render_to_response('Union_1/contact_thanks.html',context)
-
-def mailchimp(request):
-    context = RequestContext(request)
-
-    if request.method == 'POST':
-        form = mailchimp_form(request.POST)
-
-
-        if form.is_valid():
-            list = utils.get_connection().get_list_by_id('7366bb50d3')
-            list.subscribe(form.cleaned_data['email'], {'EMAIL': form.cleaned_data['email']})
-            return HttpResponseRedirect('/union/')
-        else:
-            print form.errors
-    else:
-        form = mailchimp_form()
-
-    return render_to_response('Union_1/sign_up.html',{'form':form},context)
-
-
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.db.models import Count
-from cloudinary import CloudinaryImage
 
 def gallery(request):
        context= RequestContext(request)
