@@ -20,8 +20,9 @@ MANAGERS = ADMINS
 
 SITE_ID = 1
 
-DEBUG = True
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
+ALLOWED_HOSTS = ["*"]
 
 DATABASES = {
     'default': {
