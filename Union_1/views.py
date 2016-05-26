@@ -145,27 +145,34 @@ def membership_become_member(request):
             "Place: " + form.cleaned_data['birth_place'] + "\n" +
             "If not from Alsace: " + form.cleaned_data['if_not_alsace_Reason'] + "\r\n\n" +
             "Venue: " + form.cleaned_data['venue'] + "\n" + "Date: " + str(form.cleaned_data['date_membership_application']) + "\n" +
-            " Signature: " + form.cleaned_data['signature'] + "\r\n\n" +
+            "Signature: " + form.cleaned_data['signature'] + "\r\n\n" +
             "First sponsor: " + form.cleaned_data['first_sponsor'] + "\n" +
             "Second sponsor: " + form.cleaned_data['second_sponsor'] + "\r\n\n" + "Posted through l'Union Alsacienne Website"+ "\r\n")
-            sender='news@alsace-newyork.com'
             recipient=['contact@alsace-newyork.com','sgug@outlook.com','treasury.unal@gmail.com']
 
-            email=EmailMessage(subject,message,sender,recipient)
+            email = PMMail(subjet = subject,
+                         text_body = message,
+                         to = recipient)
             email.send()
 
-            msg = EmailMessage(subject="Thank you for your application", from_email="news@alsace-newyork.com",
-                   to=[form.cleaned_data['email']])
-            msg.template_name = "Membership_Confirmation_MC2"           # A Mandrill template name
+            msg_body =  (
+                    "Dear " + form.cleaned_data['first_name'] + "\r\n\n" +
+                    "Thank you for your request of membership. Here's the information you submitted."+ "\n\n" +
+                     "Name: " + form.cleaned_data['first_name'] + " " + form.cleaned_data['last_name'] +"\n\n" +
+                     "Email: " + form.cleaned_data['email'] + "\n\n" +
+                     "Address: " + form.cleaned_data['address'] + "\n" +
+                     form.cleaned_data['city'] + "   " + form.cleaned_data['zip'] + "   " + form.cleaned_data['state'] + "\r\n\n" +
+                     "If you choose to pay your fee by check, please mail your check to: " +"\r\n"+
+                     "Union Alsacienne of New York - Mrs. Andrea Markson"+ "\r\n"+
+                     "240 76th street - Apt. 3H"+ "\r\n"+
+                     "New York, NY - 10021"+ "\r\n\n"+
+                     "Best,"+ "\r\n\n"+
+                     "L'Union of Alsacienne of New York. "+ "\r\n"
+            )
 
-            msg.global_merge_vars = {
-                # Merge tags in your template
-                'CURRENT_YEAR': str(datetime.date.today().year), 'COMPANY': 'Union Alsacienne of New York'
-            }
-
-            msg.merge_vars = {                              # Per-recipient merge tags
-               form.cleaned_data['email'] :  {'first_name': form.cleaned_data['first_name'],'state' : form.cleaned_data['state'],'zip' : form.cleaned_data['zip'],'city' : form.cleaned_data['city'],'address' : form.cleaned_data['address'],'last_name': form.cleaned_data['last_name'],},
-            }
+            msg = PMMail(subject = "Thank you for your application",
+                         text_body = msg_body,
+                         to = form.cleaned_data['email'])
 
             msg.send()
 
@@ -211,39 +218,24 @@ def membership_become_a_friend(request):
 
         if form.is_valid():
 
-            subject='New Friendship Application Received'
-            message=("A new request to become a friend has been posted through l'Union Alsacienne Website"+ "\n\n" +
-                     "Name: " + form.cleaned_data['first_name'] + " " + form.cleaned_data['last_name'] +"\n\n" +
-                     "Email: " + form.cleaned_data['email'] + "\n\n" +
-                     "Address: " + form.cleaned_data['address'] + "\n" +
-                     form.cleaned_data['city'] + "   " + form.cleaned_data['zip'] + "   " + form.cleaned_data['state'] + "\r\n\n" +
-                     "Posted through l'Union Alsacienne Website"+ "\r\n")
-            sender='news@alsace-newyork.com'
-            recipient=['contact@alsace-newyork.com','sgug@outlook.com','treasury.unal@gmail.com']
+            subject = 'New Friendship Application Received'
+            message = ( "A new request to become a friend has been posted through l'Union Alsacienne Website"+ "\n\n" +
+                        "Name: " + form.cleaned_data['first_name'] + " " + form.cleaned_data['last_name'] +"\n\n" +
+                        "Email: " + form.cleaned_data['email'] + "\n\n" +
+                        "Address: " + form.cleaned_data['address'] + "\n" +
+                        form.cleaned_data['city'] + "   " + form.cleaned_data['zip'] + "   " + form.cleaned_data['state'] + "\r\n\n" +
+                        "Posted through l'Union Alsacienne Website"+ "\r\n")
 
-            email=EmailMessage(subject,message,sender,recipient)
+            recipient =  'contact@alsace-newyork.com,sgug@outlook.com,treasury.unal@gmail.com'
+
+            email = PMMail(subject = subject,
+                           text_body = message,
+                           to = recipient,
+                           tag = 'member_form')
             email.send()
 
-            #send_mail(subject,message,sender,recipient,fail_silently=False)
-
-
-            msg = EmailMessage(subject="Thank you for your application", from_email="news@alsace-newyork.com",
-                   to=[form.cleaned_data['email']])
-            msg.template_name = "Friendship_Confirmation_MC2"           # A Mandrill template name
-
-            msg.global_merge_vars = {                       # Merge tags in your template
-                'CURRENT_YEAR': str(datetime.date.today().year), 'COMPANY': 'Union Alsacienne of New York'
-            }
-            msg.merge_vars = {                              # Per-recipient merge tags
-               form.cleaned_data['email'] :  {'first_name': form.cleaned_data['first_name'],'state' : form.cleaned_data['state'],'zip' : form.cleaned_data['zip'],'city' : form.cleaned_data['city'],'address' : form.cleaned_data['address'],'last_name': form.cleaned_data['last_name'],},
-
-            }
-
-            msg.send()
-
-            """
-            external_subject='Thank you for your application'
-            external_message=(
+            external_subject = 'Thank you for your application'
+            external_message = (
                     "Dear " + form.cleaned_data['first_name'] + "\r\n\n" +
                     "Thank you for your friendship. Here's the information you submitted."+ "\n\n" +
                      "Name: " + form.cleaned_data['first_name'] + " " + form.cleaned_data['last_name'] +"\n\n" +
@@ -257,11 +249,14 @@ def membership_become_a_friend(request):
                      "Best,"+ "\r\n\n"+
                      "L'Union of Alsacienne of New York. "+ "\r\n"
             )
-            external_recipient=[form.cleaned_data['email']]
+            external_recipient = form.cleaned_data['email']
 
+            external_email = PMMail(subject = external_subject,
+                           text_body = external_message,
+                           to = external_recipient,
+                           tag = 'member_form')
 
-            send_mail(external_subject,external_message,sender,external_recipient,fail_silently=False)
-            """
+            external_email.send()
 
             form.save(True)
 
@@ -282,14 +277,22 @@ def renewal(request):
         if form.is_valid():
 
             internal_subject='Renewal of Membership/Friendship received'
-            external_subject='Thank you for your renewal!'
             internal_message=("This Member renewed its Membership/Friendship through l'Union Alsacienne Website"+ "\n\n" +
                      "Name: " + form.cleaned_data['first_name'] + " " + form.cleaned_data['last_name'] +"\n\n" +
                      "Email: " + form.cleaned_data['email'] + "\n\n" +
                      "Address: " + form.cleaned_data['address'] + "\n" +
                      form.cleaned_data['city'] + "   " + form.cleaned_data['zip'] + "   " + form.cleaned_data['state'] + "\r\n\n" +
                      "Posted through l'Union Alsacienne Website"+ "\r\n")
+            internal_recipient= 'contact@alsace-newyork.com,sgug@outlook.com,treasury.unal@gmail.com'
 
+            internal_email = PMMail(subject = internal_subject,
+                           text_body = internal_message,
+                           to = internal_recipient,
+                           tag = 'renewal_form')
+
+            internal_email.send()
+
+            external_subject='Thank you for your renewal!'
             external_message=(
                     "Dear " + form.cleaned_data['first_name'] + "\r\n\n" +
                     "Thank you for your renewal. Here's the information you submitted."+ "\n\n" +
@@ -304,18 +307,15 @@ def renewal(request):
                      "Best,"+ "\r\n\n"+
                      "L'Union of Alsacienne of New York. "+ "\r\n"
             )
-            sender='news@alsace-newyork.com'
-            internal_recipient=['contact@alsace-newyork.com','sgug@outlook.com','treasury.unal@gmail.com']
-            external_recipient=[form.cleaned_data['email']]
 
-            internal_email = EmailMessage(internal_subject,internal_message,sender,internal_recipient)
-            internal_email.send()
+            external_recipient= form.cleaned_data['email']
 
-            #send_mail(internal_subject,internal_message,sender,internal_recipient,fail_silently=False)
-            external_email=EmailMessage(external_subject,external_message,sender,external_recipient)
+            external_email = PMMail(subject = external_subject,
+                           text_body = external_message,
+                           to = external_recipient,
+                           tag = 'renewal_form')
+
             external_email.send()
-
-            #send_mail(external_subject,external_message,sender,external_recipient,fail_silently=False)
 
             if form.cleaned_data['member_type'] == 'F':
                 return HttpResponseRedirect('/membership/payment?type=2&action=renewal')
