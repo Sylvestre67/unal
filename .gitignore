@@ -62,3 +62,5 @@ staticfiles
 testing.py
 .idea
 .db
+
+local_settings.py

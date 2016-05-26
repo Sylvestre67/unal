@@ -12,61 +12,54 @@ DATABASE_PATH = os.path.join(PROJECT_PATH,'Union_1.db')
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-MAILCHIMP_API_KEY=('3fec4b189c5b774b30ffdbabc350eacf-us3')
-
-DEBUG = False
-TEMPLATE_DEBUG = False
-
 ADMINS = (
     ('Sylvestre Gug', 'sgug@outlook.com'),
 )
 
 MANAGERS = ADMINS
 
+SITE_ID = 1
+
+DEBUG = True
+TEMPLATE_DEBUG = DEBUG
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'NAME': DATABASE_PATH,                      # Or path to database file if using sqlite3.
+        'USER': '',
+        'PASSWORD': '',
+        'HOST': '',
+        'PORT': '',
+    }
+}
+
 if os.getenv('DATABASE_URL'):
     DEBUG = False
     TEMPLATE_DEBUG = False
-    DATABASES = {
-                'default': {
-                        #'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-                        #'NAME': DATABASE_PATH,                      # Or path to database file if using sqlite3.
-                        'ENGINE': 'postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-                        'NAME': 'd91htuva21amhv',                      # Or path to database file if using sqlite3.
-                        #The following settings are not used with sqlite3:
-                        'USER': 'cukhxyiunadzvf',
-                        'PASSWORD': 'LYHQNeyb1nUiOQ7qSWr4yAMKvH',
-                        'HOST': 'ec2-54-225-156-230.compute-1.amazonaws.com',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
-                        'PORT': '5432',                      # Set to empty string for default.
-                }
-            }
 
+     # Update database configuration with $DATABASE_URL.
     import dj_database_url
-    DATABASES['default'] =  dj_database_url.config()
-else:
-    DEBUG = True
-    TEMPLATE_DEBUG = DEBUG
-    DATABASES = {
-                'default': {
-                        'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-                        'NAME': DATABASE_PATH,                      # Or path to database file if using sqlite3.
-                }
-            }
+    db_from_env = dj_database_url.config()
+    DATABASES['default'].update(db_from_env)
 
+    # Make this unique, and don't share it with anybody.
+    SECRET_KEY = os.environ['SECRET_KEY']
 
-if os.getenv('CLOUDINARY_URL') is None:
-
+    #############################
+    #
+    # CLOUDINARY CONFIG
+    #
+    #############################
     cloudinary.config (
-        cloud_name = "deiq0pyek",
-        api_key = "594761675313837",
-        api_secret = "ARNma0lZjgYBaK9VPWGxSRF6xCo"
-     )
+        cloud_name = os.environ['CLOUDINARY_NAME'],
+        api_key = os.environ['CLOUDINARY_API_KEY'],
+        api_secret = os.environ['CLOUDINARY_API_SECRET']
+    )
+
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-# Hosts/domain names that are valid for this site; required if DEBUG is False
-# See https://docs.djangoproject.com/en/1.5/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ['*']
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -77,8 +70,6 @@ TIME_ZONE = 'America/Chicago'
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'en-us'
-
-SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -127,8 +118,6 @@ STATICFILES_FINDERS = (
 #    'django.contrib.staticfiles.finders.DefaultStorageFinder',
 )
 
-# Make this unique, and don't share it with anybody.
-SECRET_KEY = '(#culp@_zc(+h80uvn*a-$2ct9m3^=4#1zeyvwl4*z=qz_$g2v'
 
 # List of callables that know how to import templates from various sources.
 TEMPLATE_LOADERS = (
@@ -174,45 +163,26 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     'django.contrib.flatpages',
     'Union_1',
-    'mailchimp',
+    #'mailchimp',
     #'sorl.thumbnail',
     'cloudinary',
     'djrill',
     #'multiupload',
 )
 
-SITE_ID = 1
-
-cloudinary.config(
-      cloud_name = "deiq0pyek",
-      api_key = "594761675313837",
-      api_secret = "ARNma0lZjgYBaK9VPWGxSRF6xCo"
-)
-
 #CLOUDINARY_URL='cloudinary://594761675313837:ARNma0lZjgYBaK9VPWGxSRF6xCo@deiq0pyek'
 SESSION_SERIALIZER = 'django.contrib.sessions.serializers.JSONSerializer'
 
-#Mandrill Keys
-MANDRILL_API_KEY = 'ivIn8-AMFL0bqaxN-x-_GQ'
-EMAIL_BACKEND = 'djrill.mail.backends.djrill.DjrillBackend'
-
-# Host for sending e-mail.
-EMAIL_HOST = 'smtp.mandrillapp.com'
-
-# Port for sending e-mail.
-EMAIL_PORT = 587
-
-# Optional SMTP authentication information for EMAIL_HOST.
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'sylvestre.gug@gmail.com'
-EMAIL_HOST_PASSWORD = 'ivIn8-AMFL0bqaxN-x-_GQ'
-
-# Honor the 'X-Forwarded-Proto' header for request.is_secure()
-SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-# Allow all host headers
-ALLOWED_HOSTS = ['*']
-
+if os.getenv('POSTMARK_API_TOKEN'):
+    EMAIL_BACKEND =         'django.core.mail.backends.smtp.EmailBackend'
+    EMAIL_HOST =            'smtp.postmarkapp.com'
+    EMAIL_HOST_PASSWORD =   os.environ['POSTMARK_API_TOKEN']
+    EMAIL_HOST_USER =       os.environ['POSTMARK_API_TOKEN']
+    EMAIL_PORT =            '587'
+    EMAIL_USE_TLS =         True
+    SERVER_EMAIL =          os.environ['POSTMARK_INBOUND_ADDRESS']
+else:
+    EMAIL_BACKEND =         'django.core.mail.backends.console.EmailBackend'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
@@ -243,3 +213,8 @@ LOGGING = {
         },
     }
 }
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
