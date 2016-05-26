@@ -7,6 +7,7 @@ docopt==0.4.0
 gunicorn==19.4.5
 mailchimp==2.0.9
 psycopg2==2.6.1
+python-postmark==0.4.9
 requests==2.9.1
 static3==0.6.1
-python-postmark>=0.4.3
+whitenoise==3.1
