@@ -404,14 +404,17 @@ import yaml
 
 def gallery(request):
         context= RequestContext(request)
+
         flickr = flickrapi.FlickrAPI(FLICKR_API_KEY,FLICKR_SECRET,format='parsed-json')
         sets = flickr.photosets.getList(user_id=FLICKR_USERID)
 
         # For each photosets
+
         for album in sets['photosets']['photoset']:
             try:
                 existing_album = FlickR_Album.objects.get(flickr_id = album['id'])
                 #TODO: ADD CHECK ON DATE --> NO NEED TO SAVE IF NOTHING NEW.
+                #TODO: USE THE CACHE TO LIMIT THE NUMBER OF API CALL.
                 try:
                     photo_feed = flickr.photosets.getPhotos(user_id=FLICKR_USERID,photoset_id=existing_album.flickr_id)
 
@@ -438,32 +441,5 @@ def gallery(request):
         context_dict = {'albums' : albums_for_template}
 
         return render_to_response('Union_1/gallery.html', context_dict, context)
-
-        """
-        events = Event.objects.prefetch_related('picture_set').filter(picture__event__isnull=False).annotate(Count('title')).order_by('-date')
-        #events = Event.objects.prefetch_related('picture_set').annotate(Count('title')).order_by('-date')
-
-        images = Picture.objects.filter(event__isnull=False)
-
-        paginator = Paginator(events, 4)
-        number = paginator.page_range
-
-        page = request.GET.get('page')
-        try:
-             event_page = paginator.page(page)
-        except PageNotAnInteger:
-             # If page is not an integer, deliver first page.
-             event_page = paginator.page(1)
-        except EmptyPage:
-             # If page is out of range (e.g. 9999), deliver last page of results.
-             event_page = paginator.page(paginator.num_pages)
-
-
-        albums = Album.objects.prefetch_related('picture_set').all()
-        #context_dict = {'events' : events, 'images' : images, 'albums' : albums, 'event_page': event_page,'number' : number}
-        """
-
-
-
 
 

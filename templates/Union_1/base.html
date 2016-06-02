@@ -58,7 +58,6 @@
 
     <script src="{% static 'js/lightbox.min.js' %}"></script>
     <script src="{% static 'js/js.js' %}"></script>
-    <script src="{% static 'js/fee.js' %}"></script>
 
 
   </head>
@@ -136,6 +135,10 @@
   ga('send', 'pageview');
 
 </script>
+
+{% block after_jquery %}
+
+{% endblock %}
 
 </body>
 </html>
