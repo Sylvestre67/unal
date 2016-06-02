@@ -9,10 +9,12 @@ from django.db.models import Count
 from django.core.mail import send_mail
 from django.core.mail import EmailMessage
 
+from django.core.exceptions import ObjectDoesNotExist
+
 from cloudinary import CloudinaryImage
 from postmark import PMMail
 
-from models import Event,BlogPost,Contact_Us,Picture,Album,BureauMember
+from models import Event,BlogPost,Contact_Us,Picture,Album,BureauMember,FlickR_Album
 from forms import ContactUs_Form,Become_a_Member,Become_a_Friend,Renewal
 
 import datetime
@@ -209,7 +211,6 @@ def membership_payment(request):
 
     return render_to_response('Union_1/members_payment.html',context_dict,context)
 
-
 def membership_become_a_friend(request):
     context=RequestContext(request)
 
@@ -395,29 +396,74 @@ def contact_us_thank_you(request):
     context= RequestContext(request)
     return render_to_response('Union_1/contact_thanks.html',context)
 
+
+from ua_67.settings import FLICKR_API_KEY,FLICKR_SECRET,FLICKR_USERID
+import flickrapi
+import json
+import yaml
+
 def gallery(request):
-       context= RequestContext(request)
-       events = Event.objects.prefetch_related('picture_set').filter(picture__event__isnull=False).annotate(Count('title')).order_by('-date')
-       #events = Event.objects.prefetch_related('picture_set').annotate(Count('title')).order_by('-date')
+        context= RequestContext(request)
+        flickr = flickrapi.FlickrAPI(FLICKR_API_KEY,FLICKR_SECRET,format='parsed-json')
+        sets = flickr.photosets.getList(user_id=FLICKR_USERID)
 
-       images = Picture.objects.filter(event__isnull=False)
+        # For each photosets
+        for album in sets['photosets']['photoset']:
+            try:
+                existing_album = FlickR_Album.objects.get(flickr_id = album['id'])
+                #TODO: ADD CHECK ON DATE --> NO NEED TO SAVE IF NOTHING NEW.
+                try:
+                    photo_feed = flickr.photosets.getPhotos(user_id=FLICKR_USERID,photoset_id=existing_album.flickr_id)
 
-       paginator = Paginator(events, 4)
-       number = paginator.page_range
+                    existing_album.photo_feed = yaml.safe_load(json.dumps(photo_feed))
+                    existing_album.save()
 
-       page = request.GET.get('page')
-       try:
-           event_page = paginator.page(page)
-       except PageNotAnInteger:
-            # If page is not an integer, deliver first page.
-            event_page = paginator.page(1)
-       except EmptyPage:
-            # If page is out of range (e.g. 9999), deliver last page of results.
-            event_page = paginator.page(paginator.num_pages)
+                    print(existing_album.photo_feed)
+
+                except Exception as e:
+                    pass
+
+            except ObjectDoesNotExist:
+                new_album = FlickR_Album.objects.create(name=album['title']['_content'],flickr_id=album['id'])
+                try:
+                    photo_feed = flickr.photosets.getPhotos(user_id=FLICKR_USERID,photoset_id=new_album.flickr_id)
+
+                    new_album.photo_feed = yaml.safe_load(json.dumps(photo_feed))
+                    new_album.save()
+
+                except Exception as e:
+                    print(e)
+
+        albums_for_template = FlickR_Album.objects.all()
+        context_dict = {'albums' : albums_for_template}
+
+        return render_to_response('Union_1/gallery.html', context_dict, context)
+
+        """
+        events = Event.objects.prefetch_related('picture_set').filter(picture__event__isnull=False).annotate(Count('title')).order_by('-date')
+        #events = Event.objects.prefetch_related('picture_set').annotate(Count('title')).order_by('-date')
+
+        images = Picture.objects.filter(event__isnull=False)
+
+        paginator = Paginator(events, 4)
+        number = paginator.page_range
+
+        page = request.GET.get('page')
+        try:
+             event_page = paginator.page(page)
+        except PageNotAnInteger:
+             # If page is not an integer, deliver first page.
+             event_page = paginator.page(1)
+        except EmptyPage:
+             # If page is out of range (e.g. 9999), deliver last page of results.
+             event_page = paginator.page(paginator.num_pages)
 
 
-       albums = Album.objects.prefetch_related('picture_set').all()
+        albums = Album.objects.prefetch_related('picture_set').all()
+        #context_dict = {'events' : events, 'images' : images, 'albums' : albums, 'event_page': event_page,'number' : number}
+        """
 
-       context_dict = {'events' : events, 'images' : images, 'albums' : albums, 'event_page': event_page,'number' : number}
-       return render_to_response('Union_1/gallery.html',context_dict,context)
+
+
+
 
