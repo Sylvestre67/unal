@@ -16,14 +16,9 @@
 	<div class="row">
 		<div class="col-xs-12 col-md-12">
 			{% for al in albums %}
-				<h3>{{ al }}</h3>
+				<h2>{{ al }}</h2>
 				{% for photo in al.photo_feed.photoset.photo %}
-					<div class="thumbnail" style="max-width:300px;">
-						<img src="https://farm{{ photo.farm }}.staticflickr.com/{{ photo.server }}/{{ photo.id }}_{{ photo.secret }}.jpg" />
-						<div class="caption">
-							{{ photo.title }}
-						</div>
-					</div>
+					<img src="https://farm{{ photo.farm }}.staticflickr.com/{{ photo.server }}/{{ photo.id }}_{{ photo.secret }}.jpg" />
 				{% endfor %}
 			{% endfor %}
 		</div>

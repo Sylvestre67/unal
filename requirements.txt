@@ -16,3 +16,5 @@ requests-toolbelt==0.6.2
 six==1.10.0
 static3==0.6.1
 whitenoise==3.1
+pylibmc==1.5.0
+django-pylibmc==0.6.0

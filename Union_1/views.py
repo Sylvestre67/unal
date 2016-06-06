@@ -14,6 +14,8 @@ from django.core.exceptions import ObjectDoesNotExist
 from cloudinary import CloudinaryImage
 from postmark import PMMail
 
+from django.views.decorators.cache import cache_page
+
 from models import Event,BlogPost,Contact_Us,Picture,Album,BureauMember,FlickR_Album
 from forms import ContactUs_Form,Become_a_Member,Become_a_Friend,Renewal
 
@@ -402,30 +404,26 @@ import flickrapi
 import json
 import yaml
 
+@cache_page(60 * 60 * 24)
 def gallery(request):
         context= RequestContext(request)
 
         flickr = flickrapi.FlickrAPI(FLICKR_API_KEY,FLICKR_SECRET,format='parsed-json')
         sets = flickr.photosets.getList(user_id=FLICKR_USERID)
 
-        # For each photosets
-
         for album in sets['photosets']['photoset']:
             try:
                 existing_album = FlickR_Album.objects.get(flickr_id = album['id'])
-                #TODO: ADD CHECK ON DATE --> NO NEED TO SAVE IF NOTHING NEW.
-                #TODO: USE THE CACHE TO LIMIT THE NUMBER OF API CALL.
+                """
                 try:
                     photo_feed = flickr.photosets.getPhotos(user_id=FLICKR_USERID,photoset_id=existing_album.flickr_id)
 
                     existing_album.photo_feed = yaml.safe_load(json.dumps(photo_feed))
                     existing_album.save()
 
-                    print(existing_album.photo_feed)
-
                 except Exception as e:
                     pass
-
+                """
             except ObjectDoesNotExist:
                 new_album = FlickR_Album.objects.create(name=album['title']['_content'],flickr_id=album['id'])
                 try:
