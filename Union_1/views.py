@@ -405,7 +405,7 @@ import flickrapi
 import json
 import yaml
 
-@cache_page(60 * 60 * 24)
+#@cache_page(60 * 60 * 24)
 def gallery(request):
         context= RequestContext(request)
 
