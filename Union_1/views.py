@@ -137,8 +137,8 @@ def membership_become_member(request):
 
         if form.is_valid():
 
-            subject='New Member Application Received'
-            message= ("A new request for membership has been posted through l'Union Alsacienne Website." + "\r\n\n" +
+            subject = 'New Member Application Received'
+            message = ("A new request for membership has been posted through l'Union Alsacienne Website." + "\r\n\n" +
             "Name: " + form.cleaned_data['first_name'] + " " + form.cleaned_data['last_name'] + "\r\n" +
             "Address: " + form.cleaned_data['address'] + "\n" +
             form.cleaned_data['city'] + "   " + form.cleaned_data['zip'] + "   " + form.cleaned_data['state'] + "\r\n\n" +
@@ -152,9 +152,12 @@ def membership_become_member(request):
             "Signature: " + form.cleaned_data['signature'] + "\r\n\n" +
             "First sponsor: " + form.cleaned_data['first_sponsor'] + "\n" +
             "Second sponsor: " + form.cleaned_data['second_sponsor'] + "\r\n\n" + "Posted through l'Union Alsacienne Website"+ "\r\n")
-            recipient=['contact@alsace-newyork.com','sgug@outlook.com','treasury.unal@gmail.com']
 
-            email = PMMail(subjet = subject,
+            recipient = 'union@alsace.nyc'
+
+            import pdb;pdb.set_trace()
+
+            email = PMMail(subject = subject,
                          text_body = message,
                          to = recipient)
             email.send()
@@ -229,7 +232,7 @@ def membership_become_a_friend(request):
                         form.cleaned_data['city'] + "   " + form.cleaned_data['zip'] + "   " + form.cleaned_data['state'] + "\r\n\n" +
                         "Posted through l'Union Alsacienne Website"+ "\r\n")
 
-            recipient =  'contact@alsace-newyork.com,sgug@outlook.com,treasury.unal@gmail.com'
+            recipient =  'union@alsace.nyc'
 
             email = PMMail(subject = subject,
                            text_body = message,
