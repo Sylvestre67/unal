@@ -155,8 +155,6 @@ def membership_become_member(request):
 
             recipient = 'union@alsace.nyc'
 
-            import pdb;pdb.set_trace()
-
             email = PMMail(subject = subject,
                          text_body = message,
                          to = recipient)
