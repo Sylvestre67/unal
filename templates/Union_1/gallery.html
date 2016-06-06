@@ -18,8 +18,10 @@
 			{% for al in albums %}
 				<h2>{{ al }}</h2>
 				{% for photo in al.photo_feed.photoset.photo %}
-					<img src="https://farm{{ photo.farm }}.staticflickr.com/{{ photo.server }}/{{ photo.id }}_{{ photo.secret }}.jpg" />
-				{% endfor %}
+					<a href="https://farm{{ photo.farm }}.staticflickr.com/{{ photo.server }}/{{ photo.id }}_{{ photo.secret }}.jpg" rel="lightbox">
+						<img style="max-width:150px;height:auto;margin:5px;" src="https://farm{{ photo.farm }}.staticflickr.com/{{ photo.server }}/{{ photo.id }}_{{ photo.secret }}.jpg" />
+					</a>
+					{% endfor %}
 			{% endfor %}
 		</div>
 	</div>
