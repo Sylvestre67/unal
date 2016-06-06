@@ -104,6 +104,10 @@ if os.getenv('DATABASE_URL'):
         }
     }
 
+    FLICKR_API_KEY = os.environ['FLICKR_API_KEY']
+    FLICKR_SECRET =  os.environ['FLICKR_SECRET']
+    FLICKR_USERID =  os.environ['FLICKR_USERID']
+
 
 # Honor the 'X-Forwarded-Proto' header for request.is_secure()
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
