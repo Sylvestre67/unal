@@ -213,6 +213,7 @@ INSTALLED_APPS = (
     'django.contrib.flatpages',
     'Union_1',
     'cloudinary',
+    'flickr_gallery',
 )
 
 #CLOUDINARY_URL='cloudinary://594761675313837:ARNma0lZjgYBaK9VPWGxSRF6xCo@deiq0pyek'

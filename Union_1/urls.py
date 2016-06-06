@@ -7,7 +7,6 @@ from django.core.urlresolvers import reverse
 from django.contrib.sitemaps import Sitemap
 
 from Union_1.models import Event,Picture
-from Union_1.views import gallery
 from Union_1 import views
 
 event_dict = {
@@ -43,7 +42,7 @@ urlpatterns = patterns('',
         url(r'^membership/renewal/$',views.renewal,name='membership_renewal'),
         url(r'^contact_us/',views.contact_us,name='contact_us'),
         url(r'^contact_us_thank_you/',views.contact_us_thank_you,name='contact_us_thank_you'),
-        url(r'^gallery/$',views.gallery,name='gallery'),
+        #url(r'^gallery/$',views.gallery,name='gallery'),
         url(r'^membership/payment',views.membership_payment,name='membership_payment'),
         (r'^sitemap\.xml$', 'django.contrib.sitemaps.views.sitemap', {'sitemaps': sitemaps}),
 )

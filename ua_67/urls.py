@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
     url(r'', include('Union_1.urls')),
+    url(r'', include('flickr_gallery.urls')),
     url(r'admin/', include(admin.site.urls)),
 
 )

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from models import Picture,Member,Friend,Event,Contact_Us,BureauMember,FlickR_Album
+from models import Picture,Member,Friend,Event,Contact_Us,BureauMember
 
 class BureauMemberAdmin(admin.ModelAdmin):
     search_fields = ["name"]
@@ -31,7 +31,5 @@ admin.site.register(Member,MemberAdmin)
 admin.site.register(Friend,FriendAdmin)
 admin.site.register(Event,EventAdmin)
 admin.site.register(Contact_Us,Contact_UsAdmin)
-
-admin.site.register(FlickR_Album)
 
 admin.site.register(BureauMember, BureauMemberAdmin)
